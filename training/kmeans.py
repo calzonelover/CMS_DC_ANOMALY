@@ -1,5 +1,7 @@
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler, normalize
+
 import h5py
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,17 +9,24 @@ import matplotlib.pyplot as plt
 COLORS = ['green', 'blue']
 LABELS = ['A', 'B']
 
-hf = h5py.File('../data/RPC.hdf5', 'r')
-
+# data
+hf = h5py.File('../data/express/RPC.hdf5', 'r')
 occupy_endcap_data = hf.get('ENDCAP')
 
+scalar = StandardScaler()
+scalar.fit(occupy_endcap_data)
+
+# tfed_occupy_endcap_data = scalar.transform(occupy_endcap_data)
+tfed_occupy_endcap_data = normalize(occupy_endcap_data, norm='l1')
+# tfed_occupy_endcap_data = occupy_endcap_data
+
 # KMeans
-kmeans_model = KMeans(n_clusters=2).fit(occupy_endcap_data)
-y_pred = kmeans_model.predict(occupy_endcap_data)
+kmeans_model = KMeans(n_clusters=2).fit(tfed_occupy_endcap_data)
+y_pred = kmeans_model.predict(tfed_occupy_endcap_data)
 
 # PCA
 pca = PCA(n_components=2)
-principal_components = pca.fit_transform(occupy_endcap_data)
+principal_components = pca.fit_transform(tfed_occupy_endcap_data)
 
 # visualzie
 plt.figure()

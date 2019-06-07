@@ -1,6 +1,7 @@
 import json
 import sqlite3
 import h5py
+import numpy as np
 
 conn = sqlite3.connect("dqmio.sqlite")
 c = conn.cursor()
@@ -24,9 +25,9 @@ x_data = []
 for row in range(len(table_rows)):
     value = table_rows[row][col_value]
     dictionary = json.loads(value)
-    x_data.append(dictionary['fArray'])
+    x_data.append(np.divide(dictionary['fArray'], 100000.0))
 
-f = h5py.File('RPC.hdf5', 'w')
+f = h5py.File('RPC_normalize.hdf5', 'w')
 
 dset = f.create_dataset("ENDCAP", data=x_data)
 
