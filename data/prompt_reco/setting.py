@@ -1,3 +1,8 @@
+DATA_DIRECTORY = "/eos/cms/store/user/fsiroky/consistentlumih5/"
+
+# just the period of year (ignoring A and B since it contain bunch of testing)
+PERIOD_DATA_TAKINGs = ["C", "D", "E", "F", "G", "H"]
+
 PDs  = {
     1: 'BTagCSV',
     2: 'BTagMu',
@@ -22,7 +27,7 @@ PDs  = {
     21: 'ZeroBias'
 }
 
-FEATURE_NAMES = [
+FEATURES = [
    "qPFJetPt",
    "qPFJetEta",
    "qPFJetPhi",

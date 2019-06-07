@@ -1,9 +1,9 @@
 # Report for Express datasets (offline)
 
 ## Subdetector: RPC/AllHits/SummaryHistograms/Occupancy_for_Endcap
-Regards for 8x5 grid that contains occupancy of events as pictures below
+Regards for 8x5 grid that contains occupancy of events as the example figure below
 <p align="center">
-<img src="occupancy_endcap_ex.png" width="500px" >
+<img src="occupancy_endcap_ex.png" width="800px" >
 </p>
 
 ### K-Means
