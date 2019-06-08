@@ -27,6 +27,7 @@ PDs  = {
     21: 'ZeroBias'
 }
 
+EXTENDED_FEATURES = ["run", "lumi", "inst_lumi", "_foo", "_bar", "_baz"]
 FEATURES = [
    "qPFJetPt",
    "qPFJetEta",

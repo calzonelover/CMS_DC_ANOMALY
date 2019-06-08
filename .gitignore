@@ -2,6 +2,7 @@
 
 *.sqlite3
 *.sqlite
+*.root
 
 ### OSX ###
 # General
