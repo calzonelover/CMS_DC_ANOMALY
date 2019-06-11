@@ -1,5 +1,4 @@
-def main():
-    pass
+from training.reco.autoencoder import sparse
 
 if __name__ == "__main__":
-    main()
+    sparse.main()

@@ -1,7 +1,10 @@
+LABEL_DIRECTORY = "/afs/cern.ch/user/p/ppayoung/public/CMS_DC_ANOMALY/data/prompt_reco/"
 DATA_DIRECTORY = "/eos/cms/store/user/fsiroky/consistentlumih5/"
 
 # just the period of year (ignoring A and B since it contain bunch of testing)
 PERIOD_DATA_TAKINGs = ["C", "D", "E", "F", "G", "H"]
+
+SELECT_PD = 11
 
 PDs  = {
     1: 'BTagCSV',
