@@ -14,7 +14,7 @@ class SparseAutoencoder(BaseModel):
         with self.graph.as_default():
             # placeholder
             with tf.name_scope("placeholder"):
-                self.x = tf.placeholder(tf.float32, shape=[self.batch_size, input_dim[0]], name="x_input")
+                self.x = tf.placeholder(tf.float32, shape=[None, input_dim[0]], name="x_input")
             # layer
             self.W1 = self.weight_variable([input_dim[0], 128])
             self.encoder1 = self.PReLU(self.fc_layer(self.x, self.W1, 128), name="encoder1")
@@ -27,7 +27,7 @@ class SparseAutoencoder(BaseModel):
             self.W5 = self.weight_variable([64, 128])
             self.decoder2 = self.PReLU(self.fc_layer(self.decoder1, self.W5, 128), name="decoder2")
             self.W6 = self.weight_variable([128, input_dim[0]])
-            self.decoder3 = self.PReLU(self.fc_layer(self.decoder2, self.W6, input_dim[0]), name="decoder3")
+            self.decoder3 = tf.math.sigmoid(self.fc_layer(self.decoder2, self.W6, input_dim[0]), name="decoder3")
             self.y_out = self.decoder3
             # loss
             with tf.name_scope("Loss"):
@@ -35,8 +35,8 @@ class SparseAutoencoder(BaseModel):
                     self.loss_mse = tf.reduce_mean(tf.squared_difference(self.y_out, self.x))
                     tf.summary.scalar("Loss_mean_square", self.loss_mse)
                 with tf.name_scope("l1_regularization"):
-                    self.loss_reg = tf.multiply(self.LAMBDA, self.sparse_loss([self.W1, self.W2, self.W3, self.W4, self.W5, self.W6]))
-                    tf.summary.scalar("Loss_class", self.loss_reg)
+                    self.loss_reg = self.LAMBDA * self.sparse_loss([self.W1, self.W2, self.W3, self.W4, self.W5, self.W6])
+                    tf.summary.scalar("Loss_reg", self.loss_reg)
                 self.total_loss = tf.add(self.loss_mse, self.loss_reg, name="total_loss")
                 tf.summary.scalar("Total_loss", self.total_loss)
             # optimizer
@@ -47,14 +47,11 @@ class SparseAutoencoder(BaseModel):
             # summary
             self.train_writer = tf.summary.FileWriter(os.path.join(self.summary_dir, self.model_name, self.log_dir), self.sess.graph)
             self.merged = tf.summary.merge_all()
-    def predict(self, x_batch):
-        out = self.sess.run([self.y_out], feed_dict={self.x: x_batch})
-        return out
     def train(self, x_batch):
         _, l = self.sess.run([self.optimizer, self.total_loss], feed_dict={self.x: x_batch})
-        print('loss ', l)
-    def log_summary(self, x_input_test, x_valid_test, EP): # for log per EP only
-        summary = self.sess.run([self.merged], feed_dict={self.x: x_input_test})
+        # print('loss ', l)
+    def log_summary(self, x_input_test, EP): # for log per EP only
+        [summary,] = self.sess.run([self.merged, ], feed_dict={self.x: x_input_test})
         self.train_writer.add_summary(summary, EP)
     def get_loss(self, x):
-        return self.sess.run([self.total_loss], feed_dict={self.x: x})
+        return self.sess.run(self.total_loss, feed_dict={self.x: x})
