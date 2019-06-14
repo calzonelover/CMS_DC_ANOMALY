@@ -10,8 +10,9 @@ from sklearn.preprocessing import StandardScaler, normalize
 from data.prompt_reco.setting import FEATURES, SELECT_PD
 import data.prompt_reco.utility as utility
 
-COLORS = ['green', 'blue']
-LABELS = ['A', 'B']
+COLORS = ('green', 'blue')
+GROUP_LABELS = ('A', 'B')
+HUMAN_LABELS = ('Good', 'Bad')
 
 def main():
     # data
@@ -36,9 +37,10 @@ def main():
 
     print("Training KMeans")
     # standardize data
-    standardizer = StandardScaler()
-    standardizer.fit(X_train.values)
-    X_train = standardizer.transform(X_train.values)
+    # standardizer = StandardScaler()
+    # standardizer.fit(X_train.values)
+    # X_train = standardizer.transform(X_train.values)
+    X_train = normalize(X_train, norm='l1')
     # training
     kmeans_model = KMeans(n_clusters=2).fit(X_train)
     y_pred = kmeans_model.predict(X_train)
@@ -46,35 +48,29 @@ def main():
     pca = PCA(n_components=2)
     principal_components = pca.fit_transform(X_train)
     # visualzie K-means
-    plt.figure()
+    fig, ax = plt.subplots()
 
-    for index, pc in enumerate(principal_components):
-        plt.scatter(
-            pc[0], pc[1], alpha=0.8,
-            color = COLORS[y_pred[index]],
-            label = LABELS[y_pred[index]]
+    for i, group_label in enumerate(GROUP_LABELS):
+        scat_data = principal_components[y_pred == i]
+        ax.scatter(
+            scat_data[:, 0], scat_data[:, 1], alpha=0.8,
+            c = COLORS[i],
+            label = GROUP_LABELS[i]
         )
-
+    ax.legend()
     plt.title('Clustering by K-Means, visual in Principal Basis (JetHT)')
     plt.savefig('JetHT.png')
 
     # visual labeld 
-    plt.figure()
-    x_good = X_train[y_train == 0]
-    x_bad = X_train[y_train == 1]
-    x_good_pc = pca.fit_transform(x_good)
-    x_bad_pc = pca.fit_transform(x_bad)
-    for index, pc in enumerate(x_good_pc):
-        plt.scatter(
-            pc[0], pc[1], alpha=0.8,
-            color = COLORS[y_pred[0]],
-            label = LABELS[y_pred[0]]
+    fig, ax = plt.subplots()
+    for i, group_label in enumerate(GROUP_LABELS):
+        scat_data = principal_components[y_train == i]
+        ax.scatter(
+            scat_data[:, 0], scat_data[:, 1], alpha=0.8,
+            c = COLORS[i],
+            label = HUMAN_LABELS[i]
         )
-    for index, pc in enumerate(x_bad_pc):
-        plt.scatter(
-            pc[0], pc[1], alpha=0.8,
-            color = COLORS[y_pred[1]],
-            label = LABELS[y_pred[1]]
-        )
-    plt.title('Labeld data, visual in Principal Basis (JetHT)')
+
+    ax.legend()
+    plt.title('Human Labeled data, visual in Principal Basis (JetHT)')
     plt.savefig('JetHT_label.png')

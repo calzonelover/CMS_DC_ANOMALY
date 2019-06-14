@@ -39,6 +39,9 @@ class BaseModel:
     def weight_variable(self, shape):
         initial = tf.truncated_normal(shape, stddev=0.1)
         return tf.Variable(initial)
+    def get_var(self, param_name):
+        with self.graph.as_default():
+            return tf.get_variable(param_name)
     def fc_layer(self, input, W , size):
         b = self.weight_variable([size])
         return tf.add(tf.matmul(input, W), b)
@@ -51,11 +54,40 @@ class BaseModel:
     def sparse_loss(self, w):
         return tf.reduce_sum([ self.l1_regularization(w_i) for w_i in w ])
     # contractive
-    def contractive_loss(self, h, x):
-        ## case PReLu activation fn
-        pass
-        ## only in case of sigmoid activation function
-        # w = tf.transpose(w)
-        # dh = tf.matmul(h, tf.subtract(1, h))
+    @staticmethod
+    def step_fn(x):
+        return tf.maximum(0.0, tf.sign(x))
+    def contractive_loss_prelu(self, scope_name, alpha_name, w, wxb):
+        w = tf.transpose(w)
+        with tf.variable_scope(scope_name, reuse=tf.AUTO_REUSE):
+            dh = tf.add_n([
+                    tf.multiply(tf.get_variable(alpha_name, [1]), self.step_fn(wxb)),
+                    self.step_fn(wxb)
+                ])
+        sum_i_w2 = tf.reshape(tf.reduce_sum(tf.square(w), axis=1), shape=[-1, 1])
         # sum_i_w2 = tf.reduce_sum(tf.square(w), axis=1)
-        # return tf.reduce_sum( tf.matmul(tf.square(dh), sum_i_w2), axis=1)
+        return tf.reduce_mean(tf.matmul(tf.square(dh), sum_i_w2))
+    def contractive_loss_sigmoid(self, w, h):
+        w = tf.transpose(w)
+        dh = tf.multiply(h, tf.subtract(1.0, h))
+        sum_i_w2 = tf.reshape(tf.reduce_sum(tf.square(w), axis=1), shape=[-1, 1]) # [N, 1]
+        return tf.reduce_mean( tf.matmul(tf.square(dh), sum_i_w2)) # [BS, N] x [N, 1] = [BS, 1]
+    # Variational
+    @staticmethod
+    def get_sampling(means, sigmas):
+        return tf.add(means, tf.multiply(sigmas, tf.random.normal(shape=sigmas.get_shape())))
+    def kl_divergence(self, means, sigmas):
+        return tf.reduce_mean( tf.multiply(
+                        0.5, 
+                        tf.reduce_sum(
+                            tf.math.add_n(
+                                [
+                                    tf.math.square(means),
+                                    tf.math.square(sigmas),
+                                    tf.add(
+                                        tf.math.multiply(-2.0, tf.math.log(sigmas)),
+                                        -1.0
+                                    )
+                                ])
+                        , axis=1)
+                    ))

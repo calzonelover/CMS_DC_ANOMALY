@@ -6,12 +6,13 @@ from sklearn.utils import shuffle
 # customize
 from data.prompt_reco.setting import FEATURES, SELECT_PD
 import data.prompt_reco.utility as utility
-from model.reco.autoencoder import SparseAutoencoder
+from model.reco.autoencoder import VariationalAutoencoder as Autoencoder
 
 def main():
     # setting
     BS = 64
     EPOCHS = 3000
+    MODEL_NAME = "Variational"
     # data
     files = utility.get_file_list(chosed_pd=SELECT_PD) # choosing only ZeroBias
 
@@ -27,32 +28,13 @@ def main():
     data["label"] = data.apply(utility.add_flags, axis=1)
     data = data.reindex(np.random.permutation(data.index))
     # model
-    sparseAutoencoder1 = SparseAutoencoder(
-        summary_dir = "model/reco/summary",
-        model_name = "sparse model1",
-        batch_size = BS
-    )
-    sparseAutoencoder2 = SparseAutoencoder(
-        summary_dir = "model/reco/summary",
-        model_name = "sparse model2",
-        batch_size = BS
-    )
-    sparseAutoencoder3 = SparseAutoencoder(
-        summary_dir = "model/reco/summary",
-        model_name = "sparse model3",
-        batch_size = BS
-    )
-    sparseAutoencoder4 = SparseAutoencoder(
-        summary_dir = "model/reco/summary",
-        model_name = "sparse model4",
-        batch_size = BS
-    )
-    sparseAutoencoder5 = SparseAutoencoder(
-        summary_dir = "model/reco/summary",
-        model_name = "sparse model5",
-        batch_size = BS
-    )
-    model_list = [sparseAutoencoder1, sparseAutoencoder2, sparseAutoencoder3, sparseAutoencoder4, sparseAutoencoder5]
+    model_list = [
+            Autoencoder(
+                summary_dir = "model/reco/summary",
+                model_name = "{} model {}".format(MODEL_NAME, i),
+                batch_size = BS
+            )
+        for i in range(1,6)]
     # training
     for dataset_fraction, autoencoder in zip(np.array([0.2,0.4,0.6,0.8,1.0]), model_list):
         print("Dataset fraction: %s" % dataset_fraction)
@@ -90,7 +72,7 @@ def main():
             autoencoder.log_summary(X_train, EP)
             file_log.write("{} {} {}\n".format(
                 EP,
-                autoencoder.get_loss(X_train),
-                autoencoder.get_loss(X_valid)
+                autoencoder.get_loss(X_train)[0],
+                autoencoder.get_loss(X_valid)[0]
                 ))
         file_log.close()

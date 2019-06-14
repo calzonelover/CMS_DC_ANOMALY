@@ -15,10 +15,12 @@ def plot_loss(x, loss_train, loss_valid, title):
     plt.savefig('{}.png'.format(title))
 
 if __name__ == "__main__":
+    # setting
+    model_name = "Contractive model"
     for i in range(1,6):
-        data = pd.read_csv('logs/sparse model{}.txt'.format(i), sep=" ")
+        data = pd.read_csv('logs/{} {}.txt'.format(model_name,i), sep=" ")
         # print(data['EP'].shape)
         x = data['EP']
-        loss_train = data['loss_test']
+        loss_train = data['loss_train']
         loss_valid = data['loss_valid']
-        plot_loss(x, loss_train, loss_valid, title="Sparse Model{}".format(i))
+        plot_loss(x, loss_train, loss_valid, title="{} {}".format(model_name, i))
