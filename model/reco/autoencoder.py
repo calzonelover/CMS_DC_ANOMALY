@@ -4,6 +4,52 @@ import os
 
 from model.NN.base import BaseModel
 
+class VanillaAutoencoder(BaseModel):
+    def __init__(self, input_dim=[2806], batch_size=1024, learning_rate=1e-4, beta1=0.7, beta2=0.9,**kwargs):
+        super(VanillaAutoencoder, self).__init__(**kwargs)
+        # parameters
+        self.batch_size = batch_size
+        self.learning_rate = learning_rate
+        with self.graph.as_default():
+            # placeholder
+            with tf.name_scope("placeholder"):
+                self.x = tf.placeholder(tf.float32, shape=[None, input_dim[0]], name="x_input")
+            # Body Layer
+            self.W1 = self.weight_variable([input_dim[0], 128])
+            self.encoder1 = self.PReLU(self.fc_layer(self.x, self.W1, 128), name="encoder1")
+            self.W2 = self.weight_variable([128, 64])
+            self.encoder2 = self.PReLU(self.fc_layer(self.encoder1, self.W2, 64), name="encoder2")
+            self.W3 = self.weight_variable([64, 16])
+            self.encoder3 = self.PReLU(self.fc_layer(self.encoder2, self.W3, 16), name="encoder3")
+            self.W4 = self.weight_variable([16, 64])
+            self.decoder1 = self.PReLU(self.fc_layer(self.encoder3, self.W4, 64), name="decoder1")
+            self.W5 = self.weight_variable([64, 128])
+            self.decoder2 = self.PReLU(self.fc_layer(self.decoder1, self.W5, 128), name="decoder2")
+            self.W6 = self.weight_variable([128, input_dim[0]])
+            self.decoder3 = tf.math.sigmoid(self.fc_layer(self.decoder2, self.W6, input_dim[0]), name="decoder3")
+            self.y_out = self.decoder3
+            # loss
+            with tf.name_scope("Loss"):
+                with tf.name_scope("mean_square"):
+                    self.loss = tf.reduce_mean(tf.squared_difference(self.y_out, self.x))
+                    tf.summary.scalar("Loss_mean_square", self.loss)
+            # optimizer
+            with tf.name_scope("Optimizer"):
+                self.optimizer = tf.train.AdamOptimizer(
+                    self.learning_rate, beta1=beta1, beta2=beta2,
+                    ).minimize(self.loss)
+            # summary
+            self.train_writer = tf.summary.FileWriter(os.path.join(self.summary_dir, self.model_name, self.log_dir), self.sess.graph)
+            self.merged = tf.summary.merge_all()
+    def train(self, x_batch):
+        _, l = self.sess.run([self.optimizer, self.loss], feed_dict={self.x: x_batch})
+    def log_summary(self, x_input_test, EP): # for log per EP only
+        [summary,] = self.sess.run([self.merged, ], feed_dict={self.x: x_input_test})
+        self.train_writer.add_summary(summary, EP)
+    def get_loss(self, x):
+        return self.sess.run([self.loss], feed_dict={self.x: x})
+
+
 class SparseAutoencoder(BaseModel):
     def __init__(self, LAMBDA=1e-4, input_dim=[2806], batch_size=1024, learning_rate=1e-4, beta1=0.7, beta2=0.9,**kwargs):
         super(SparseAutoencoder, self).__init__(**kwargs)
@@ -153,9 +199,9 @@ class VariationalAutoencoder(BaseModel):
             self.W3 = self.weight_variable([64, 32])
             self.encoding = self.PReLU(self.fc_layer(self.encoder2, self.W3, 32), name="encoder3")
 
-            self.means = tf.slice(self.encoding, [0, 0], [self.batch_size, 16])
-            self.sigmas = tf.slice(self.encoding, [0, 16], [self.batch_size, 16])
-            self.sampling = self.get_sampling(self.means, self.sigmas)            
+            self.means = tf.slice(self.encoding, [0, 0], [-1, 16])
+            self.sigmas = tf.slice(self.encoding, [0, 16], [-1, 16])
+            self.sampling = self.get_sampling(self.means, self.sigmas)
 
             self.W4 = self.weight_variable([16, 64])
             self.decoder1 = self.PReLU(self.fc_layer(self.sampling, self.W4, 64), name="decoder1")
@@ -164,7 +210,6 @@ class VariationalAutoencoder(BaseModel):
             self.W6 = self.weight_variable([128, input_dim[0]])
             self.decoder3 = tf.math.sigmoid(self.fc_layer(self.decoder2, self.W6, input_dim[0]), name="decoder3")
             self.y_out = self.decoder3
-            print(self.get_sampling.get_shape(), self.x.get_shape(), self.y_out.get_shape())
             # loss
             with tf.name_scope("Loss"):
                 with tf.name_scope("mean_square"):

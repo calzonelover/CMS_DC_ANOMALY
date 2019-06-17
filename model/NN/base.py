@@ -73,19 +73,21 @@ class BaseModel:
         sum_i_w2 = tf.reshape(tf.reduce_sum(tf.square(w), axis=1), shape=[-1, 1]) # [N, 1]
         return tf.reduce_mean( tf.matmul(tf.square(dh), sum_i_w2)) # [BS, N] x [N, 1] = [BS, 1]
     # Variational
-    @staticmethod
-    def get_sampling(means, sigmas):
-        return tf.add(means, tf.multiply(sigmas, tf.random.normal(shape=sigmas.get_shape())))
+    def get_sampling(self, means, sigmas):
+        return tf.add(means, tf.multiply(sigmas, tf.random.normal(shape=tf.shape(sigmas))))
     def kl_divergence(self, means, sigmas):
         return tf.reduce_mean( tf.multiply(
-                        0.5, 
+                        0.5,
                         tf.reduce_sum(
                             tf.math.add_n(
                                 [
                                     tf.math.square(means),
                                     tf.math.square(sigmas),
                                     tf.add(
-                                        tf.math.multiply(-2.0, tf.math.log(sigmas)),
+                                        tf.multiply(
+                                            -1.0,
+                                            tf.math.log(tf.math.square(sigmas))
+                                        ),
                                         -1.0
                                     )
                                 ])

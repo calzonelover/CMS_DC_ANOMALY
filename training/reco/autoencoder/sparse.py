@@ -76,3 +76,9 @@ def main():
                 autoencoder.get_loss(X_valid)[0]
                 ))
         file_log.close()
+        autoencoder.save()
+
+
+
+def evaluation():
+    pass

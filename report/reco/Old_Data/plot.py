@@ -16,7 +16,7 @@ def plot_loss(x, loss_train, loss_valid, title):
 
 if __name__ == "__main__":
     # setting
-    model_name = "Contractive model"
+    model_name = "Variational model"
     for i in range(1,6):
         data = pd.read_csv('logs/{} {}.txt'.format(model_name,i), sep=" ")
         # print(data['EP'].shape)
