@@ -20,12 +20,16 @@ class BaseModel:
             self.sess.run(init)
     def save(self):
         with self.graph.as_default():
-            saver = tf.train.Saver(keep_checkpoint_every_n_hours=self.save_checkpoint_time)
-            saver.save(self.sess, os.path.join(self.save_dir, self.model_name))
+            try:
+                saver = tf.train.Saver(keep_checkpoint_every_n_hours=self.save_checkpoint_time)
+                saver.save(self.sess, os.path.join(self.save_dir,  self.model_name, "{}.ckpt".format(self.model_name)))
+            except ValueError:
+                os.makedirs("./{}/{}/".format(self.save_dir,  self.model_name), exist_ok=True)
+                saver.save(self.sess, os.path.join(self.save_dir,  self.model_name,  "{}.ckpt".format(self.model_name)))
     def restore(self):
         with self.graph.as_default():
             saver = tf.train.Save()
-            saver.restore(self.sess, os.path.join(self.save_dir, self.model_name))
+            saver.restore(self.sess, os.path.join(self.save_dir, self.model_name,  "{}.ckpt".format(self.model_name)))
     @abc.abstractmethod
     def inference(self, x):
         return

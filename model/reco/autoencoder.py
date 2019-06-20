@@ -31,24 +31,32 @@ class VanillaAutoencoder(BaseModel):
             # loss
             with tf.name_scope("Loss"):
                 with tf.name_scope("mean_square"):
-                    self.loss = tf.reduce_mean(tf.squared_difference(self.y_out, self.x))
-                    tf.summary.scalar("Loss_mean_square", self.loss)
+                    self.loss_mse = tf.reduce_mean(tf.squared_difference(self.y_out, self.x))
+                    self.total_loss = self.loss_mse
+                    tf.summary.scalar("Loss_mean_square", self.total_loss)
             # optimizer
             with tf.name_scope("Optimizer"):
                 self.optimizer = tf.train.AdamOptimizer(
                     self.learning_rate, beta1=beta1, beta2=beta2,
-                    ).minimize(self.loss)
+                    ).minimize(self.total_loss)
             # summary
             self.train_writer = tf.summary.FileWriter(os.path.join(self.summary_dir, self.model_name, self.log_dir), self.sess.graph)
             self.merged = tf.summary.merge_all()
     def train(self, x_batch):
-        _, l = self.sess.run([self.optimizer, self.loss], feed_dict={self.x: x_batch})
+        _, l = self.sess.run([self.optimizer, self.total_loss], feed_dict={self.x: x_batch})
     def log_summary(self, x_input_test, EP): # for log per EP only
         [summary,] = self.sess.run([self.merged, ], feed_dict={self.x: x_input_test})
         self.train_writer.add_summary(summary, EP)
     def get_loss(self, x):
-        return self.sess.run([self.loss], feed_dict={self.x: x})
-
+        return self.sess.run({"loss_total": self.total_loss, "loss_mse": self.loss_mse}, feed_dict={self.x: x})
+    def get_ms(self, x):
+        return self.sess.run(tf.reduce_mean(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
+    def get_ms_top100(self, x):
+        return self.sess.run(tf.reduce_mean(
+            tf.slice(
+                tf.sort(tf.squared_difference(self.y_out, self.x), axis=1, direction='DESCENDING')
+            , [0, 0], [-1, 100])
+            , axis=1), feed_dict={self.x: x})
 
 class SparseAutoencoder(BaseModel):
     def __init__(self, LAMBDA=1e-4, input_dim=[2806], batch_size=1024, learning_rate=1e-4, beta1=0.7, beta2=0.9,**kwargs):
@@ -99,9 +107,15 @@ class SparseAutoencoder(BaseModel):
         [summary,] = self.sess.run([self.merged, ], feed_dict={self.x: x_input_test})
         self.train_writer.add_summary(summary, EP)
     def get_loss(self, x):
-        return self.sess.run([self.total_loss, self.loss_mse, self.loss_reg], feed_dict={self.x: x})
-
-
+        return self.sess.run({"loss_total":self.total_loss, "loss_mse": self.loss_mse, "loss_reg": self.loss_reg}, feed_dict={self.x: x})
+    def get_ms(self, x):
+        return self.sess.run(tf.reduce_mean(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
+    def get_ms_top100(self, x):
+        return self.sess.run(tf.reduce_mean(
+            tf.slice(
+                tf.sort(tf.squared_difference(self.y_out, self.x), axis=1, direction='DESCENDING')
+            , [0, 0], [-1, 100])
+            , axis=1), feed_dict={self.x: x})
 
 
 class ContractiveAutoencoder(BaseModel):
@@ -177,9 +191,15 @@ class ContractiveAutoencoder(BaseModel):
         [summary,] = self.sess.run([self.merged, ], feed_dict={self.x: x_input_test})
         self.train_writer.add_summary(summary, EP)
     def get_loss(self, x):
-        return self.sess.run([self.total_loss, self.loss_mse, self.loss_con], feed_dict={self.x: x})
-
-
+        return self.sess.run({"loss_total": self.total_loss, "loss_mse": self.loss_mse, "loss_con": self.loss_con}, feed_dict={self.x: x})
+    def get_ms(self, x):
+        return self.sess.run(tf.reduce_mean(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
+    def get_ms_top100(self, x):
+        return self.sess.run(tf.reduce_mean(
+            tf.slice(
+                tf.sort(tf.squared_difference(self.y_out, self.x), axis=1, direction='DESCENDING')
+            , [0, 0], [-1, 100])
+            , axis=1), feed_dict={self.x: x})
 
 class VariationalAutoencoder(BaseModel):
     def __init__(self, input_dim=[2806], batch_size=1024, learning_rate=1e-4, beta1=0.7, beta2=0.9,**kwargs):
@@ -234,4 +254,12 @@ class VariationalAutoencoder(BaseModel):
         [summary,] = self.sess.run([self.merged, ], feed_dict={self.x: x_input_test})
         self.train_writer.add_summary(summary, EP)
     def get_loss(self, x):
-        return self.sess.run([self.total_loss, self.loss_mse, self.loss_kl], feed_dict={self.x: x})
+        return self.sess.run({"loss_total": self.total_loss, "loss_mse": self.loss_mse, "loss_kl": self.loss_kl}, feed_dict={self.x: x})
+    def get_ms(self, x):
+        return self.sess.run(tf.reduce_mean(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
+    def get_ms_top100(self, x):
+        return self.sess.run(tf.reduce_mean(
+            tf.slice(
+                tf.sort(tf.squared_difference(self.y_out, self.x), axis=1, direction='DESCENDING')
+            , [0, 0], [-1, 100])
+            , axis=1), feed_dict={self.x: x})
