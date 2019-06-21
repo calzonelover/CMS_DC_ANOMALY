@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import os
-from sklearn.preprocessing import StandardScaler, normalize
+from sklearn.preprocessing import StandardScaler, normalize, MinMaxScaler
 from sklearn.utils import shuffle
 from sklearn.metrics import roc_curve, auc
 # customize
@@ -13,45 +13,43 @@ from model.reco.autoencoder import ( VanillaAutoencoder, SparseAutoencoder,
                                      ContractiveAutoencoder, VariationalAutoencoder )
 
 def main():
+    # setting
+    is_reduced_data = True
+    data_preprocessing_mode = 'minmaxscalar' # ['standardize, 'normalize', 'minmaxscalar']
+    BS = 256
+    EPOCHS = 1500
+    SPLIT_DATA_IN_80 = [0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75] # 60% of data
+    N_FEATURES = len(REDUCED_FEATURES*7) - 1 if is_reduced_data else 2806
+
+    files = utility.get_file_list(chosed_pd=SELECT_PD) # choosing only ZeroBias
+    feature_names = utility.get_feature_name(features=FEATURES)
+    reduced_feature_names = utility.get_feature_name(features=REDUCED_FEATURES)
+    data = pd.DataFrame(utility.get_data(files), columns=feature_names)
+    data["run"] = data["run"].astype(int)
+    data["lumi"] = data["lumi"].astype(int)
+    data.drop(["_foo", "_bar", "_baz"], axis=1, inplace=True)
+    if is_reduced_data:
+        not_reduced_column = feature_names
+        for intersected_elem in reduced_feature_names: not_reduced_column.remove(intersected_elem)
+        data.drop(not_reduced_column, axis=1, inplace=True)
+    data = data.sort_values(["run", "lumi"], ascending=[True,True])
+    data = data.reset_index(drop=True)
+    data["label"] = data.apply(utility.add_flags, axis=1)
+    data = data.reindex(np.random.permutation(data.index))
+
+    if data_preprocessing_mode == 'standardize':
+        transformer = StandardScaler()
+    elif data_preprocessing_mode == 'minmaxscalar':
+        transformer = MinMaxScaler(feature_range=(0,1))
+    transformer.fit(data.iloc[:, 0:N_FEATURES])
+
     file_auc = open('report/reco/eval/roc_auc.txt', 'w')
     file_auc.write("model_name data_fraction roc_auc\n")
     for model_name, Autoencoder in zip(
             [ "Vanilla", "Sparse", "Contractive", "Variational"],
             [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder]
             ):
-        # setting
-        is_reduced_data = True
-        BS = 256
-        EPOCHS = 1200
         MODEL_NAME = model_name
-        SPLIT_DATA_IN_80 = [0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75] # 60% of data
-
-        N_FEATURES = len(REDUCED_FEATURES) - 1 if is_reduced_data else 2806
-        # data
-        files = utility.get_file_list(chosed_pd=SELECT_PD) # choosing only ZeroBias
-
-        feature_names = utility.get_feature_name(features=FEATURES)
-        ###
-        reduced_feature_names = utility.get_feature_name(features=REDUCED_FEATURES)
-        ###
-
-        data = pd.DataFrame(utility.get_data(files), columns=feature_names)
-        data["run"] = data["run"].astype(int)
-        data["lumi"] = data["lumi"].astype(int)
-        data.drop(["_foo", "_bar", "_baz"], axis=1, inplace=True)
-        ###
-        if is_reduced_data:
-            not_reduced_column = feature_names
-            for intersected_elem in reduced_feature_names: not_reduced_column.remove(intersected_elem)
-            data.drop(not_reduced_column, axis=1, inplace=True)
-        ###
-
-        data = data.sort_values(["run", "lumi"], ascending=[True,True])
-        data = data.reset_index(drop=True)
-
-        data["label"] = data.apply(utility.add_flags, axis=1)
-
-        data = data.reindex(np.random.permutation(data.index))
         # model
         model_list = [
                 Autoencoder(
@@ -92,11 +90,12 @@ def main():
             file_log.write("EP loss_train loss_valid\n")
 
             # standardize data
-            # transformer = StandardScaler()
-            # transformer.fit(X_train.values)
-            # X_train = transformer.transform(X_train.values)
-            X_train = normalize(X_train, norm='l1')
-            X_test = normalize(X_test, norm='l1')
+            if data_preprocessing_mode == 'normalize':
+                X_train = normalize(X_train, norm='l1')
+                X_test = normalize(X_test, norm='l1')
+            else:
+                X_train = transformer.transform(X_train.values)
+                X_test = transformer.transform(X_test.values)
 
             X_train = X_train[:int(0.75*len(X_train))]
             X_valid = X_train[int(0.75*len(X_train)):]
@@ -123,14 +122,102 @@ def main():
             file_eval.write("fpr tpr threshold\n")
             fprs, tprs, thresholds = roc_curve(y_test, autoencoder.get_ms(X_test))
             for fpt, tpr, threshold in zip(fprs, tprs, thresholds):
-                file_eval.write("{} {} {} \n".format(fpt, tpr, threshold))
+                file_eval.write("{} {} {}\n".format(fpt, tpr, threshold))
             file_eval.close()
             
+            print("AUC {}".format(auc(fprs, tprs)))
             file_auc.write("{} {} {}\n".format(MODEL_NAME, dataset_fraction, auc(fprs, tprs)))
 
             autoencoder.save()
 
     file_auc.close()
 
-def evaluation():
-    pass
+def test_ms(Autoencoder=VanillaAutoencoder, test_model="Vanilla", number_model=1):
+        # setting
+        is_reduced_data = True
+        BS = 256
+        dataset_fraction = 0.75
+
+        N_FEATURES = len(REDUCED_FEATURES*7) - 1 if is_reduced_data else 2806
+        # data
+        files = utility.get_file_list(chosed_pd=SELECT_PD) # choosing only ZeroBias
+
+        feature_names = utility.get_feature_name(features=FEATURES)
+        ###
+        reduced_feature_names = utility.get_feature_name(features=REDUCED_FEATURES)
+        ###
+
+        data = pd.DataFrame(utility.get_data(files), columns=feature_names)
+        data["run"] = data["run"].astype(int)
+        data["lumi"] = data["lumi"].astype(int)
+        data.drop(["_foo", "_bar", "_baz"], axis=1, inplace=True)
+        ###
+        if is_reduced_data:
+            not_reduced_column = feature_names
+            for intersected_elem in reduced_feature_names: not_reduced_column.remove(intersected_elem)
+            data.drop(not_reduced_column, axis=1, inplace=True)
+        ###
+
+        data = data.sort_values(["run", "lumi"], ascending=[True,True])
+        data = data.reset_index(drop=True)
+
+        data["label"] = data.apply(utility.add_flags, axis=1)
+
+        data = data.reindex(np.random.permutation(data.index))
+        #
+        autoencoder = Autoencoder(
+            input_dim = [N_FEATURES],
+            summary_dir = "model/reco/summary",
+            model_name = "{} model {}".format(test_model, number_model),
+            batch_size = BS
+        )
+        autoencoder.restore()
+        ##
+        split = int(dataset_fraction*len(data))
+        dataset = data.iloc[:split].copy()
+
+        print("Train test split...")
+        split = int(0.8*len(dataset))
+        # train set
+        df_train = dataset.iloc[:split].copy()
+        X_train = df_train.iloc[:, 0:N_FEATURES]
+        y_train = df_train["label"]
+        # test set
+        df_test = dataset.iloc[split:].copy()
+        print("N_FEATURES: {}".format(N_FEATURES))
+        X_test = df_test.iloc[:, 0:N_FEATURES]
+        y_test = df_test["label"]
+        X_test = pd.concat([X_train[y_train == 1], X_test])
+        y_test = pd.concat([y_train[y_train == 1], y_test])
+        # train only good condition
+        X_train = X_train[y_train == 0]
+        print("Number of inliers in training&valid set: {}".format(len(X_train)))
+        print("Number of inliers in test set: {}".format(sum((y_test == 0).values)))
+        print("Number of anomalies in the test set: {}".format(sum((y_test == 1).values)))
+        # log
+        file_log = open('report/reco/logs/{}.txt'.format(autoencoder.model_name), 'w')
+        file_log.write("EP loss_train loss_valid\n")
+
+        # standardize data
+        # transformer = StandardScaler()
+        # transformer.fit(X_train.values)
+        # X_train = transformer.transform(X_train.values)
+        X_train = normalize(X_train, norm='l1')
+        X_test = normalize(X_test, norm='l1')
+
+        x_good = X_test[y_test == 0]
+        x_good_sample = x_good[0]
+        x_bad = X_test[y_test == 1]
+        x_bad_sample = x_bad[20]
+        
+        print(x_good_sample, x_bad_sample)
+        print('sample', len(x_good_sample), len(x_bad_sample))
+
+        with open('SD_sample.txt', 'w') as f:
+            f.write('good_channel bad_channel\n')
+            good_square_differents = autoencoder.get_sd(np.reshape(x_good_sample, [1, len(x_bad_sample)]))[0,:]
+            bad_square_differents = autoencoder.get_sd(np.reshape(x_bad_sample, [1, len(x_bad_sample)]))[0,:]
+            print(good_square_differents, bad_square_differents)
+            print('predict', len(good_square_differents), len(bad_square_differents))
+            for good_square_different, bad_square_different in zip(good_square_differents, bad_square_differents):
+                f.write('{} {}\n'.format(good_square_different, bad_square_different))

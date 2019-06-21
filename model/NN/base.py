@@ -28,7 +28,7 @@ class BaseModel:
                 saver.save(self.sess, os.path.join(self.save_dir,  self.model_name,  "{}.ckpt".format(self.model_name)))
     def restore(self):
         with self.graph.as_default():
-            saver = tf.train.Save()
+            saver = tf.train.Saver()
             saver.restore(self.sess, os.path.join(self.save_dir, self.model_name,  "{}.ckpt".format(self.model_name)))
     @abc.abstractmethod
     def inference(self, x):
