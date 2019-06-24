@@ -49,7 +49,7 @@ def main_loss():
 
 
 def evalTough(
-        path_dat='ReducedFeatures/BS256_EP1200_Fulltrain',
+        path_dat='ReducedFeatures/minmaxscalar/BS256_EP1200_Fulltrain',
         model_list=['Vanilla', 'Sparse', 'Contractive', 'Variational'],
         datafraction_list=[0.75 for i in range(10)]
         ):
@@ -70,17 +70,17 @@ def evalTough(
         df_list.append(df_model)
     df_all = pd.concat(df_list)
     ax = sns.lineplot(x="fpr", y="tpr", hue="model", data=df_all)
-    ax.set(xlabel='FPR', ylabel='TPR', ylim=(0.5, 1.01), xlim=(0.0, 1.01))
-    plt.legend(title='Autoencoder', loc='lower right', labels=["{}, AUC {:.1f} $\pm$ {:.2f}".format(model, 100.0*model_roc_auc_mean[model], 100.0*model_roc_auc_rms[model]) for model in model_list])
+    ax.set(xlabel='FPR', ylabel='TPR', ylim=(0.8, 1.01), xlim=(0.0, 1.01))
+    plt.legend(title='Autoencoder', loc='lower right', labels=["{}, AUC {:.2f} $\pm$ {:.3f}".format(model, 100.0*model_roc_auc_mean[model], 100.0*model_roc_auc_rms[model]) for model in model_list])
     plt.title("Performance")
     plt.show(ax)
 
 def evalSmooth(
-        path_dat='ReducedFeatures/BS256_EP1200_Fulltrain',
+        path_dat='ReducedFeatures/minmaxscalar/BS256_EP1200_Fulltrain',
         model_list=['Vanilla', 'Sparse', 'Contractive', 'Variational'],
         COLOR_PALETES=['r','g','b','o'],
         datafraction_list=[0.75 for i in range(10)],
-        n_bins=50
+        n_bins=8
         ):
     path_eval = os.path.join('logs', path_dat, 'eval')
     data_roc_auc = pd.read_csv(os.path.join(path_eval, 'roc_auc.txt'), sep=" ")
@@ -116,14 +116,13 @@ def evalSmooth(
             np.add(y_mean_bins[model], y_rms_bins[model]),
             alpha=0.2
             )
-    plt.legend(["{}, AUC {:.1f} $\pm$ {:.2f}".format(model, 100.0*model_roc_auc_mean[model], 100.0*model_roc_auc_rms[model]) for model in model_list], loc="lower right", frameon=False)
-    plt.ylim(0.5, 1.0)
+    plt.legend(["{}, AUC {:.2f} $\pm$ {:.3f}".format(model, 100.0*model_roc_auc_mean[model], 100.0*model_roc_auc_rms[model]) for model in model_list], loc="lower right", frameon=False)
+    plt.ylim(0.5, 1.01)
     plt.show()
 
 
 def plot_se(
-        path_dat='logs/ReducedFeatures/BS256_EP1200_Fulltrain_perfect',
-        model='Vanilla'
+        path_dat='logs/ReducedFeatures/minmaxscalar/BS256_EP1200_Fulltrain',
         ):
     df = pd.read_csv(os.path.join(path_dat, 'SD_sample.txt'), sep=" ")
     

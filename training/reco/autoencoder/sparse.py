@@ -18,8 +18,8 @@ def main():
     data_preprocessing_mode = 'minmaxscalar' # ['standardize, 'normalize', 'minmaxscalar']
     BS = 256
     EPOCHS = 1500
-    SPLIT_DATA_IN_80 = [0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75] # 60% of data
-    N_FEATURES = len(REDUCED_FEATURES*7) - 1 if is_reduced_data else 2806
+    SPLIT_DATA_IN_80 = [1.0 for i in range(10)] # 60% of data
+    N_FEATURES = len(REDUCED_FEATURES*7) if is_reduced_data else 2807
 
     files = utility.get_file_list(chosed_pd=SELECT_PD) # choosing only ZeroBias
     feature_names = utility.get_feature_name(features=FEATURES)
@@ -36,12 +36,6 @@ def main():
     data = data.reset_index(drop=True)
     data["label"] = data.apply(utility.add_flags, axis=1)
     data = data.reindex(np.random.permutation(data.index))
-
-    if data_preprocessing_mode == 'standardize':
-        transformer = StandardScaler()
-    elif data_preprocessing_mode == 'minmaxscalar':
-        transformer = MinMaxScaler(feature_range=(0,1))
-    transformer.fit(data.iloc[:, 0:N_FEATURES])
 
     file_auc = open('report/reco/eval/roc_auc.txt', 'w')
     file_auc.write("model_name data_fraction roc_auc\n")
@@ -61,19 +55,17 @@ def main():
             for i in range(1,len(SPLIT_DATA_IN_80) + 1)]
         # training
         for dataset_fraction, autoencoder in zip(np.array(SPLIT_DATA_IN_80), model_list):
-            print("Model: {} Dataset fraction: {}".format(autoencoder.model_name, dataset_fraction))
-            print("Preparing dataset...")
-            split = int(dataset_fraction*len(data))
-            dataset = data.iloc[:split].copy()
-
-            print("Train test split...")
-            split = int(0.8*len(dataset))
+            print("Model: {}, Chunk of Training Dataset fraction: {}".format(autoencoder.model_name, dataset_fraction))
+            print("Train(Train,Valid) test split...")
+            split = int(0.8*len(data))
             # train set
-            df_train = dataset.iloc[:split].copy()
-            X_train = df_train.iloc[:, 0:N_FEATURES]
-            y_train = df_train["label"]
+            df_train = data.iloc[:split].copy()
+            split_frac = int(dataset_fraction*len(df_train))
+            df_train_frac = data.iloc[:split_frac].copy()
+            X_train = df_train_frac.iloc[:, 0:N_FEATURES]
+            y_train = df_train_frac["label"]
             # test set
-            df_test = dataset.iloc[split:].copy()
+            df_test = data.iloc[split:].copy()
             X_test = df_test.iloc[:, 0:N_FEATURES]
             y_test = df_test["label"]
             X_test = pd.concat([X_train[y_train == 1], X_test])
@@ -89,14 +81,18 @@ def main():
             file_log = open('report/reco/logs/{}.txt'.format(autoencoder.model_name), 'w')
             file_log.write("EP loss_train loss_valid\n")
 
-            # standardize data
+            # Data Preprocessing
+            if data_preprocessing_mode == 'standardize':
+                transformer = StandardScaler()
+            elif data_preprocessing_mode == 'minmaxscalar':
+                transformer = MinMaxScaler(feature_range=(0,1))
+            transformer.fit(X_train)
             if data_preprocessing_mode == 'normalize':
                 X_train = normalize(X_train, norm='l1')
                 X_test = normalize(X_test, norm='l1')
             else:
                 X_train = transformer.transform(X_train.values)
                 X_test = transformer.transform(X_test.values)
-
             X_train = X_train[:int(0.75*len(X_train))]
             X_valid = X_train[int(0.75*len(X_train)):]
             # LOOP EPOCH
@@ -120,7 +116,7 @@ def main():
                 os.makedirs("./report/reco/eval/")
                 file_eval = open('report/reco/eval/{} {}.txt'.format(autoencoder.model_name, dataset_fraction), 'w')
             file_eval.write("fpr tpr threshold\n")
-            fprs, tprs, thresholds = roc_curve(y_test, autoencoder.get_ms(X_test))
+            fprs, tprs, thresholds = roc_curve(y_test, autoencoder.get_sd(X_test, scalar=True))
             for fpt, tpr, threshold in zip(fprs, tprs, thresholds):
                 file_eval.write("{} {} {}\n".format(fpt, tpr, threshold))
             file_eval.close()
@@ -134,11 +130,12 @@ def main():
 
 def test_ms(Autoencoder=VanillaAutoencoder, test_model="Vanilla", number_model=1):
         # setting
+        data_preprocessing_mode = 'minmaxscalar'
         is_reduced_data = True
         BS = 256
         dataset_fraction = 0.75
 
-        N_FEATURES = len(REDUCED_FEATURES*7) - 1 if is_reduced_data else 2806
+        N_FEATURES = len(REDUCED_FEATURES*7) if is_reduced_data else 2807
         # data
         files = utility.get_file_list(chosed_pd=SELECT_PD) # choosing only ZeroBias
 
@@ -177,14 +174,13 @@ def test_ms(Autoencoder=VanillaAutoencoder, test_model="Vanilla", number_model=1
         dataset = data.iloc[:split].copy()
 
         print("Train test split...")
-        split = int(0.8*len(dataset))
+        split = int(0.8*len(data))
         # train set
-        df_train = dataset.iloc[:split].copy()
+        df_train = data.iloc[:split].copy()
         X_train = df_train.iloc[:, 0:N_FEATURES]
         y_train = df_train["label"]
         # test set
-        df_test = dataset.iloc[split:].copy()
-        print("N_FEATURES: {}".format(N_FEATURES))
+        df_test = data.iloc[split:].copy()
         X_test = df_test.iloc[:, 0:N_FEATURES]
         y_test = df_test["label"]
         X_test = pd.concat([X_train[y_train == 1], X_test])
@@ -198,17 +194,23 @@ def test_ms(Autoencoder=VanillaAutoencoder, test_model="Vanilla", number_model=1
         file_log = open('report/reco/logs/{}.txt'.format(autoencoder.model_name), 'w')
         file_log.write("EP loss_train loss_valid\n")
 
-        # standardize data
-        # transformer = StandardScaler()
-        # transformer.fit(X_train.values)
-        # X_train = transformer.transform(X_train.values)
-        X_train = normalize(X_train, norm='l1')
-        X_test = normalize(X_test, norm='l1')
+        # Data Preprocessing
+        if data_preprocessing_mode == 'standardize':
+            transformer = StandardScaler()
+        elif data_preprocessing_mode == 'minmaxscalar':
+            transformer = MinMaxScaler(feature_range=(0,1))
+        transformer.fit(X_train)
+        if data_preprocessing_mode == 'normalize':
+            X_train = normalize(X_train, norm='l1')
+            X_test = normalize(X_test, norm='l1')
+        else:
+            X_train = transformer.transform(X_train.values)
+            X_test = transformer.transform(X_test.values)
 
         x_good = X_test[y_test == 0]
-        x_good_sample = x_good[0]
+        x_good_sample = x_good[12]
         x_bad = X_test[y_test == 1]
-        x_bad_sample = x_bad[20]
+        x_bad_sample = x_bad[56]
         
         print(x_good_sample, x_bad_sample)
         print('sample', len(x_good_sample), len(x_bad_sample))

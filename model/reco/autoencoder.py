@@ -49,15 +49,17 @@ class VanillaAutoencoder(BaseModel):
         self.train_writer.add_summary(summary, EP)
     def get_loss(self, x):
         return self.sess.run({"loss_total": self.total_loss, "loss_mse": self.loss_mse}, feed_dict={self.x: x})
-    def get_sd(self, x):
-        return self.sess.run(tf.squared_difference(self.y_out, self.x), feed_dict={self.x: x})
-    def get_ms(self, x):
+    def get_sd(self, x, scalar=False):
+        if not scalar:
+            return self.sess.run(tf.squared_difference(self.y_out, self.x), feed_dict={self.x: x})
+        return self.sess.run(tf.reduce_sum(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
+    def get_mse(self, x):
         return self.sess.run(tf.reduce_mean(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
-    def get_ms_top100(self, x):
+    def get_mse_top_n(self, x, N):
         return self.sess.run(tf.reduce_mean(
             tf.slice(
                 tf.sort(tf.squared_difference(self.y_out, self.x), axis=1, direction='DESCENDING')
-            , [0, 0], [-1, 100])
+            , [0, 0], [-1, N])
             , axis=1), feed_dict={self.x: x})
 
 class SparseAutoencoder(BaseModel):
@@ -110,15 +112,17 @@ class SparseAutoencoder(BaseModel):
         self.train_writer.add_summary(summary, EP)
     def get_loss(self, x):
         return self.sess.run({"loss_total":self.total_loss, "loss_mse": self.loss_mse, "loss_reg": self.loss_reg}, feed_dict={self.x: x})
-    def get_sd(self, x):
-        return self.sess.run(tf.squared_difference(self.y_out, self.x), feed_dict={self.x: x})
-    def get_ms(self, x):
+    def get_sd(self, x, scalar=False):
+        if not scalar:
+            return self.sess.run(tf.squared_difference(self.y_out, self.x), feed_dict={self.x: x})
+        return self.sess.run(tf.reduce_sum(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
+    def get_mse(self, x):
         return self.sess.run(tf.reduce_mean(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
-    def get_ms_top100(self, x):
+    def get_mse_top_n(self, x, N):
         return self.sess.run(tf.reduce_mean(
             tf.slice(
                 tf.sort(tf.squared_difference(self.y_out, self.x), axis=1, direction='DESCENDING')
-            , [0, 0], [-1, 100])
+            , [0, 0], [-1, N])
             , axis=1), feed_dict={self.x: x})
 
 
@@ -196,16 +200,20 @@ class ContractiveAutoencoder(BaseModel):
         self.train_writer.add_summary(summary, EP)
     def get_loss(self, x):
         return self.sess.run({"loss_total": self.total_loss, "loss_mse": self.loss_mse, "loss_con": self.loss_con}, feed_dict={self.x: x})
-    def get_sd(self, x):
-        return self.sess.run(tf.squared_difference(self.y_out, self.x), feed_dict={self.x: x})
-    def get_ms(self, x):
+    def get_sd(self, x, scalar=False):
+        if not scalar:
+            return self.sess.run(tf.squared_difference(self.y_out, self.x), feed_dict={self.x: x})
+        return self.sess.run(tf.reduce_sum(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
+    def get_mse(self, x):
         return self.sess.run(tf.reduce_mean(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
-    def get_ms_top100(self, x):
+    def get_mse_top_n(self, x, N):
         return self.sess.run(tf.reduce_mean(
             tf.slice(
                 tf.sort(tf.squared_difference(self.y_out, self.x), axis=1, direction='DESCENDING')
-            , [0, 0], [-1, 100])
+            , [0, 0], [-1, N])
             , axis=1), feed_dict={self.x: x})
+
+
 
 class VariationalAutoencoder(BaseModel):
     def __init__(self, input_dim=[2806], batch_size=1024, learning_rate=1e-4, beta1=0.7, beta2=0.9,**kwargs):
@@ -261,13 +269,15 @@ class VariationalAutoencoder(BaseModel):
         self.train_writer.add_summary(summary, EP)
     def get_loss(self, x):
         return self.sess.run({"loss_total": self.total_loss, "loss_mse": self.loss_mse, "loss_kl": self.loss_kl}, feed_dict={self.x: x})
-    def get_sd(self, x):
-        return self.sess.run(tf.squared_difference(self.y_out, self.x), feed_dict={self.x: x})
-    def get_ms(self, x):
+    def get_sd(self, x, scalar=False):
+        if not scalar:
+            return self.sess.run(tf.squared_difference(self.y_out, self.x), feed_dict={self.x: x})
+        return self.sess.run(tf.reduce_sum(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
+    def get_mse(self, x):
         return self.sess.run(tf.reduce_mean(tf.squared_difference(self.y_out, self.x), axis=1), feed_dict={self.x: x})
-    def get_ms_top100(self, x):
+    def get_mse_top_n(self, x, N):
         return self.sess.run(tf.reduce_mean(
             tf.slice(
                 tf.sort(tf.squared_difference(self.y_out, self.x), axis=1, direction='DESCENDING')
-            , [0, 0], [-1, 100])
+            , [0, 0], [-1, N])
             , axis=1), feed_dict={self.x: x})
