@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 
+from sklearn import svm
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler, normalize, MinMaxScaler
@@ -20,7 +21,6 @@ HUMAN_LABELS = ('Good', 'Bad')
 def main():
     # Setting
     is_reduced_data = True
-    is_plot_only_test = False
     Autoencoder = VanillaAutoencoder
     test_model = "Vanilla"
     number_model = 1
@@ -58,6 +58,9 @@ def main():
     X_test = pd.concat([X_train[y_train == 1], X_test])
     y_test = pd.concat([y_train[y_train == 1], y_test])
 
+    X_train = X_train[y_train == 0]
+    y_train = y_train[y_train == 0]
+
     print("Training KMeans")
     # standardize data
     # transformer = StandardScaler()
@@ -68,16 +71,15 @@ def main():
     # X_train = normalize(X_train, norm='l1')
 
     ## combine
-    X_train = np.concatenate((X_train, X_test))
-    y_train = np.concatenate((y_train, y_test))
+    X = np.concatenate((X_train, X_test))
+    y = np.concatenate((y_train, y_test))
 
     # training
-    kmeans_model = KMeans(n_clusters=2).fit(X_train)
-    y_pred = kmeans_model.predict(X_train)
+    kmeans_model = KMeans(n_clusters=2).fit(X)
+    y_pred = kmeans_model.predict(X)
     # PCA
     pca = PCA(n_components=2)
-    principal_components = pca.fit_transform(X_train)
-    pc_tests = pca.fit_transform(X_test)
+    principal_components = pca.fit_transform(X)
     # visualzie K-means
     fig, ax = plt.subplots()
     for i, group_label in enumerate(GROUP_LABELS):
@@ -94,28 +96,40 @@ def main():
     # visual labeld 
     fig, ax = plt.subplots()
     for i, group_label in enumerate(GROUP_LABELS):
-        if not is_plot_only_test:
-            scat_data = principal_components[y_train == i]
-            ax.scatter(
-                scat_data[:, 0], scat_data[:, 1], alpha=0.8,
-                c = COLORS[i],
-                label = HUMAN_LABELS[i]
-            )
-        else:
-            scat_data = pc_tests[y_test == i]
-            ax.scatter(
-                scat_data[:, 0], scat_data[:, 1], alpha=0.8,
-                c = COLORS[i],
-                label = HUMAN_LABELS[i]
-            )
+        scat_data = principal_components[y == i]
+        ax.scatter(
+            scat_data[:, 0], scat_data[:, 1], alpha=0.8,
+            c = COLORS[i],
+            label = HUMAN_LABELS[i]
+        )
     ax.legend()
     plt.title('Labeled by Human, visual in Principal Basis (JetHT)')
-    if is_plot_only_test:
-        plt.ylim((-2.1, 2.1))
-        plt.xlim((-3.1, 5.1))
-    plt.savefig('JetHT_label.png')    
-    # visual loss
+    plt.savefig('JetHT_label.png')
+    # visual One-Class SVM cutoff
+    svm_model = svm.OneClassSVM(nu=0.1, kernel="rbf", gamma=0.1)
+    svm_model.fit(X_train)
+    sampling_svm_dvs = -svm_model.decision_function(X)[:, 0]
+    min_sampling_svm_dvs, max_sampling_svm_dvs = min(sampling_svm_dvs), max(sampling_svm_dvs)
+    colors_svm_dvs = list(map(lambda x: [0.2, 1.0-((x-min_sampling_svm_dvs)/(max_sampling_svm_dvs-min_sampling_svm_dvs)), (x-min_sampling_svm_dvs)/(max_sampling_svm_dvs-min_sampling_svm_dvs)], sampling_svm_dvs))
+    colors_svm_cutoff = list(map(lambda x: [0, 0, 0.8] if x > 20.0 else [0, 1.0, 0], sampling_svm_dvs))
     fig, ax = plt.subplots()
+    ax.scatter(
+        principal_components[:, 0], principal_components[:, 1],
+        alpha=0.8,
+        c = colors_svm_dvs
+    )
+    plt.title('Decision Value from SVM, visual in Principal Basis (JetHT)')
+    plt.savefig('SVM_DCs.png')
+    fig, ax = plt.subplots()
+    ax.scatter(
+        principal_components[:, 0], principal_components[:, 1],
+        alpha=0.8,
+        c = colors_svm_cutoff
+    )
+    plt.title('Applying cutoff in SVM, visual in Principal Basis (JetHT)')
+    plt.savefig('SVM_cutoff.png')
+
+    # visual autoencoder loss
     autoencoder = Autoencoder(
         input_dim = [N_FEATURES],
         summary_dir = "model/reco/summary",
@@ -123,30 +137,24 @@ def main():
         batch_size = BS
     )
     autoencoder.restore()
-    if not is_plot_only_test:
-        sampling_totalsd = autoencoder.get_sd(X_train, scalar=True)
-    else:
-        sampling_totalsd = autoencoder.get_sd(X_test, scalar=True)
+    sampling_totalsd = autoencoder.get_sd(X, scalar=True)
     max_totalsd = max(sampling_totalsd)
     min_totalsd = min(sampling_totalsd)
-    colors = list(map(lambda x: [0, 0, 0.8] if x > 10.0 else [0, 1.0, 0], sampling_totalsd))
-    # colors = list(map(lambda x: [0.2, 1.0-((x-min_totalsd)/(max_totalsd-min_totalsd)), (x-min_totalsd)/(max_totalsd-min_totalsd)], sampling_totalsd))
-    if not is_plot_only_test:
-        ax.scatter(
-            principal_components[:, 0], principal_components[:, 1],
-            alpha=0.8,
-            # c = colors,
-            c = sampling_totalsd,
-        )
-    else:
-        ax.scatter(
-            pc_tests[:, 0], pc_tests[:, 1],
-            alpha=0.8,
-            c = sampling_totalsd
-            # c = colors
-        )
-    if is_plot_only_test:
-        plt.ylim((-2.1, 2.1))
-        plt.xlim((-3.1, 5.1))
+    colors_cutoff = list(map(lambda x: [0, 0, 0.8] if x > 10.0 else [0, 1.0, 0], sampling_totalsd))
+    colors_loss = list(map(lambda x: [0.2, 1.0-((x-min_totalsd)/(max_totalsd-min_totalsd)), (x-min_totalsd)/(max_totalsd-min_totalsd)], sampling_totalsd))
+    fig, ax = plt.subplots()
+    ax.scatter(
+        principal_components[:, 0], principal_components[:, 1],
+        alpha=0.8,
+        c = np.log10(sampling_totalsd)
+    )
     plt.title('Loss from AE data, testing set visual in Principal Basis (JetHT)')
-    plt.savefig('JetHT_loss.png')
+    plt.savefig('JetHT_AE_loss.png')
+    fig, ax = plt.subplots()
+    ax.scatter(
+        principal_components[:, 0], principal_components[:, 1],
+        alpha=0.8,
+        c = colors_cutoff,
+    )
+    plt.title('Applying cutoff in AE, testing set visual in Principal Basis (JetHT)')
+    plt.savefig('JetHT_AE_cutoff.png')

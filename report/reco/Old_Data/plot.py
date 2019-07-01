@@ -216,15 +216,15 @@ def plot_se_dist(
     
     good_channels = df_good['total_se']
     bad_channels = df_bad['total_se']
-    se_max = max(bad_channels)
-    se_min = min(good_channels)
+    se_max = max(pd.concat([good_channels, bad_channels]))
+    se_min = min(pd.concat([good_channels, bad_channels]))
 
     n_bad_below_cutoff = len(list(filter(lambda x: x < cufoff_totse, bad_channels)))
     percent_contamination = 100.0 * (n_bad_below_cutoff/(len(good_channels)+n_bad_below_cutoff))
     print("n_labeled {}, n_bad_below_cutoff {}, contamination {}".format(len(good_channels), n_bad_below_cutoff, percent_contamination))
     plt.figure()
 
-    # bins = (se_max-se_min)/n_bins * np.arange(1, n_bins)
+    # bins = se_min + ((se_max-se_min)/n_bins * np.arange(1, n_bins+1))
     bins = 1.1**(np.arange(4,n_bins))
     plt.hist(good_channels, bins=bins, alpha=0.5, label='Labeled Good (Human)')
     plt.hist(bad_channels,  bins=bins, alpha=0.5, label='Labeled Bad (Human)')
@@ -249,7 +249,7 @@ def plot_decision_val_dist(
     df_good = pd.read_csv(os.path.join(path_dat, '{}_good_totalSE.txt'.format(model_name)), sep=" ")
     df_bad = pd.read_csv(os.path.join(path_dat, '{}_bad_totalSE.txt'.format(model_name)), sep=" ")
 
-    ###
+    ### Find % contamination
     n_good = len(df_good)
     n_bad = len(df_bad)
     n_good_contaminate = len(list(filter(lambda x: x < cufoff_decision, df_bad['total_se'])))
@@ -258,15 +258,25 @@ def plot_decision_val_dist(
     percent_bad_contamination = 100.0 * (n_bad_contaminate/(n_bad+n_bad_contaminate))
     print("Good LS contaminate {:.2f}% Bad LS contaminate {:.2f}%".format(percent_good_contamination, percent_bad_contamination))
     ###
+    ### Inspect cotamination LS
+    dc_contaminated_gtb, run_contaminated_gtb, ls_contaminated_gtb = df_good['total_se'][df_good['total_se'] > cufoff_decision], df_good['run'][df_good['total_se'] > cufoff_decision], df_good['lumi'][df_good['total_se'] > cufoff_decision]
+    dc_contaminated_btg, run_contaminated_btg, ls_contaminated_btg = df_bad['total_se'][df_bad['total_se'] < cufoff_decision], df_bad['run'][df_bad['total_se'] < cufoff_decision], df_bad['lumi'][df_bad['total_se'] < cufoff_decision]
+    print("Good falling into Bad good LS (# {})".format(len(dc_contaminated_gtb)))
+    for dc, run, ls in zip(dc_contaminated_gtb, run_contaminated_gtb, ls_contaminated_gtb):
+        print("DC val {} run {} ls {}".format(dc, run, ls))
+    print("Bad falling into Good good LS (# {})".format(len(dc_contaminated_btg)))
+    for dc, run, ls in zip(dc_contaminated_btg, run_contaminated_btg, ls_contaminated_btg):
+        print("DC val {} run {} ls {}".format(dc, run, ls))
+    ###
     
     good_channels = df_good['total_se']
     bad_channels = df_bad['total_se']
-    se_max = max(bad_channels)
-    se_min = min(good_channels)
+    se_max = max(pd.concat([good_channels, bad_channels]))
+    se_min = min(pd.concat([good_channels, bad_channels]))
 
     plt.figure()
 
-    bins = (se_max-se_min)/n_bins * np.arange(1, n_bins)
+    bins = se_min + ((se_max-se_min)/n_bins * np.arange(1, n_bins+1))
     # bins = 1.1**(np.arange(4,n_bins))
     plt.hist(good_channels, bins=bins, alpha=0.5, label='Labeled Good (Human)')
     plt.hist(bad_channels,  bins=bins, alpha=0.5, label='Labeled Bad (Human)')
@@ -281,4 +291,4 @@ def plot_decision_val_dist(
     plt.show()
 
 if __name__ == "__main__":
-    evalTough()
+    plot_decision_val_dist()
