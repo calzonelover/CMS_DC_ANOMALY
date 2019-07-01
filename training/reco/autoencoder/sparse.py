@@ -8,7 +8,6 @@ from sklearn.metrics import roc_curve, auc
 from data.prompt_reco.setting import REDUCED_FEATURES, FEATURES, SELECT_PD
 import data.prompt_reco.utility as utility
 
-# from model.reco.autoencoder import SparseAutoencoder as Autoencoder
 from model.reco.autoencoder import ( VanillaAutoencoder, SparseAutoencoder,
                                      ContractiveAutoencoder, VariationalAutoencoder )
 
@@ -35,7 +34,6 @@ def main():
     data = data.sort_values(["run", "lumi"], ascending=[True,True])
     data = data.reset_index(drop=True)
     data["label"] = data.apply(utility.add_flags, axis=1)
-    data = data.reindex(np.random.permutation(data.index))
 
     file_auc = open('report/reco/eval/roc_auc.txt', 'w')
     file_auc.write("model_name data_fraction roc_auc\n")
@@ -159,8 +157,6 @@ def test_ms(Autoencoder=VanillaAutoencoder, test_model="Vanilla", number_model=1
         data = data.reset_index(drop=True)
 
         data["label"] = data.apply(utility.add_flags, axis=1)
-
-        data = data.reindex(np.random.permutation(data.index))
         #
         autoencoder = Autoencoder(
             input_dim = [N_FEATURES],
@@ -190,9 +186,6 @@ def test_ms(Autoencoder=VanillaAutoencoder, test_model="Vanilla", number_model=1
         print("Number of inliers in training&valid set: {}".format(len(X_train)))
         print("Number of inliers in test set: {}".format(sum((y_test == 0).values)))
         print("Number of anomalies in the test set: {}".format(sum((y_test == 1).values)))
-        # log
-        file_log = open('report/reco/logs/{}.txt'.format(autoencoder.model_name), 'w')
-        file_log.write("EP loss_train loss_valid\n")
 
         # Data Preprocessing
         if data_preprocessing_mode == 'standardize':
@@ -208,9 +201,9 @@ def test_ms(Autoencoder=VanillaAutoencoder, test_model="Vanilla", number_model=1
             X_test = transformer.transform(X_test.values)
 
         x_good = X_test[y_test == 0]
-        x_good_sample = x_good[12]
+        x_good_sample = x_good[20]
         x_bad = X_test[y_test == 1]
-        x_bad_sample = x_bad[56]
+        x_bad_sample = x_bad[126]
         
         print(x_good_sample, x_bad_sample)
         print('sample', len(x_good_sample), len(x_bad_sample))
@@ -219,7 +212,110 @@ def test_ms(Autoencoder=VanillaAutoencoder, test_model="Vanilla", number_model=1
             f.write('good_channel bad_channel\n')
             good_square_differents = autoencoder.get_sd(np.reshape(x_good_sample, [1, len(x_bad_sample)]))[0,:]
             bad_square_differents = autoencoder.get_sd(np.reshape(x_bad_sample, [1, len(x_bad_sample)]))[0,:]
-            print(good_square_differents, bad_square_differents)
+            print(sum(good_square_differents), sum(bad_square_differents))
             print('predict', len(good_square_differents), len(bad_square_differents))
             for good_square_different, bad_square_different in zip(good_square_differents, bad_square_differents):
                 f.write('{} {}\n'.format(good_square_different, bad_square_different))
+
+
+
+def plot_totSE(Autoencoder=VanillaAutoencoder, test_model="Vanilla", number_model=1):
+# def plot_totSE(Autoencoder=VariationalAutoencoder, test_model="Variational", number_model=1):
+        # setting
+        data_preprocessing_mode = 'minmaxscalar'
+        is_reduced_data = True
+        BS = 256
+        dataset_fraction = 0.75
+
+        N_FEATURES = len(REDUCED_FEATURES*7) if is_reduced_data else 2807
+        # data
+        files = utility.get_file_list(chosed_pd=SELECT_PD) # choosing only ZeroBias
+
+        feature_names = utility.get_feature_name(features=FEATURES)
+        ###
+        reduced_feature_names = utility.get_feature_name(features=REDUCED_FEATURES)
+        ###
+
+        data = pd.DataFrame(utility.get_data(files), columns=feature_names)
+        data["run"] = data["run"].astype(int)
+        data["lumi"] = data["lumi"].astype(int)
+        data.drop(["_foo", "_bar", "_baz"], axis=1, inplace=True)
+        ###
+        if is_reduced_data:
+            not_reduced_column = feature_names
+            for intersected_elem in reduced_feature_names: not_reduced_column.remove(intersected_elem)
+            data.drop(not_reduced_column, axis=1, inplace=True)
+        ###
+
+        data = data.sort_values(["run", "lumi"], ascending=[True,True])
+        data = data.reset_index(drop=True)
+
+        data["label"] = data.apply(utility.add_flags, axis=1)
+
+        #
+        autoencoder = Autoencoder(
+            input_dim = [N_FEATURES],
+            summary_dir = "model/reco/summary",
+            model_name = "{} model {}".format(test_model, number_model),
+            batch_size = BS
+        )
+        autoencoder.restore()
+        ##
+        split = int(dataset_fraction*len(data))
+        dataset = data.iloc[:split].copy()
+
+        print("Train test split...")
+        split = int(0.8*len(data))
+        # train set
+        df_train = data.iloc[:split].copy()
+        X_train = df_train.iloc[:, 0:N_FEATURES]
+        y_train = df_train["label"]
+        # test set
+        df_test = data.iloc[split:].copy()
+        X_test = df_test.iloc[:, 0:N_FEATURES]
+        y_test = df_test["label"]
+        X_test = pd.concat([X_train[y_train == 1], X_test])
+        y_test = pd.concat([y_train[y_train == 1], y_test])
+        # train only good condition
+        X_train = X_train[y_train == 0]
+        print("Number of inliers in training&valid set: {}".format(len(X_train)))
+        print("Number of inliers in test set: {}".format(sum((y_test == 0).values)))
+        print("Number of anomalies in the test set: {}".format(sum((y_test == 1).values)))
+
+        # Data Preprocessing
+        if data_preprocessing_mode == 'standardize':
+            transformer = StandardScaler()
+        elif data_preprocessing_mode == 'minmaxscalar':
+            transformer = MinMaxScaler(feature_range=(0,1))
+        transformer.fit(X_train)
+        if data_preprocessing_mode == 'normalize':
+            X_train = normalize(X_train, norm='l1')
+            X_test = normalize(X_test, norm='l1')
+        else:
+            X_train = transformer.transform(X_train.values)
+            X_test = transformer.transform(X_test.values)
+
+        x_good = X_test[y_test == 0]
+        run_good = df_test['run'][y_test == 0]
+        lumi_good = df_test['lumi'][y_test == 0]
+        x_bad = X_test[y_test == 1]
+        run_bad = pd.concat([
+            df_train['run'][df_train['label'] == 1],
+            df_test['run'][df_test['label'] == 1]
+        ])
+        lumi_bad = pd.concat([
+            df_train['lumi'][df_train['label'] == 1],
+            df_test['lumi'][df_test['label'] == 1]
+        ])
+        print('sample', ' good: ',len(x_good), ' bad: ', len(x_bad))
+
+        with open('{}_good_totalSE.txt'.format(test_model), 'w') as f:
+            f.write('total_se run lumi\n')
+            for good_totalsd, run, lumi in zip(autoencoder.get_sd(x_good, scalar=True), run_good, lumi_good):
+                f.write('{} {} {}\n'.format(good_totalsd, run, lumi))
+        with open('{}_bad_totalSE.txt'.format(test_model), 'w') as f:
+            f.write('total_se run lumi\n')
+            for bad_totalsd, run, lumi in zip(autoencoder.get_sd(x_bad, scalar=True), run_bad, lumi_bad):
+                f.write('{} {} {}\n'.format(bad_totalsd, run, lumi))
+                if bad_totalsd < 9.0:
+                    print("run {} lum {}".format(run, lumi))
