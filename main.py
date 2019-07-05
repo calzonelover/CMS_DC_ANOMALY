@@ -1,5 +1,4 @@
-from training.reco.autoencoder import sparse
-from training.reco.unsupervised import isolation_forest, oneclass_svm
+from training.new_reco import autoencoder
 
 if __name__ == "__main__":
-    oneclass_svm.main()
+    autoencoder.main()
