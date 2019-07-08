@@ -38,7 +38,7 @@ def plot_roc(fprs, tprs, title):
 def main_loss():
     # setting
     model_name = "Vanilla model"
-    datdir = "BS64_EP3000"    
+    datdir = "BS64_EP3000"
     for i in range(1,6):
         data = pd.read_csv('logs/{}/{} {}.txt'.format(datdir, model_name,i), sep=" ")
         # print(data['EP'].shape)
