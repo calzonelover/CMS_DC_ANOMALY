@@ -1,6 +1,10 @@
+import matplotlib.pyplot as plt
+
 import numpy as np
 import pandas as pd
 import os
+
+from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler, normalize, MinMaxScaler
 from sklearn.utils import shuffle
 from sklearn import svm
@@ -12,14 +16,19 @@ from data.new_prompt_reco.setting import ( EXTENDED_FEATURES, FEATURES, FRAC_VAL
 import data.new_prompt_reco.utility as utility
 
 
-def main():
+COLORS = ('green', 'blue')
+GROUP_LABELS = ('A', 'B')
+HUMAN_LABELS = ('Good', 'Bad')
+
+def main():    
     # setting
     model_name = "OneClass_SVM"
-    selected_pd = "SingleMuon"
+    selected_pd = "JetHT"
+    print(selected_pd)
     data_preprocessing_mode = 'minmaxscalar'
     BS = 2**15
     EPOCHS = 1200
-    DATA_SPLIT_TRAIN = [0.8, 0.8, 0.8, 0.8, 1.0]
+    DATA_SPLIT_TRAIN = [1.0, ]# [0.2, 0.4, 0.6, 0.8, 1.0]
     is_fillna_zero = True
 
     features = utility.get_full_features(selected_pd)
@@ -77,3 +86,22 @@ def main():
 
         print("AUC {}".format(auc(fprs, tprs)))
         file_auc.write("{} {} {}\n".format(model_name, dataset_fraction, auc(fprs, tprs)))
+
+    # Visualization section
+    pca = PCA(n_components=2)
+    pca.fit(np.concatenate([transformer.transform(df_good[features].to_numpy()), transformer.transform(df_bad[features].to_numpy())]))
+    # visulize human
+    x_labeled_good = pca.transform(df_good[features].to_numpy())
+    x_labeled_bad = pca.transform(df_bad[features].to_numpy())
+    fig, ax = plt.subplots()
+    for color, x, group_label in zip(COLORS, [x_labeled_good, x_labeled_bad], GROUP_LABELS):
+        ax.scatter(
+            x[:, 0], x[:, 1], alpha=0.8,
+            c = color,
+            label = group_label
+        )
+    ax.legend()
+    plt.title('Labeled by Human ({})'.format(selected_pd))
+    plt.xlabel("Principal component 1")
+    plt.ylabel("Principal component 2")
+    plt.savefig('{}_label.png'.format(selected_pd))

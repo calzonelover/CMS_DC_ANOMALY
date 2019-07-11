@@ -16,7 +16,7 @@ from model.reco.new_autoencoder import ( VanillaAutoencoder, SparseAutoencoder,
 
 def main():
     # setting
-    selected_pd = "SingleMuon"
+    selected_pd = "JetHT"
     data_preprocessing_mode = 'minmaxscalar'
     BS = 2**15
     EPOCHS = 1200
@@ -30,15 +30,15 @@ def main():
         df_good = df_good.fillna(0.0)
         df_bad = df_bad.fillna(0.0)
     x = df_good[features]
-    x_train_full, x_valid, x_test = utility.split_dataset(x, frac_test=FRAC_TEST, frac_valid=FRAC_VALID)
-    y_test = np.concatenate([np.full(x_test.shape[0], 0.0), np.full(df_bad[features].shape[0], 1.0)])
-    x_test = np.concatenate([x_test, df_bad[features].to_numpy()])
+    x_train_full, x_valid, x_test_good = utility.split_dataset(x, frac_test=FRAC_TEST, frac_valid=FRAC_VALID)
+    y_test = np.concatenate([np.full(x_test_good.shape[0], 0.0), np.full(df_bad[features].shape[0], 1.0)])
+    x_test = np.concatenate([x_test_good, df_bad[features].to_numpy()])
 
     file_auc = open('report/reco/eval/roc_auc.txt', 'w')
     file_auc.write("model_name data_fraction roc_auc\n")
     for model_name, Autoencoder in zip(
-            [ "Vanilla", "Sparse", "Contractive", "Variational"], # ["Contractive", "Variational"],
-            [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder] # [ContractiveAutoencoder, VariationalAutoencoder]
+            ["Vanilla", "Sparse"], # [ "Vanilla", "Sparse", "Contractive", "Variational"],
+            [VanillaAutoencoder, SparseAutoencoder], # [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder]
             ):
         model_list = [
             Autoencoder(
@@ -55,6 +55,12 @@ def main():
             file_log.write("EP loss_train loss_valid\n")
 
             x_train = x_train_full[:int(dataset_fraction*len(x_train_full))]
+            print("Data # training: {}, # validation: {}, # testing good {}, # testing bad {}".format(
+                x_train.shape[0],
+                x_valid.shape[0],
+                x_test_good.shape[0],
+                df_bad[features].shape[0],
+            ))
             # Data Preprocessing
             if data_preprocessing_mode == 'standardize':
                 transformer = StandardScaler()
@@ -77,11 +83,11 @@ def main():
                     x_batch = x_train_shuf[BS*iteration_i: BS*(iteration_i+1)]
                     autoencoder.train(x_batch)
                 autoencoder.log_summary(x_train, EP)
-            file_log.write("{} {} {}\n".format(
-                    EP,
-                    autoencoder.get_loss(x_train)["loss_total"],
-                    autoencoder.get_loss(x_valid)["loss_total"]
-                    ))
+                file_log.write("{} {} {}\n".format(
+                        EP+1,
+                        autoencoder.get_loss(x_train)["loss_total"],
+                        autoencoder.get_loss(x_valid)["loss_total"]
+                        ))
             file_log.close()
 
             try:

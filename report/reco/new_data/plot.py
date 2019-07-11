@@ -20,19 +20,17 @@ def plot_loss(x, loss_train, loss_valid, title):
     plt.savefig('{}.png'.format(title))
 
 def main_loss(
-        model_name = "Vanilla model",
-        datdir = "logs/minmaxscalar/"
+        channel = "JetHT",
+        model_name = "Variational model",
+        datdir = "logs/minmaxscalar/2e16BS12000EP",
         ):
-    # setting
-    model_name = "Vanilla model"
-    datdir = "BS64_EP3000"    
     for i in range(1,6):
-        data = pd.read_csv('logs/{}/{} {}.txt'.format(datdir, model_name,i), sep=" ")
+        data = pd.read_csv('{}/{}/{} {}.txt'.format(datdir, channel, model_name,i), sep=" ")
         # print(data['EP'].shape)
         x = data['EP']
         loss_train = data['loss_train']
         loss_valid = data['loss_valid']
-        plot_loss(x, loss_train, loss_valid, title="{} {}".format(model_name, i))
+        plot_loss(x, loss_train, loss_valid, title="{} {} ({})".format(model_name, i, channel))
 
 if __name__ == "__main__":
     main_loss()
