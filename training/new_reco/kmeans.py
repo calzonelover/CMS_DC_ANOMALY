@@ -70,10 +70,10 @@ def main():
         pca = PCA(n_components=2)
         pca.fit(np.concatenate([transformer.transform(df_good[features].to_numpy()), transformer.transform(df_bad[features].to_numpy())]))
         # visulize human
-        x_labeled_good = pca.transform(df_good[features].to_numpy())
-        x_labeled_bad = pca.transform(df_bad[features].to_numpy())
+        x_labeled_good = pca.transform(transformer.transform(df_good[features].to_numpy()))
+        x_labeled_bad = pca.transform(transformer.transform(df_bad[features].to_numpy()))
         fig, ax = plt.subplots()
-        for color, x, group_label in zip(COLORS, [x_labeled_good, x_labeled_bad], GROUP_LABELS):
+        for color, x, group_label in zip(COLORS, [x_labeled_good, x_labeled_bad], HUMAN_LABELS):
             ax.scatter(
                 x[:, 0], x[:, 1], alpha=0.8,
                 c = color,

@@ -20,7 +20,7 @@ def main():
     data_preprocessing_mode = 'minmaxscalar'
     BS = 2**15
     EPOCHS = 1200
-    DATA_SPLIT_TRAIN = [0.2, 0.4, 0.6, 0.8, 1.0]
+    DATA_SPLIT_TRAIN = [1.0, 1.0] # [0.2, 0.4, 0.6, 0.8, 1.0]
     is_fillna_zero = True
 
     features = utility.get_full_features(selected_pd)
@@ -37,8 +37,8 @@ def main():
     file_auc = open('report/reco/eval/roc_auc.txt', 'w')
     file_auc.write("model_name data_fraction roc_auc\n")
     for model_name, Autoencoder in zip(
-            ["Vanilla", "Sparse"], # [ "Vanilla", "Sparse", "Contractive", "Variational"],
-            [VanillaAutoencoder, SparseAutoencoder], # [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder]
+            ["Sparse", "Contractive"], # [ "Vanilla", "Sparse", "Contractive", "Variational"],
+            [SparseAutoencoder, ContractiveAutoencoder], # [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder]
             ):
         model_list = [
             Autoencoder(
@@ -72,21 +72,20 @@ def main():
                 x_test = normalize(x_test, norm='l1')
             else:
                 transformer.fit(x_train)
-                x_train = transformer.transform(x_train)
-                x_valid = transformer.transform(x_valid)
-                x_test = transformer.transform(x_test)
-
+                x_train_tf = transformer.transform(x_train)
+                x_valid_tf = transformer.transform(x_valid)
+                x_test_tf = transformer.transform(x_test)
             autoencoder.init_variables()
             for EP in range(EPOCHS):
-                x_train_shuf = shuffle(x_train)
+                x_train_shuf = shuffle(x_train_tf)
                 for iteration_i in range(int(len(x_train_shuf)/BS)):
                     x_batch = x_train_shuf[BS*iteration_i: BS*(iteration_i+1)]
                     autoencoder.train(x_batch)
-                autoencoder.log_summary(x_train, EP)
+                autoencoder.log_summary(x_train_tf, EP)
                 file_log.write("{} {} {}\n".format(
                         EP+1,
-                        autoencoder.get_loss(x_train)["loss_total"],
-                        autoencoder.get_loss(x_valid)["loss_total"]
+                        autoencoder.get_loss(x_train_tf)["loss_total"],
+                        autoencoder.get_loss(x_valid_tf)["loss_total"]
                         ))
             file_log.close()
 
@@ -99,11 +98,11 @@ def main():
             ### Tracking Error
             print("Error tracking for model: {}, # NaN in SD: {}, # inf in SD: {} ".format(
                 model_name,
-                len(list(filter(lambda x: x == True, np.isnan(autoencoder.get_sd(x_test, scalar=True))))),
-                len(list(filter(lambda x: x == True, np.isinf(autoencoder.get_sd(x_test, scalar=True)))))
+                len(list(filter(lambda x: x == True, np.isnan(autoencoder.get_sd(x_test_tf, scalar=True))))),
+                len(list(filter(lambda x: x == True, np.isinf(autoencoder.get_sd(x_test_tf, scalar=True)))))
                 ))
             ###
-            fprs, tprs, thresholds = roc_curve(y_test, autoencoder.get_sd(x_test, scalar=True))
+            fprs, tprs, thresholds = roc_curve(y_test, autoencoder.get_sd(x_test_tf, scalar=True))
             for fpt, tpr, threshold in zip(fprs, tprs, thresholds):
                 file_eval.write("{} {} {}\n".format(fpt, tpr, threshold))
             file_eval.close()

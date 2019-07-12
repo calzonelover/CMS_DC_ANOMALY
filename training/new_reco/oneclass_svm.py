@@ -23,12 +23,10 @@ HUMAN_LABELS = ('Good', 'Bad')
 def main():    
     # setting
     model_name = "OneClass_SVM"
-    selected_pd = "JetHT"
+    selected_pd = "SingleMuon"
     print(selected_pd)
     data_preprocessing_mode = 'minmaxscalar'
-    BS = 2**15
-    EPOCHS = 1200
-    DATA_SPLIT_TRAIN = [1.0, ]# [0.2, 0.4, 0.6, 0.8, 1.0]
+    DATA_SPLIT_TRAIN = [1.0, ] # [0.2, 0.4, 0.6, 0.8, 1.0]
     is_fillna_zero = True
 
     features = utility.get_full_features(selected_pd)
@@ -47,7 +45,7 @@ def main():
 
     model_list = [svm.OneClassSVM(
     nu=0.1, kernel="rbf", gamma=0.1
-    )for i in range(10)]
+    )for i in range(len(DATA_SPLIT_TRAIN))]
 
     for dataset_fraction, model in zip(DATA_SPLIT_TRAIN, model_list):
         print("Model: {}, Chunk of Training Dataset fraction: {}".format(model_name, dataset_fraction))
@@ -69,17 +67,18 @@ def main():
             x_test = normalize(x_test, norm='l1')
         else:
             transformer.fit(x_train)
-            x_train = transformer.transform(x_train)
-            x_valid = transformer.transform(x_valid)
-            x_test = transformer.transform(x_test)
-        model.fit(x_train)
+            x_train_tf = transformer.transform(x_train)
+            x_valid_tf = transformer.transform(x_valid)
+            x_test_tf = transformer.transform(x_test)
+
+        model.fit(x_train_tf)
         try:
             file_eval = open('report/reco/eval/{} {}.txt'.format(model_name, dataset_fraction), 'w')
         except FileNotFoundError:
             os.makedirs("./report/reco/eval/")
             file_eval = open('report/reco/eval/{} {}.txt'.format(model_name, dataset_fraction), 'w')
         file_eval.write("fpr tpr threshold\n")
-        fprs, tprs, thresholds = roc_curve(y_test, -model.decision_function(x_test))
+        fprs, tprs, thresholds = roc_curve(y_test, -model.decision_function(x_test_tf))
         for fpt, tpr, threshold in zip(fprs, tprs, thresholds):
             file_eval.write("{} {} {}\n".format(fpt, tpr, threshold))
         file_eval.close()

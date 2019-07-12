@@ -5,7 +5,7 @@ from data.new_prompt_reco.setting import EXTENDED_FEATURES, FEATURES, PDs, GOOD_
 
 def split_dataset(x, frac_test=FRAC_TEST, frac_valid=FRAC_VALID):
     return ( x.iloc[:-int((frac_test+frac_valid)*len(x)), :].to_numpy() ,
-            x.iloc[-int((frac_test+frac_valid)*len(x)):-int(frac_valid*len(x)), :].to_numpy() ,
+            x.iloc[-int((frac_test+frac_valid)*len(x)):-int(frac_test*len(x)), :].to_numpy() ,
             x.iloc[-int(frac_test*len(x)):, :].to_numpy() )
 
 def get_full_features(selected_pd):
