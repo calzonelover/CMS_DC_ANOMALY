@@ -11,15 +11,17 @@ from data.new_prompt_reco.setting import ( EXTENDED_FEATURES, FEATURES, FRAC_VAL
 import data.new_prompt_reco.utility as utility
 
 from model.reco.new_autoencoder import ( VanillaAutoencoder, SparseAutoencoder,
-                                     ContractiveAutoencoder, VariationalAutoencoder )
+                                     ContractiveAutoencoder, VariationalAutoencoder,
+                                     SparseContractiveAutoencoder, SparseVariationalAutoencoder,
+                                     ContractiveVariationalAutoencoder, StandardAutoencoder)
 
 
 def main(selected_pd="JetHT"):
     # setting
     data_preprocessing_mode = 'minmaxscalar'
     BS = 2**15
-    EPOCHS = 1200
-    DATA_SPLIT_TRAIN = [1.0 for i in range(10)]# [0.2, 0.4, 0.6, 0.8, 1.0]
+    EPOCHS = 1800
+    DATA_SPLIT_TRAIN = [1.0 for i in range(10)]
     is_fillna_zero = True
 
     features = utility.get_full_features(selected_pd)
@@ -36,8 +38,9 @@ def main(selected_pd="JetHT"):
     file_auc = open('report/reco/eval/roc_auc_{}.txt'.format(selected_pd), 'w')
     file_auc.write("model_name data_fraction roc_auc\n")
     for model_name, Autoencoder in zip(
-            [ "Vanilla", "Sparse", "Contractive", "Variational"], # ["Sparse", "Contractive"],
-            [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder] # [SparseAutoencoder, ContractiveAutoencoder],
+            ["SparseContractive", "SparseVariational", "ContractiveVariational", "Standard"], # [ "Vanilla", "Sparse", "Contractive", "Variational"], 
+            [SparseContractiveAutoencoder, SparseVariationalAutoencoder,
+                ContractiveVariationalAutoencoder, StandardAutoencoder]# [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder]
             ):
         model_list = [
             Autoencoder(

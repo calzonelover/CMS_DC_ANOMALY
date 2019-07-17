@@ -25,8 +25,8 @@ def main_loss(
         model_name = "Variational model",
         datdir = "logs/minmaxscalar/2e16BS12000EP",
         ):
-    for i in range(1,6):
-        data = pd.read_csv('{}/{}/{} {}.txt'.format(datdir, channel, model_name,i), sep=" ")
+    for i in range(1,11):
+        data = pd.read_csv('{}/{} {} {}.txt'.format(datdir, model_name, channel, i), sep=" ")
         # print(data['EP'].shape)
         x = data['EP']
         loss_train = data['loss_train']
@@ -52,16 +52,16 @@ def plot_roc(
 def evalSmooth(
         channel = "JetHT",
         path_dat='logs/minmaxscalar/2e15BS12000EP',
-        model_list=['Vanilla', 'Sparse', 'Contractive', 'Variational'],
+        model_list=['SparseContractive', 'SparseVariational', 'ContractiveVariational', 'Standard'],
         COLOR_PALETES=['r','g','b','o'],
         datafraction_list=[1.00 for i in range(10)],
         n_bins=40
         ):
-    data_roc_auc = pd.read_csv(os.path.join(path_dat, 'roc_auc_{}.txt'.format(channel)), sep=" ")
-    model_roc_auc = {
-            model: list(data_roc_auc.query('model_name == "{}"'.format(model))['roc_auc'])
-            for model in model_list 
-        }
+    model_roc_auc = {model: [] for model in model_list}
+    for model in model_list:
+        for index, data_frac in enumerate(datafraction_list):
+            read_df = pd.read_csv(os.path.join(path_dat, '{} model {} {} {}.txt'.format(model, channel, index+1, data_frac)), sep=" ", index_col=False)
+            model_roc_auc[model].append(auc(read_df['fpr'], read_df['tpr']))
     model_roc_auc_mean = { key: np.sqrt(np.mean(np.square(roc_auc))) for key, roc_auc in model_roc_auc.items() }
     model_roc_auc_rms = { key: np.std(roc_auc) for key, roc_auc in model_roc_auc.items() }
     df_list = []
@@ -132,5 +132,7 @@ def plot_decision_val_dist(
     # plt.show()
 
 if __name__ == "__main__":
-    for channel, n_bins, base_log in zip(['ZeroBias', 'JetHT', 'EGamma', 'SingleMuon'], [60, 60, 80, 80], [1.05, 1.05, 1.1, 1.1]):
-        plot_decision_val_dist(channel=channel, n_bins=n_bins, base_log=base_log)
+    evalSmooth(channel = "ZeroBias")
+    evalSmooth(channel = "JetHT")
+    evalSmooth(channel = "EGamma")
+    evalSmooth(channel = "SingleMuon")
