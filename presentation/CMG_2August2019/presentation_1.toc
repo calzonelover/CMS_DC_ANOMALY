@@ -1,0 +1,8 @@
+\beamer@sectionintoc {1}{Background}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{CMS Data granularity}{3}{0}{1}
+\beamer@sectionintoc {2}{Datasets}{5}{0}{2}
+\beamer@sectionintoc {3}{Model}{7}{0}{3}
+\beamer@subsectionintoc {3}{1}{ML}{7}{0}{3}
+\beamer@subsectionintoc {3}{2}{Autoencoder}{9}{0}{3}
+\beamer@sectionintoc {4}{Results and Interpretation}{12}{0}{4}
+\beamer@sectionintoc {5}{Summary}{14}{0}{5}

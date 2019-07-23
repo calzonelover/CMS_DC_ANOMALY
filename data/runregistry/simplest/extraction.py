@@ -1,0 +1,108 @@
+import os
+import re, json
+import pandas as pd
+import numpy as np
+
+import runregistry as rr
+
+import data.runregistry.simplest.setting as implest_rr_setting
+import data.new_prompt_reco.setting as new_prompt_reco_setting
+import data.new_prompt_reco.utility as new_prompt_reco_utility
+
+class Error(Exception):
+    """Base class for other exceptions"""
+    pass
+class PromptRecoDatasetNotUniqueError(Error):
+    pass
+class LSNotInRangeError(Error):
+    pass
+
+regex_cache = {}
+dataset_name_cache = {}
+lumisection_ranges_cache = {}
+
+def get_dataset_name(recon_name="PromptReco", run_id=None):
+    dataset_name_cache_key = "%s___%s" % (recon_name, run_id)
+    if dataset_name_cache_key in dataset_name_cache:
+        # print("Yay, found %s" % (dataset_name_cache_key))
+        return dataset_name_cache[dataset_name_cache_key]
+
+    if recon_name in regex_cache:
+        r = regex_cache[recon_name]
+    else:
+        r = re.compile(".*{}".format(recon_name))
+        regex_cache[recon_name] = r
+
+    dataset_informations = rr.get_datasets(
+        filter={
+            'run_number': int(run_id)
+        }
+    )
+    dataset_names = list(map(lambda x: x['name'], dataset_informations))
+    prompt_reco_dataset = list(filter(r.match, dataset_names))
+    if len(prompt_reco_dataset) > 1:
+        raise PromptRecoDatasetNotUniqueError
+
+    dataset_name_cache[dataset_name_cache_key] = prompt_reco_dataset[0]
+    return prompt_reco_dataset[0]
+
+
+def get_lumisection_ranges(run_id, prompt_reco_dataset):
+    lumisection_ranges_cache_key = "%s___%s" % (run_id, prompt_reco_dataset)
+    if lumisection_ranges_cache_key in lumisection_ranges_cache:
+        # print("Double yay, found %s" % (lumisection_ranges_cache_key))
+        return lumisection_ranges_cache[lumisection_ranges_cache_key]
+
+    ranges = rr.get_lumisection_ranges(run_id, prompt_reco_dataset)
+    lumisection_ranges_cache[lumisection_ranges_cache_key] = ranges
+    return ranges
+
+def main(
+        selected_pd = "JetHT",
+        recon_name = "PromptReco"
+    ):
+    print("\n\n Extract {} dataset \n\n".format(selected_pd))
+    features = new_prompt_reco_utility.get_full_features(selected_pd)
+    df_good = new_prompt_reco_utility.read_data(selected_pd=selected_pd, pd_data_directory=new_prompt_reco_setting.PD_GOOD_DATA_DIRECTORY)
+    df_bad = new_prompt_reco_utility.read_data(selected_pd=selected_pd, pd_data_directory=new_prompt_reco_setting.PD_BAD_DATA_DIRECTORY)
+    df_write_good = df_good
+    df_write_good['hcal_hb'] = 1
+    df_write_good['hcal_he'] = 1
+    df_write_good['hcal_hf'] = 1
+    df_write_good['hcal_hcal'] = 1
+    df_write_good['hcal'] = 1
+
+    sub_detector_statuses = []
+    for df in [df_bad, ]:
+        for row_i in range(df.shape[0]):
+            run_id, lumi_id = int(df['runId'][row_i]), int(df['lumiId'][row_i])
+            if not row_i % 1000:
+                print("process %.2f%% (%s/%s), run# %s, lumi# %s" % (100.0 * row_i/df.shape[0], row_i, df.shape[0], run_id, lumi_id))
+            prompt_reco_dataset = get_dataset_name(recon_name=recon_name, run_id=run_id)
+            detector_status_ranges = get_lumisection_ranges(run_id, prompt_reco_dataset)
+
+            range_lumis = [{'start': int(x['start']), 'end': int(x['end'])} for x in detector_status_ranges]
+            if lumi_id > range_lumis[-1]['end'] and lumi_id < range_lumis[0]['start']:
+                raise LSNotInRangeError
+
+            for index_range in range(len(range_lumis)):
+                if lumi_id >= range_lumis[index_range]['start'] and lumi_id <= range_lumis[index_range]['end']:
+                    detector_status_range = detector_status_ranges[index_range]
+                    hb_status = 1 if detector_status_range['hcal-hb']['status'] == 'GOOD' else 0
+                    he_status = 1 if detector_status_range['hcal-he']['status'] == 'GOOD' else 0
+                    hf_status = 1 if detector_status_range['hcal-hf']['status'] == 'GOOD' else 0
+                    h_status = 1 if detector_status_range['hcal-hcal']['status'] == 'GOOD' else 0
+                    all_status = hb_status * he_status * hf_status * h_status
+                    sub_detector_statuses.append([hb_status, he_status, hf_status, h_status, all_status])
+                    if not all_status:
+                        print(
+                            "Found bad HCAL in run {} LS {}!!".format(run_id, lumi_id),
+                            [hb_status, he_status, hf_status, all_status]
+                        )
+    df_label = pd.DataFrame(sub_detector_statuses, columns = ['hcal_hb', 'hcal_he', 'hcal_hf', 'hcal_hcal', 'hcal'])
+    df_write_bad = pd.concat([df_bad, df_label], axis=1)
+    df_write_good.to_csv(os.path.join(implest_rr_setting.RR_DATA_DIRECTORY, 'good', "{}.csv".format(selected_pd)))
+    df_write_bad.to_csv(os.path.join(implest_rr_setting.RR_DATA_DIRECTORY, 'bad', "{}.csv".format(selected_pd)))
+
+    # 1) get data_name from RR by runID
+    # 2) get prompt_reco from those
