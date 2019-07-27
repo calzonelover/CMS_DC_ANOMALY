@@ -29,6 +29,7 @@ def get_data(file_dats):
     readout = np.empty([0,2813])
     for file_dat in file_dats:        
         jet = file_dat.split("/")[-1][:-3]
+        print("Reading: {}".format(jet))
         try:
             h5file = h5py.File(file_dat, "r")
             readout = np.concatenate((np.empty([0,2813]), h5file[jet]), axis=0)

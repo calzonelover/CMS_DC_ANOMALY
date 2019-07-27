@@ -59,18 +59,21 @@ def get_lumisection_ranges(run_id, prompt_reco_dataset):
 
 def main(
         selected_pd = "JetHT",
-        recon_name = "PromptReco"
+        recon_name = "PromptReco",
+        interested_statuses = {
+            'hcal_hcal': 'hcal-hcal',
+            'ecal_ecal': 'ecal-ecal',
+            'tracker_track': 'tracker-track',
+            'muon_muon': 'muon-muon'
+        },
     ):
     print("\n\n Extract {} dataset \n\n".format(selected_pd))
     features = new_prompt_reco_utility.get_full_features(selected_pd)
     df_good = new_prompt_reco_utility.read_data(selected_pd=selected_pd, pd_data_directory=new_prompt_reco_setting.PD_GOOD_DATA_DIRECTORY)
     df_bad = new_prompt_reco_utility.read_data(selected_pd=selected_pd, pd_data_directory=new_prompt_reco_setting.PD_BAD_DATA_DIRECTORY)
     df_write_good = df_good
-    df_write_good['hcal_hb'] = 1
-    df_write_good['hcal_he'] = 1
-    df_write_good['hcal_hf'] = 1
-    df_write_good['hcal_hcal'] = 1
-    df_write_good['hcal'] = 1
+    for sub_detector, sub_detector_str in interested_statuses.items():
+        df_write_good[sub_detector] = 1
 
     sub_detector_statuses = []
     for df in [df_bad, ]:
@@ -88,18 +91,29 @@ def main(
             for index_range in range(len(range_lumis)):
                 if lumi_id >= range_lumis[index_range]['start'] and lumi_id <= range_lumis[index_range]['end']:
                     detector_status_range = detector_status_ranges[index_range]
-                    hb_status = 1 if detector_status_range['hcal-hb']['status'] == 'GOOD' else 0
-                    he_status = 1 if detector_status_range['hcal-he']['status'] == 'GOOD' else 0
-                    hf_status = 1 if detector_status_range['hcal-hf']['status'] == 'GOOD' else 0
-                    h_status = 1 if detector_status_range['hcal-hcal']['status'] == 'GOOD' else 0
-                    all_status = hb_status * he_status * hf_status * h_status
-                    sub_detector_statuses.append([hb_status, he_status, hf_status, h_status, all_status])
-                    if not all_status:
+                    ##
+                    # print(detector_status_range.keys())
+                    # input()
+                    ##
+                    sub_detector_status = [
+                        1 if detector_status_range[sub_detector_str]['status'] == 'GOOD' else 0
+                        for sub_detector, sub_detector_str in interested_statuses.items()
+                    ]
+                    sub_detector_statuses.append(sub_detector_status)
+                        
+                    # hb_status = 1 if detector_status_range['hcal-hb']['status'] == 'GOOD' else 0
+                    # he_status = 1 if detector_status_range['hcal-he']['status'] == 'GOOD' else 0
+                    # hf_status = 1 if detector_status_range['hcal-hf']['status'] == 'GOOD' else 0
+                    # h_status = 1 if detector_status_range['hcal-hcal']['status'] == 'GOOD' else 0
+                    # h_all_status = hb_status * he_status * hf_status * h_status
+                    # e_status = 1 if detector_status_range['ecal-ecal']['status'] == 'GOOD' else 0
+                    # sub_detector_statuses.append([hb_status, he_status, hf_status, h_status, h_all_status, e_status])
+                    if 0 in sub_detector_status:
                         print(
                             "Found bad HCAL in run {} LS {}!!".format(run_id, lumi_id),
-                            [hb_status, he_status, hf_status, all_status]
+                            sub_detector_status
                         )
-    df_label = pd.DataFrame(sub_detector_statuses, columns = ['hcal_hb', 'hcal_he', 'hcal_hf', 'hcal_hcal', 'hcal'])
+    df_label = pd.DataFrame(sub_detector_statuses, columns = [ sub_detector for sub_detector, sub_detector_str in interested_statuses.items() ] )
     df_write_bad = pd.concat([df_bad, df_label], axis=1)
     df_write_good.to_csv(os.path.join(implest_rr_setting.RR_DATA_DIRECTORY, 'good', "{}.csv".format(selected_pd)))
     df_write_bad.to_csv(os.path.join(implest_rr_setting.RR_DATA_DIRECTORY, 'bad', "{}.csv".format(selected_pd)))

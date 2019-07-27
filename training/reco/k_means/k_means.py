@@ -103,6 +103,8 @@ def main():
             label = HUMAN_LABELS[i]
         )
     ax.legend()
+    plt.xlabel("Principal component 1")
+    plt.ylabel("Principal component 2")
     plt.title('Labeled by Human, visual in Principal Basis (JetHT)')
     plt.savefig('JetHT_label.png')
     # visual One-Class SVM cutoff
@@ -126,6 +128,8 @@ def main():
         alpha=0.8,
         c = colors_svm_cutoff
     )
+    plt.xlabel("Principal component 1")
+    plt.ylabel("Principal component 2")
     plt.title('Applying cutoff in SVM, visual in Principal Basis (JetHT)')
     plt.savefig('SVM_cutoff.png')
 
@@ -148,6 +152,8 @@ def main():
         alpha=0.8,
         c = np.log10(sampling_totalsd)
     )
+    plt.xlabel("Principal component 1")
+    plt.ylabel("Principal component 2")
     plt.title('Loss from AE data, testing set visual in Principal Basis (JetHT)')
     plt.savefig('JetHT_AE_loss.png')
     fig, ax = plt.subplots()
@@ -156,5 +162,7 @@ def main():
         alpha=0.8,
         c = colors_cutoff,
     )
+    plt.xlabel("Principal component 1")
+    plt.ylabel("Principal component 2")
     plt.title('Applying cutoff in AE, testing set visual in Principal Basis (JetHT)')
     plt.savefig('JetHT_AE_cutoff.png')

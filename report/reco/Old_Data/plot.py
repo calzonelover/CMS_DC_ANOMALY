@@ -276,7 +276,8 @@ def plot_decision_val_dist(
 
     plt.figure()
 
-    bins = se_min + ((se_max-se_min)/n_bins * np.arange(1, n_bins+1))
+    bins = se_min + ((se_max-se_min)/n_bins * np.arange(-10, 80))
+    # bins = se_min + ((se_max-se_min)/n_bins * np.arange(1, n_bins+1))
     # bins = 1.1**(np.arange(4,n_bins))
     plt.hist(good_channels, bins=bins, alpha=0.5, label='Labeled Good (Human)')
     plt.hist(bad_channels,  bins=bins, alpha=0.5, label='Labeled Bad (Human)')

@@ -1,8 +1,9 @@
 \beamer@sectionintoc {1}{Background}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{CMS Data granularity}{3}{0}{1}
-\beamer@sectionintoc {2}{Datasets}{5}{0}{2}
-\beamer@sectionintoc {3}{Model}{7}{0}{3}
-\beamer@subsectionintoc {3}{1}{ML}{7}{0}{3}
-\beamer@subsectionintoc {3}{2}{Autoencoder}{9}{0}{3}
-\beamer@sectionintoc {4}{Results and Interpretation}{12}{0}{4}
-\beamer@sectionintoc {5}{Summary}{14}{0}{5}
+\beamer@sectionintoc {2}{Objective}{5}{0}{2}
+\beamer@sectionintoc {3}{Datasets}{7}{0}{3}
+\beamer@sectionintoc {4}{Model}{10}{0}{4}
+\beamer@subsectionintoc {4}{1}{One-Class SVM}{11}{0}{4}
+\beamer@subsectionintoc {4}{2}{Isolation Forest}{12}{0}{4}
+\beamer@subsectionintoc {4}{3}{Autoencoder}{13}{0}{4}
+\beamer@sectionintoc {5}{Results and Interpretation}{19}{0}{5}
+\beamer@sectionintoc {6}{Summary}{24}{0}{6}

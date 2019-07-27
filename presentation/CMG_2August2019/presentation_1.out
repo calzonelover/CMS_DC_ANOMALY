@@ -1,8 +1,9 @@
 \BOOKMARK [2][]{Outline0.1}{Background}{}% 1
-\BOOKMARK [3][]{Outline0.1.1.3}{CMS Data granularity}{Outline0.1}% 2
-\BOOKMARK [2][]{Outline0.2}{Datasets}{}% 3
-\BOOKMARK [2][]{Outline0.3}{Model}{}% 4
-\BOOKMARK [3][]{Outline0.3.1.7}{ML}{Outline0.3}% 5
-\BOOKMARK [3][]{Outline0.3.2.9}{Autoencoder}{Outline0.3}% 6
-\BOOKMARK [2][]{Outline0.4}{Results and Interpretation}{}% 7
-\BOOKMARK [2][]{Outline0.5}{Summary}{}% 8
+\BOOKMARK [2][]{Outline0.2}{Objective}{}% 2
+\BOOKMARK [2][]{Outline0.3}{Datasets}{}% 3
+\BOOKMARK [2][]{Outline0.4}{Model}{}% 4
+\BOOKMARK [3][]{Outline0.4.1.11}{One-Class SVM}{Outline0.4}% 5
+\BOOKMARK [3][]{Outline0.4.2.12}{Isolation Forest}{Outline0.4}% 6
+\BOOKMARK [3][]{Outline0.4.3.13}{Autoencoder}{Outline0.4}% 7
+\BOOKMARK [2][]{Outline0.5}{Results and Interpretation}{}% 8
+\BOOKMARK [2][]{Outline0.6}{Summary}{}% 9
