@@ -16,29 +16,53 @@ def get_full_features(selected_pd):
 def read_data(selected_pd, pd_data_directory):
     return pd.read_csv(os.path.join(pd_data_directory, "{}.csv".format(selected_pd)))
 
-def extract_and_merge_to_csv(selected_pd, features, data_directory, pd_data_directory):
+def extract_and_merge_to_csv(selected_pd, features, data_directory, pd_data_directory, failure=False):
     list_df = []
-    for crab in os.listdir(os.path.join(data_directory, selected_pd)):
-        print(crab)
-        for output in os.listdir(os.path.join(data_directory, selected_pd, crab)):
-            print(" -", output)
-            for run in os.listdir(os.path.join(data_directory, selected_pd, crab, output)):
-                print("  *", run)
-                for dat_numpy in os.listdir(os.path.join(data_directory, selected_pd, crab, output, run)):
-                    print("   ~", dat_numpy)
-                    write_df = pd.DataFrame()
-                    np_dat = np.load(os.path.join(data_directory, selected_pd, crab, output, run, dat_numpy),
-                                    encoding="latin1")
-                    read_df = pd.DataFrame(np_dat)
-                    for feature in features:
-                        tags = read_df[feature].apply(pd.Series)
-                        tags = tags.rename(columns = lambda x : '{}_'.format(feature) + str(x))
-                        read_df.drop(columns=feature)
-                        for i in range(0,7):
-                            write_df['{}_{}'.format(feature, i)] = tags['{}_{}'.format(feature, i)]
-                    for feature in EXTENDED_FEATURES:
-                        write_df[feature] = read_df[feature]
-                    list_df.append(write_df)
+    if failure:
+        FIX_FEATURE_COLUMNS = {
+            "qpVtxChi2_": "qpVtxChi2",
+            "qpVtxNtr_": "qpVtxNtr",
+            "qpVtxX_": "qpVtxX",
+            "qpVtxY_": "qpVtxY",
+            "qpVtxZ_": "qpVtxZ",
+        }
+        for dat_numpy in os.listdir(os.path.join(data_directory, selected_pd)):
+            write_df = pd.DataFrame()
+            np_dat = np.load(os.path.join(data_directory, selected_pd,  dat_numpy), encoding="latin1")
+            read_df = pd.DataFrame(np_dat)
+            for feature in features:
+                if feature in FIX_FEATURE_COLUMNS:
+                    get_feature = FIX_FEATURE_COLUMNS[feature]
+                tags = read_df[get_feature].apply(pd.Series)
+                tags = tags.rename(columns = lambda x : '{}_'.format(feature) + str(x))
+                read_df.drop(columns=get_feature)
+                for i in range(0,7):
+                    write_df['{}_{}'.format(feature, i)] = tags['{}_{}'.format(feature, i)]
+            for feature in EXTENDED_FEATURES:
+                write_df[feature] = read_df[feature]
+            list_df.append(write_df)
+    else:
+        for crab in os.listdir(os.path.join(data_directory, selected_pd)):
+            print(crab)
+            for output in os.listdir(os.path.join(data_directory, selected_pd, crab)):
+                print(" -", output)
+                for run in os.listdir(os.path.join(data_directory, selected_pd, crab, output)):
+                    print("  *", run)
+                    for dat_numpy in os.listdir(os.path.join(data_directory, selected_pd, crab, output, run)):
+                        print("   ~", dat_numpy)
+                        write_df = pd.DataFrame()
+                        np_dat = np.load(os.path.join(data_directory, selected_pd, crab, output, run, dat_numpy),
+                                        encoding="latin1")
+                        read_df = pd.DataFrame(np_dat)
+                        for feature in features:
+                            tags = read_df[feature].apply(pd.Series)
+                            tags = tags.rename(columns = lambda x : '{}_'.format(feature) + str(x))
+                            read_df.drop(columns=feature)
+                            for i in range(0,7):
+                                write_df['{}_{}'.format(feature, i)] = tags['{}_{}'.format(feature, i)]
+                        for feature in EXTENDED_FEATURES:
+                            write_df[feature] = read_df[feature]
+                        list_df.append(write_df)
     full_df = pd.concat(list_df)
     print(full_df)
     if not os.path.exists(pd_data_directory):

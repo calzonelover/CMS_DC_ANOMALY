@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 import os
 
-from model.NN.base import BaseModel
+from model.NN.base import BaseAutoencoder as BaseModel
 
 class VanillaAutoencoder(BaseModel):
     def __init__(self, input_dim=[2806], batch_size=1024, learning_rate=1e-4, beta1=0.7, beta2=0.9,**kwargs):

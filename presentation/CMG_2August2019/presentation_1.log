@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.27)  26 JUL 2019 17:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.27)  30 JUL 2019 15:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -746,15 +746,13 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 
 ] (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/presentation_1.toc) [2
 
-] <images/dqm_flow.png, id=224, 877.2775pt x 630.355pt>
+] <images/dqm_flow.png, id=232, 855.195pt x 661.47125pt>
 File: images/dqm_flow.png Graphic file (type png)
  <use images/dqm_flow.png>
 Package pdftex.def Info: images/dqm_flow.png used on input line 148.
-(pdftex.def)             Requested size: 239.59886pt x 158.11737pt.
-Missing character: There is no Ì in font cmss10!
-Missing character: There is no Œ in font cmss10!
+(pdftex.def)             Requested size: 239.59651pt x 158.11037pt.
 
-Overfull \vbox (5.19128pt too high) detected at line 148
+Overfull \vbox (5.18428pt too high) detected at line 148
  []
 
 [3
@@ -774,152 +772,184 @@ Missing character: There is no Œ in font cmss8!
 
 ] [5
 
-] <images/expected_greyzone.png, id=388, 811.03pt x 533.995pt>
+] <images/expected_greyzone.png, id=403, 811.03pt x 533.995pt>
 File: images/expected_greyzone.png Graphic file (type png)
  <use images/expected_greyzone.png>
-Package pdftex.def Info: images/expected_greyzone.png used on input line 192.
+Package pdftex.def Info: images/expected_greyzone.png used on input line 191.
 (pdftex.def)             Requested size: 239.59828pt x 158.11382pt.
 
-Overfull \vbox (5.18773pt too high) detected at line 192
+Overfull \vbox (5.18773pt too high) detected at line 191
  []
 
 [6
 
  </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/expected_greyzone.png>]
-LaTeX Font Info:    Try loading font information for U+msa on input line 219.
+Missing character: There is no â in font cmss8!
+Missing character: There is no € in font cmss8!
+Missing character: There is no ¨ in font cmss8!
+ [7
+
+] <images/cartoon.png, id=515, 1186.4325pt x 683.55376pt>
+File: images/cartoon.png Graphic file (type png)
+ <use images/cartoon.png>
+Package pdftex.def Info: images/cartoon.png used on input line 217.
+(pdftex.def)             Requested size: 342.30058pt x 191.99869pt.
+Missing character: There is no â in font cmss8!
+Missing character: There is no € in font cmss8!
+Missing character: There is no ¨ in font cmss8!
+
+Overfull \vbox (1.21875pt too high) detected at line 217
+ []
+
+[8
+
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/cartoon.png>]
+LaTeX Font Info:    Try loading font information for U+msa on input line 243.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 219.
+LaTeX Font Info:    Try loading font information for U+msb on input line 243.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 219.
+LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 243.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/mathkerncmss.
-) [7
+) [9
 
-] <images/ex_eta_dist.png, id=499, 948.54375pt x 470.75874pt>
+] <images/ex_eta_dist.png, id=628, 948.54375pt x 470.75874pt>
 File: images/ex_eta_dist.png Graphic file (type png)
  <use images/ex_eta_dist.png>
-Package pdftex.def Info: images/ex_eta_dist.png used on input line 241.
+Package pdftex.def Info: images/ex_eta_dist.png used on input line 265.
 (pdftex.def)             Requested size: 171.13576pt x 90.35017pt.
- [8
+ [10
 
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/ex_eta_dist.png (PNG copy)>] [9
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/ex_eta_dist.png (PNG copy)>] [11
 
-] [10
+] [12
 
-] <images/hyperplane_svm.png, id=659, 884.30376pt x 644.4075pt>
+] <images/hyperplane_svm.png, id=794, 884.30376pt x 644.4075pt>
 File: images/hyperplane_svm.png Graphic file (type png)
  <use images/hyperplane_svm.png>
-Package pdftex.def Info: images/hyperplane_svm.png used on input line 301.
+Package pdftex.def Info: images/hyperplane_svm.png used on input line 325.
 (pdftex.def)             Requested size: 136.91724pt x 112.94016pt.
 
-Overfull \hbox (12.58995pt too wide) in paragraph at lines 301--301
+Overfull \hbox (12.58995pt too wide) in paragraph at lines 325--325
 \OT1/cmss/m/n/6 http://www.jmlr.org/papers/volume2/manevitz01a/manevitz01a.pdf  
  []
 
-[11
+[13
 
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/hyperplane_svm.png>] [12
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/hyperplane_svm.png>] [14
 
-] <images/vanilla_ae.png, id=773, 556.0775pt x 601.24625pt>
+] <images/vanilla_ae.png, id=913, 556.0775pt x 601.24625pt>
 File: images/vanilla_ae.png Graphic file (type png)
  <use images/vanilla_ae.png>
-Package pdftex.def Info: images/vanilla_ae.png used on input line 349.
+Package pdftex.def Info: images/vanilla_ae.png used on input line 373.
 (pdftex.def)             Requested size: 119.8004pt x 135.53143pt.
- [13
+ [15
 
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/vanilla_ae.png>] [14
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/vanilla_ae.png>] [16
 
-] [15
+] [17
 
-] [16
+] [18
 
-] <images/variational_ae.png, id=986, 577.15625pt x 648.4225pt>
+] <images/variational_ae.png, id=1134, 577.15625pt x 648.4225pt>
 File: images/variational_ae.png Graphic file (type png)
  <use images/variational_ae.png>
-Package pdftex.def Info: images/variational_ae.png used on input line 424.
+Package pdftex.def Info: images/variational_ae.png used on input line 448.
 (pdftex.def)             Requested size: 102.68593pt x 135.52962pt.
- [17
-
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/variational_ae.png>]
-Overfull \vbox (1.05287pt too high) detected at line 444
- []
-
-[18
-
-] <images/decision_value_dist.png, id=1096, 861.2175pt x 499.8675pt>
-File: images/decision_value_dist.png Graphic file (type png)
- <use images/decision_value_dist.png>
-Package pdftex.def Info: images/decision_value_dist.png used on input line 456.
-(pdftex.def)             Requested size: 325.18976pt x 180.69963pt.
  [19
 
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/decision_value_dist.png>] <images/performance_ae.png, id=1153, 462.528pt x 346.896pt>
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/variational_ae.png>]
+Overfull \vbox (6.69579pt too high) detected at line 469
+ []
+
+[20
+
+] <images/performance_ae.png, id=1249, 462.528pt x 346.896pt>
 File: images/performance_ae.png Graphic file (type png)
  <use images/performance_ae.png>
-Package pdftex.def Info: images/performance_ae.png used on input line 479.
+Package pdftex.def Info: images/performance_ae.png used on input line 497.
 (pdftex.def)             Requested size: 162.59297pt x 124.23138pt.
- <images/performance_ml.png, id=1154, 462.528pt x 346.896pt>
+ <images/performance_ml.png, id=1250, 462.528pt x 346.896pt>
 File: images/performance_ml.png Graphic file (type png)
  <use images/performance_ml.png>
-Package pdftex.def Info: images/performance_ml.png used on input line 479.
+Package pdftex.def Info: images/performance_ml.png used on input line 497.
 (pdftex.def)             Requested size: 162.59297pt x 124.23138pt.
- [20
+ [21
 
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/performance_ae.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/performance_ml.png>] <images/example_se.png, id=1210, 462.528pt x 346.896pt>
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/performance_ae.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/performance_ml.png>] <images/decision_value_dist.png, id=1309, 861.2175pt x 499.8675pt>
+File: images/decision_value_dist.png Graphic file (type png)
+ <use images/decision_value_dist.png>
+Package pdftex.def Info: images/decision_value_dist.png used on input line 506.
+(pdftex.def)             Requested size: 325.18976pt x 180.69963pt.
+ [22
+
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/decision_value_dist.png>] <images/example_se.png, id=1366, 462.528pt x 346.896pt>
 File: images/example_se.png Graphic file (type png)
  <use images/example_se.png>
-Package pdftex.def Info: images/example_se.png used on input line 488.
-(pdftex.def)             Requested size: 239.6055pt x 158.11316pt.
+Package pdftex.def Info: images/example_se.png used on input line 515.
+(pdftex.def)             Requested size: 205.38321pt x 158.11316pt.
 
-Overfull \vbox (5.18707pt too high) detected at line 488
- []
-
-[21
-
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/example_se.png>] <images/guess.png, id=1265, 448.67625pt x 705.63625pt>
-File: images/guess.png Graphic file (type png)
- <use images/guess.png>
-Package pdftex.def Info: images/guess.png used on input line 496.
-(pdftex.def)             Requested size: 136.91109pt x 191.99942pt.
-
-Overfull \vbox (9.52888pt too high) detected at line 496
- []
-
-[22
-
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/guess.png>] <images/guess_visual.png, id=1319, 896.34875pt x 706.64pt>
-File: images/guess_visual.png Graphic file (type png)
- <use images/guess_visual.png>
-Package pdftex.def Info: images/guess_visual.png used on input line 504.
-(pdftex.def)             Requested size: 256.72035pt x 191.9922pt.
-
-Overfull \vbox (9.52167pt too high) detected at line 504
+Overfull \vbox (5.18707pt too high) detected at line 515
  []
 
 [23
 
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/guess_visual.png>] <images/meme_outlier.pdf, id=1374, 1027.84pt x 770.88pt>
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/example_se.png>] <images/guess.png, id=1422, 448.67625pt x 705.63625pt>
+File: images/guess.png Graphic file (type png)
+ <use images/guess.png>
+Package pdftex.def Info: images/guess.png used on input line 523.
+(pdftex.def)             Requested size: 136.91109pt x 191.99942pt.
+
+Overfull \vbox (9.52888pt too high) detected at line 523
+ []
+
+[24
+
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/guess.png>] <images/guess_visual.png, id=1479, 896.34875pt x 706.64pt>
+File: images/guess_visual.png Graphic file (type png)
+ <use images/guess_visual.png>
+Package pdftex.def Info: images/guess_visual.png used on input line 531.
+(pdftex.def)             Requested size: 256.72035pt x 191.9922pt.
+
+Overfull \vbox (9.52167pt too high) detected at line 531
+ []
+
+[25
+
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/guess_visual.png>] <images/meme_outlier.pdf, id=1536, 1027.84pt x 770.88pt>
 File: images/meme_outlier.pdf Graphic file (type pdf)
  <use images/meme_outlier.pdf>
-Package pdftex.def Info: images/meme_outlier.pdf used on input line 523.
+Package pdftex.def Info: images/meme_outlier.pdf used on input line 550.
 (pdftex.def)             Requested size: 119.79099pt x 90.34903pt.
- [24
+ [26
 
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/meme_outlier.pdf>] [25
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/meme_outlier.pdf>] [27
 
-] [26
+] <images/JetHT_label_2016.png, id=1662, 462.528pt x 346.896pt>
+File: images/JetHT_label_2016.png Graphic file (type png)
+ <use images/JetHT_label_2016.png>
+Package pdftex.def Info: images/JetHT_label_2016.png used on input line 584.
+(pdftex.def)             Requested size: 162.58974pt x 121.94473pt.
+ <images/JetHT_label_2018.png, id=1663, 417.7206pt x 327.3831pt>
+File: images/JetHT_label_2018.png Graphic file (type png)
+ <use images/JetHT_label_2018.png>
+Package pdftex.def Info: images/JetHT_label_2018.png used on input line 584.
+(pdftex.def)             Requested size: 154.03183pt x 120.72021pt.
+ [28
 
-] [27
-
-] [28
-
-] [29
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2016.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2018.png>] [29
 
 ] [30
+
+] [31
+
+] [32
+
+] [33
 
 ]
 \tf@nav=\write6
@@ -931,13 +961,13 @@ Package pdftex.def Info: images/meme_outlier.pdf used on input line 523.
 \tf@snm=\write8
 \openout8 = `presentation_1.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 575.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 575.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 637.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 637.
  (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/presentation_1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 575.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 575.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 637.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 637.
 Package rerunfilecheck Info: File `presentation_1.out' has not changed.
-(rerunfilecheck)             Checksum: 3B537C603D374DC6404791ED4B932B1C;465.
+(rerunfilecheck)             Checksum: E24B937D3C494A26FC4035B177C7C854;465.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -948,18 +978,18 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 20551 strings out of 492995
- 409975 string characters out of 6132703
- 493079 words of memory out of 5000000
- 23528 multiletter control sequences out of 15000+600000
- 18096 words of font info for 65 fonts, out of 8000000 for 9000
+ 20600 strings out of 492995
+ 410870 string characters out of 6132703
+ 496137 words of memory out of 5000000
+ 23568 multiletter control sequences out of 15000+600000
+ 19097 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,19n,59p,849b,792s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,19n,59p,849b,949s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/presentation_1.pdf (30 pages, 2793350 bytes).
+Output written on /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/presentation_1.pdf (33 pages, 3327545 bytes).
 PDF statistics:
- 1837 PDF objects out of 2073 (max. 8388607)
- 1705 compressed objects within 18 object streams
- 75 named destinations out of 1000 (max. 500000)
- 204 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2073 PDF objects out of 2073 (max. 8388607)
+ 1928 compressed objects within 20 object streams
+ 81 named destinations out of 1000 (max. 500000)
+ 219 words of extra memory for PDF output out of 10000 (max. 10000000)
 

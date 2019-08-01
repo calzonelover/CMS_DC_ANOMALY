@@ -32,7 +32,7 @@
 %\usetheme{Boadilla}
 %\usetheme{CambridgeUS}
 %\usetheme{Copenhagen}
-%\usetheme{Darmstadt}
+% \usetheme{Darmstadt}
 %\usetheme{Dresden}
 %\usetheme{Frankfurt}
 %\usetheme{Goettingen}
@@ -105,7 +105,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[Outlier Detection for DC]{Outlier Detection for Data Certification} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[ML based Outlier Detection for DC]{Machine Learning Based Outlier Detection for Data Certification} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 \author{Patomporn Payoungkhamdee} % Your name
 \institute[MU] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -142,7 +142,7 @@ Mahidol University \\ % Your institution for the title page
 
 \begin{figure}
 \includegraphics[height=0.7\textheight, width=0.7\textwidth]{images/dqm_flow}
-\caption{Tools and Processes of DQM, retrieved from M. Stankevičius }
+\caption{Tools and Processes of DQM, retrieved from M. Schneider, CHEP 2018}
 \end{figure}
 
 \end{frame}
@@ -155,12 +155,12 @@ Mahidol University \\ % Your institution for the title page
     \item Reconstruct physics quantity 48 Hours after collision 
     \item Offline shifters and detector experts check the dozens of distribution histograms to define goodness of data
     \item Certification is made on Run and Lumisection levels
-    \item Lumisection(LS) is taken around 23 seconds for one interval
-    \item Briefly criteria for bad LS
+    \item Lumisection(LS) is taken around 23 seconds
+    \item Criteria for bad LS
     \begin{enumerate}
         \item Runs tagged as bad by human (whole run)
-        \item DCS bits (LS levels)
-        \item Shifter mark some range of LSs from other cases
+        \item Automatically filter by DCS bits, beam status and etc. (LS levels)
+        \item Other cases are marked by DC Experts (LS levels)
     \end{enumerate}
     \item Golden JSON are the rest of them (Good LS)
 \end{itemize}
@@ -176,8 +176,7 @@ Mahidol University \\ % Your institution for the title page
 \frametitle{Objective}
 \begin{itemize}
     \item \textbf{Certify data quality in lumisection granularity}
-    \item Reduce manual work of the shifter
-    \item Standardize data certification criteria
+    \item Reduce manual work of DC Experts
 \end{itemize}
 \end{frame}
 
@@ -192,6 +191,32 @@ Mahidol University \\ % Your institution for the title page
 \end{frame}
 
 %------------------------------------------------
+
+\begin{frame}
+\frametitle{Proposal For An Alternative approach: two steps}
+\begin{itemize}
+    \item The automatic DCS bit flagging will stay, ML applied on top of it
+    \item Automatize the Data Certification procedure in two steps
+    \begin{enumerate}
+        \item Provide a reliable quality \textbf{flag per Run using the Yandex} grey-zone approach and Supervised models (artificial BAD data can be used for training)
+        \item \textbf{Use Autoencoders} only on the grey-zone with the goal \textbf{to search for anomalous LS} and flag them automatically, human double check at this stage
+    \end{enumerate}
+    \item In this work, I will focus only on second step
+\end{itemize}
+\vspace{0.4in}
+\tiny [1] F. Fiori, ML Applied To Data Certification Status and Perspective
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{figure}
+\includegraphics[height=0.85\textheight, width=\textwidth]{images/cartoon}
+\end{figure}
+\tiny [1] F. Fiori, ML Applied To Data Certification Status and Perspective
+\end{frame}
+
+%------------------------------------------------
 \section{Datasets} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 \subsection{}
@@ -200,13 +225,12 @@ Mahidol University \\ % Your institution for the title page
 \begin{frame}
 \frametitle{Datasets}
 \begin{itemize}
-    \item pp collisions, 2016 data
-    \item JetHT
+    \item pp collisions, 2016 data, PromptReco, JetHT
     \item Each lumisection (datapoint) contains
     \begin{itemize}
         \item 39 histogram of physics quantity e.g. JetPt, JetEta, JetPhi, etc.
         \item Represent one histogram with 7 numbers
-        \item 259 Features ( 39 $\times$ 7 )
+        \item 259 Features (39 $\times$ 7)
     \end{itemize}
     \item \textcolor[RGB]{0,128,0}{Good LS} defined in Golden JSON else \textcolor[RGB]{255,0,0}{Bad LS}
     \item Data splitting
@@ -233,7 +257,7 @@ Mahidol University \\ % Your institution for the title page
     \item Measurement quantity: Transverse momentum, eta, phi, etc.
     \end{itemize}
     \begin{enumerate}
-        \item Quantize [10$\%$, 30$\%$, 50$\%$, 70$\%$, 90$\%$] of the histogram
+        \item Quantize [0$\%$, 25$\%$, 50$\%$, 75$\%$, 100$\%$] of the histogram
         \item Combine mean and rms
         \item Use these \textbf{7 values to represent one histogram}
     \end{enumerate}
@@ -380,18 +404,18 @@ Mahidol University \\ % Your institution for the title page
 \begin{itemize}
     \item Definition
     \begin{equation}
-        \textcolor[RGB]{0,128,0}{||J_h(x)||^2 \equiv \sum_{ij}\left(\frac{\partial h_j}{\partial x_i}\right)^2}
+        \textcolor[RGB]{0,128,0}{||J_h(x)||^2 \equiv \frac{1}{N}\sum_{ij}\left(\frac{\partial h_j}{\partial x_i}\right)^2}
     \end{equation}
     \item where $h_j$ is activation function
     \item In our cases
     \begin{itemize}
         \item PReLu activation function
         \begin{equation}
-            ||J_h(x)||^2 = \sum_j[\alpha_jH(-(w_{ji}x^i+b_j)) + H(w_{ji}x^i+b_j)]\sum_i(w_{ji})^2
+            ||J_h(x)||^2 = \frac{1}{N}\sum_j[\textcolor[RGB]{0,128,0}{\alpha_j}H(-(w_{ji}x^i+b_j)) + H(w_{ji}x^i+b_j)]\sum_i(w_{ji})^2
         \end{equation}
         \item Sigmoid activation function
         \begin{equation}
-            ||J_h(x)||^2 = \sum_j[h_j*(1-h_j)]\sum_i(w_{ji})^2
+            ||J_h(x)||^2 = \frac{1}{N}\sum_j[h_j*(1-h_j)]\sum_i(w_{ji})^2
         \end{equation}
     \end{itemize}
 \end{itemize}
@@ -427,19 +451,20 @@ Mahidol University \\ % Your institution for the title page
 \frametitle{Variational Autoencoder}
 \begin{theorem}[Kullback-Leibler Divergence]
 \begin{itemize}
+    \small 
     \item \say{How much information is loss after represent data with function}
     \begin{equation}
         \mathcal{D}_{\text{KL}} \equiv < \log p - \log q >
     \end{equation}
-    \item Where $p$ is observed value and $q$ is approximaiton function
+    \item Where $p$ is observed value and $q$ is approximation function
     \item Since our $q$ is Gaussian function
     \begin{equation}
-        \mathcal{D}_{\text{KL}} = \frac{1}{2}(\mu_i^2 +\sigma_i^2 - 2\log(\sigma_i) - 1)
+        \mathcal{D}_{\text{KL}, i} = \frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)
     \end{equation}
 \end{itemize}
 \end{theorem}
 \begin{equation}
-    \mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x-\tilde{x}|^2 + \textcolor[RGB]{148,0,211}{\frac{1}{2}(\mu_i^2 +\sigma_i^2 - 2\log(\sigma_i) - 1)}
+    \mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x-\tilde{x}|^2 + \textcolor[RGB]{148,0,211}{\frac{1}{2N}\sum_i^N\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)}
 \end{equation}
 \end{frame}
 
@@ -447,13 +472,6 @@ Mahidol University \\ % Your institution for the title page
 \section{Results and Interpretation}
 %------------------------------------------------
 \subsection{}
-
-\begin{frame}
-\frametitle{Find the cutoff}
-\begin{figure}
-    \includegraphics[height=0.8\textheight, width=0.95\textwidth]{images/decision_value_dist}
-\end{figure}
-\end{frame}
 
 %------------------------------------------------
 \begin{frame}
@@ -479,10 +497,19 @@ Under configuration
 \end{frame}
 
 %------------------------------------------------
+
+\begin{frame}
+\frametitle{Find the cutoff}
+\begin{figure}
+    \includegraphics[height=0.8\textheight, width=0.95\textwidth]{images/decision_value_dist}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
 \begin{frame}
 \frametitle{Example of Reconstruction}
 \begin{figure}
-    \includegraphics[height=0.7\textheight, width=0.7\textwidth]{images/example_se}
+    \includegraphics[height=0.7\textheight, width=0.6\textwidth]{images/example_se}
     \caption{Reconstruction error from Vanilla AE}
 \end{figure}
 \end{frame}
@@ -522,32 +549,67 @@ Under configuration
 \end{figure}
 \end{frame}
 %------------------------------------------------
+\section{}
+
+% Future work as convince 2018 data
 \begin{frame}
 \frametitle{Future work}
 \begin{itemize}
-    \item Good LS from run tagged by human and DCS bits still suspicious not to be a ground truth
-    \item Require simulation data
-    \begin{itemize}
-        \item To be purely good LS for training
-        \item For testing the failure scenario
-    \end{itemize}
+    \item Exploid the same technique in 2018 dataset
+    \item 2018 data preparation still in progress
+    \item Remove trivial bad LS (run tag and DCS bits) but take consider only bad LS that came from DC Experts
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Future work}
+Let's have a look at principal component for JetHT PD
+\begin{columns}
+    \column{0.5\textwidth}
+    \begin{figure}[h!]
+        \begin{tikzpicture}
+        \node (0,0) {\includegraphics[width=0.95\textwidth]{images/JetHT_label_2016}};
+        \end{tikzpicture}
+        \caption{2016 data}
+    \end{figure}
+    \column{0.5\textwidth}
+    \begin{figure}[h!]
+        \begin{tikzpicture}
+        \node (0,0) {\includegraphics[width=0.9\textwidth]{images/JetHT_label_2018}};
+        \node [opacity=0.4] (0,0) {\rotatebox{45}{\scalebox{1.5}{\textcolor{red}{preliminary}}}};
+        \end{tikzpicture}
+        \caption{2018 data}
+    \end{figure}
+\end{columns}
+\end{frame}
+
+% Future work as discuss
+% \begin{frame}
+% \frametitle{Future work}
+% \begin{itemize}
+%     \item Good LS from run tagged by human and DCS bits still suspicious not to be a ground truth
+%     \item Require simulation data
+%     \begin{itemize}
+%         \item To be purely good LS for training
+%         \item For testing the failure scenario
+%     \end{itemize}
+% \end{itemize}
+% \end{frame}
+
 %------------------------------------------------
-\section{}
 \begin{frame}
 \frametitle{Acknowledgement}
 \begin{itemize}
     \item CERN Summer Student program 2019
     \item Especially
     \begin{itemize}
-        \item Marcel Andre Schneider
+        \item \textbf{Marcel Andre Schneider}
         \item Francesco Fiori
         \item Kaori Maeshima
-        \item also countless DQM people :)
+        \item Adrian Alan Pol
+        \item Countless CMS DQM people :)
     \end{itemize}
-    \item GPU Resources from IBM
+    \item GPU resources from IBM
 \end{itemize}
 \end{frame}
 

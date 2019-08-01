@@ -2,7 +2,7 @@ import tensorflow as tf
 import os
 import abc
 
-class BaseModel:
+class BaseAutoencoder:
     def __init__(self, summary_dir="model/summary", save_dir="model_repo", log_dir="log_dir", model_name="model_name", save_checkpoint_time=0.1):
         # base
         self.save_checkpoint_time = save_checkpoint_time
@@ -97,3 +97,59 @@ class BaseModel:
                                 ])
                         , axis=1)
                     ))
+
+
+
+class BaseMalfunctionSpotter:
+    def __init__(self,  model_name, **kwargs):
+        self.save_checkpoint_time = kwargs.get('save_checkpoint_time', 0.1)
+        self.save_dir = kwargs.get('save_dir', 'model_repo')
+        self.model_name = kwargs.get('model_name')
+        self.summary_dir = kwargs.get('summary_dir', 'model/summary')
+        self.log_dir = kwargs.get('log_dir', 'log_dir')
+        # session and log
+        self.graph = tf.Graph()
+        self.sess = tf.Session(graph=self.graph)
+    # fundamental func
+    def init_variables(self):
+        with self.graph.as_default():
+            init = tf.global_variables_initializer()
+            self.sess.run(init)
+    def save(self):
+        with self.graph.as_default():
+            try:
+                saver = tf.train.Saver(keep_checkpoint_every_n_hours=self.save_checkpoint_time)
+                saver.save(self.sess, os.path.join(self.save_dir,  self.model_name, "{}.ckpt".format(self.model_name)))
+            except ValueError:
+                os.makedirs("./{}/{}/".format(self.save_dir,  self.model_name), exist_ok=True)
+                saver.save(self.sess, os.path.join(self.save_dir,  self.model_name,  "{}.ckpt".format(self.model_name)))
+    def restore(self):
+        with self.graph.as_default():
+            saver = tf.train.Saver()
+            saver.restore(self.sess, os.path.join(self.save_dir, self.model_name,  "{}.ckpt".format(self.model_name)))
+    @abc.abstractmethod
+    def inference(self, x):
+        return
+    @abc.abstractmethod
+    def predict(self, **kargs):
+        return
+    @abc.abstractmethod
+    def train(self, x_batch, y_label_batch):
+        pass
+    # utility
+    def weight_variable(self, shape):
+        initial = tf.truncated_normal(shape, stddev=0.1)
+        return tf.Variable(initial)
+    def get_var(self, param_name):
+        with self.graph.as_default():
+            return tf.get_variable(param_name)
+    def fc_layer(self, input, W , size):
+        b = self.weight_variable([size])
+        return tf.add(tf.matmul(input, W), b)
+    def PReLU(self, x, name):
+        alpha = tf.get_variable(name, shape=x.get_shape()[-1], dtype=x.dtype, initializer=tf.constant_initializer(0.1))
+        return tf.add(tf.maximum(0.0, x),  tf.multiply(alpha, tf.minimum(0.0, x)))
+    # miscellaneous
+    @staticmethod
+    def step_fn(x):
+        return tf.maximum(0.0, tf.sign(x))

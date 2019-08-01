@@ -330,6 +330,10 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/expected_greyzone.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/expected_greyzone.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/expected_greyzone.png
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/cartoon.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/cartoon.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/cartoon.png
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmsy9.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
@@ -387,10 +391,9 @@ INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/image
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/variational_ae.png
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmssi10.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmssi10.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmssi8.tfm
-INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/decision_value_dist.png
-INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/decision_value_dist.png
-INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/decision_value_dist.png
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmssi8.tfm
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/performance_ae.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/performance_ae.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/performance_ae.png
@@ -398,6 +401,9 @@ INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/image
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/performance_ml.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/performance_ml.png
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/decision_value_dist.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/decision_value_dist.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/decision_value_dist.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/example_se.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/example_se.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/example_se.png
@@ -410,6 +416,12 @@ INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/image
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/meme_outlier.pdf
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/meme_outlier.pdf
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/meme_outlier.pdf
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2016.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2016.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2016.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2018.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2018.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2018.png
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmss17.tfm
 OUTPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/presentation_1.nav
 OUTPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/presentation_1.toc
