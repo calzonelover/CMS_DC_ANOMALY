@@ -327,6 +327,8 @@ INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/image
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/dqm_flow.png
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmsy9.tfm
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/expected_greyzone.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/expected_greyzone.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/expected_greyzone.png
@@ -334,8 +336,6 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/cartoon.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/cartoon.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/cartoon.png
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmsy9.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
@@ -422,7 +422,19 @@ INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/image
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2018.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2018.png
 INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/JetHT_label_2018.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/ibm.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/ibm.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/ibm.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/cern_openlab.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/cern_openlab.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/cern_openlab.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/thankyou.jpg
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/thankyou.jpg
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/thankyou.jpg
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmss17.tfm
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/latent_mnist.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/latent_mnist.png
+INPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/images/latent_mnist.png
 OUTPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/presentation_1.nav
 OUTPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/presentation_1.toc
 OUTPUT /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/presentation/CMG_2August2019/presentation_1.snm

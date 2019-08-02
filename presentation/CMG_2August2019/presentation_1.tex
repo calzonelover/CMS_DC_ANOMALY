@@ -160,9 +160,9 @@ Mahidol University \\ % Your institution for the title page
     \begin{enumerate}
         \item Runs tagged as bad by human (whole run)
         \item Automatically filter by DCS bits, beam status and etc. (LS levels)
-        \item Other cases are marked by DC Experts (LS levels)
+        \item In rare cases are marked by DC experts (LS levels)
     \end{enumerate}
-    \item Golden JSON are the rest of them (Good LS)
+    \item The Golden JSON contains the list of all good LS % Golden JSON are the rest of them (Good LS)
 \end{itemize}
 \vspace{0.4in}\tiny [1] M. Stankevičius, Data Quality Monitoring: Offline
 \end{frame}
@@ -176,6 +176,9 @@ Mahidol University \\ % Your institution for the title page
 \frametitle{Objective}
 \begin{itemize}
     \item \textbf{Certify data quality in lumisection granularity}
+    \begin{itemize}
+        \item Classification on the basis of actual data distributions per LS
+    \end{itemize}
     \item Reduce manual work of DC Experts
 \end{itemize}
 \end{frame}
@@ -198,12 +201,18 @@ Mahidol University \\ % Your institution for the title page
     \item The automatic DCS bit flagging will stay, ML applied on top of it
     \item Automatize the Data Certification procedure in two steps
     \begin{enumerate}
-        \item Provide a reliable quality \textbf{flag per Run using the Yandex} grey-zone approach and Supervised models (artificial BAD data can be used for training)
+        \item Provide a reliable quality \textbf{flag per Run using} grey-zone approach and \textbf{Supervised} models (artificial BAD data can be used for training)
         \item \textbf{Use Autoencoders} only on the grey-zone with the goal \textbf{to search for anomalous LS} and flag them automatically, human double check at this stage
     \end{enumerate}
+    \item Using physical quantities as
+    \begin{itemize}
+        \item \textbf{features} (pT, eta, etc) and
+        \item \textbf{objects} mapped to the relevant Primary Dataset (i.e tracks to ZeroBias, muons to SingleMuon ... etc)
+    \end{itemize}
+    to better mimic the current DC procedure
     \item In this work, I will focus only on second step
 \end{itemize}
-\vspace{0.4in}
+\vspace{0.2in}
 \tiny [1] F. Fiori, ML Applied To Data Certification Status and Perspective
 \end{frame}
 
@@ -255,6 +264,7 @@ Mahidol University \\ % Your institution for the title page
     \begin{itemize}
     \item Collection of physics objects e.g. photons, muons and so on
     \item Measurement quantity: Transverse momentum, eta, phi, etc.
+    \href{https://github.com/calzonelover/CMS_DC_ANOMALY/blob/master/data/prompt_reco/setting.py}{\beamergotobutton{Click here to see all selected features}}
     \end{itemize}
     \begin{enumerate}
         \item Quantize [0$\%$, 25$\%$, 50$\%$, 75$\%$, 100$\%$] of the histogram
@@ -364,7 +374,7 @@ Mahidol University \\ % Your institution for the title page
     \item Concise the information into small latent space and reconstruct
     \item Loss function
     \begin{equation}
-        \mathcal{L}_{\text{tot}} \equiv \frac{1}{N}\sum_i^N |x-\tilde{x}|^2
+        \mathcal{L}_{\text{tot}} \equiv \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2
     \end{equation}
     \item Truncated normal initializer
     \item Adam optimizer
@@ -379,7 +389,7 @@ Mahidol University \\ % Your institution for the title page
     \item Tweak by \textcolor[RGB]{255,69,0}{L1 Regularizaion (Prevent overfitting)}
     \item Loss function
     \begin{equation}
-        \mathcal{L}_{\text{tot}} \equiv \frac{1}{N}\sum_i^N |x-\tilde{x}|^2 + \textcolor[RGB]{255,69,0}{\lambda_{\text{s}}\sum_j||w_j||}
+        \mathcal{L}_{\text{tot}} \equiv \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \textcolor[RGB]{255,69,0}{\lambda_{\text{s}}\sum_j||w_j||}
     \end{equation}
     \item where $\lambda_{\text{s}} = 10^{-5}$
 \end{itemize}
@@ -393,7 +403,7 @@ Mahidol University \\ % Your institution for the title page
     \item Tweak by \textcolor[RGB]{0,128,0}{Jacobi Matrix (Prevent variation in dataset)}
     \item Loss function
     \begin{equation}
-        \mathcal{L}_{\text{tot}} \equiv \frac{1}{N}\sum_i^N |x-\tilde{x}|^2 + \textcolor[RGB]{0,128,0}{\lambda_{\text{c}}||J_h(x)||^2}
+        \mathcal{L}_{\text{tot}} \equiv \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \textcolor[RGB]{0,128,0}{\lambda_{\text{c}}||J_h(x)||^2}
     \end{equation}
     \item where $\lambda_{\text{c}} = 10^{-5}$
 \end{itemize}
@@ -411,11 +421,11 @@ Mahidol University \\ % Your institution for the title page
     \begin{itemize}
         \item PReLu activation function
         \begin{equation}
-            ||J_h(x)||^2 = \frac{1}{N}\sum_j[\textcolor[RGB]{0,128,0}{\alpha_j}H(-(w_{ji}x^i+b_j)) + H(w_{ji}x^i+b_j)]\sum_i(w_{ji})^2
+            ||J_h(x)||^2 = \frac{1}{N}\sum_j[\textcolor[RGB]{0,128,0}{\alpha_j}H(-(w_{ji}x^i+b_j)) + H(w_{ji}x^i+b_j)]\sum_i^N(w_{ji})^2
         \end{equation}
         \item Sigmoid activation function
         \begin{equation}
-            ||J_h(x)||^2 = \frac{1}{N}\sum_j[h_j*(1-h_j)]\sum_i(w_{ji})^2
+            ||J_h(x)||^2 = \frac{1}{N}\sum_j[h_j*(1-h_j)]\sum_i^N(w_{ji})^2
         \end{equation}
     \end{itemize}
 \end{itemize}
@@ -441,7 +451,7 @@ Mahidol University \\ % Your institution for the title page
         \item Tweak by \textcolor[RGB]{148,0,211}{reduce discontinuity in latent space}
         \item Loss function
         \begin{equation}
-            \mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x-\tilde{x}|^2 + \textcolor[RGB]{148,0,211}{\mathcal{D}_{\text{KL}}(p|q)}
+            \mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \textcolor[RGB]{148,0,211}{\mathcal{D}_{\text{KL}}(p|q)}
         \end{equation}
     \end{itemize}
 \end{columns}
@@ -464,7 +474,7 @@ Mahidol University \\ % Your institution for the title page
 \end{itemize}
 \end{theorem}
 \begin{equation}
-    \mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x-\tilde{x}|^2 + \textcolor[RGB]{148,0,211}{\frac{1}{2N}\sum_i^N\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)}
+    \mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \textcolor[RGB]{148,0,211}{\frac{1}{2N}\sum_i^N\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)}
 \end{equation}
 \end{frame}
 
@@ -555,7 +565,7 @@ Under configuration
 \begin{frame}
 \frametitle{Future work}
 \begin{itemize}
-    \item Exploid the same technique in 2018 dataset
+    \item Exploit the same technique in 2018 dataset
     \item 2018 data preparation still in progress
     \item Remove trivial bad LS (run tag and DCS bits) but take consider only bad LS that came from DC Experts
 \end{itemize}
@@ -569,6 +579,7 @@ Let's have a look at principal component for JetHT PD
     \begin{figure}[h!]
         \begin{tikzpicture}
         \node (0,0) {\includegraphics[width=0.95\textwidth]{images/JetHT_label_2016}};
+        \node [align=left] at (0.8,-1.5) {\scalebox{0.4}{\textcolor{blue}{Bad LS including DCS bits and run tagged}}};
         \end{tikzpicture}
         \caption{2016 data}
     \end{figure}
@@ -576,7 +587,8 @@ Let's have a look at principal component for JetHT PD
     \begin{figure}[h!]
         \begin{tikzpicture}
         \node (0,0) {\includegraphics[width=0.9\textwidth]{images/JetHT_label_2018}};
-        \node [opacity=0.4] (0,0) {\rotatebox{45}{\scalebox{1.5}{\textcolor{red}{preliminary}}}};
+        \node [opacity=0.2] (0,0) {\rotatebox{45}{\scalebox{1.5}{\textcolor{red}{preliminary}}}};
+        \node [align=left] at (0.8,-1.5) {\scalebox{0.4}{\textcolor{blue}{Bad LS are only taken from DC Experts (rare case)}}};
         \end{tikzpicture}
         \caption{2018 data}
     \end{figure}
@@ -609,12 +621,26 @@ Let's have a look at principal component for JetHT PD
         \item Adrian Alan Pol
         \item Countless CMS DQM people :)
     \end{itemize}
-    \item GPU resources from IBM
+    \item GPU resources from IBM in collaboration with CERN Openlab
+    \begin{columns}
+        \column{0.5\textwidth}
+        \column{0.2\textwidth}
+        \begin{figure}
+            \includegraphics[width=0.8\textwidth]{images/ibm}
+        \end{figure}
+        \column{0.3\textwidth}
+        \begin{figure}
+            \includegraphics[width=0.9\textwidth]{images/cern_openlab}
+        \end{figure}
+    \end{columns}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\Huge{\centerline{Thank you}}
+    \begin{figure}
+        \includegraphics[width=0.5\textwidth]{images/thankyou}
+    \end{figure}
+% \Huge{\centerline{Thank you}}
 \end{frame}
 \begin{frame}
 \Huge{\centerline{Question?}}
@@ -627,11 +653,18 @@ Let's have a look at principal component for JetHT PD
 \Huge{\centerline{Back up}}
 \end{frame}
 
-%------------------------------------------------
+%--- Variational: Remove discontinuity ----
 \begin{frame}
-\frametitle{ROC Curve}
-bla
+\frametitle{Example of removing discontinuity in latent space}
+\begin{figure}
+    \includegraphics[width=0.8\textwidth]{images/latent_mnist}
+\end{figure}
+\tiny [1] https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf
 \end{frame}
 
 %----------------------------------------------------------------------------------------
 \end{document} 
+
+
+
+
