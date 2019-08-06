@@ -1,8 +1,11 @@
+
+KEYWORD_FOR_PULLED_LABEL = "/ReReco/Run2017F_EOY"
 SQLITE_RAW_DATA_NAME = "ul2017pilot.sqlite"
-RAW_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/express_2017/"
-CLEANED_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/express_2017/"
+RAW_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/express_2017/raw_data/"
+CLEANED_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/express_2017/dataset/"
 
 CMS_SUBDETECTORS = {
+  # TRACKER
   "PixelPhase1/Phase1_MechanicalView/PXBarrel/digi_occupancy_per_SignedModuleCoord_per_SignedLadderCoord_PXLayer_1",
   "PixelPhase1/Phase1_MechanicalView/PXBarrel/digi_occupancy_per_SignedModuleCoord_per_SignedLadderCoord_PXLayer_2",
   "PixelPhase1/Phase1_MechanicalView/PXBarrel/digi_occupancy_per_SignedModuleCoord_per_SignedLadderCoord_PXLayer_3",
@@ -43,26 +46,32 @@ CMS_SUBDETECTORS = {
   "SiStrip/MechanicalView/TOB/layer_4/TkHMap_NumberValidHits_TOB_L4",
   "SiStrip/MechanicalView/TOB/layer_5/TkHMap_NumberValidHits_TOB_L5",
   "SiStrip/MechanicalView/TOB/layer_6/TkHMap_NumberValidHits_TOB_L6",
-#   "EcalBarrel/EBOccupancyTask/EBOT digi occupancy",
-#   "EcalEndcap/EEOccupancyTask/EEOT digi occupancy EE -",
-#   "EcalEndcap/EEOccupancyTask/EEOT digi occupancy EE +",
+
+  # ECAL
+  # "EcalBarrel/EBOccupancyTask/EBOT digi occupancy",
+  # "EcalEndcap/EEOccupancyTask/EEOT digi occupancy EE -",
+  # "EcalEndcap/EEOccupancyTask/EEOT digi occupancy EE +",
   "EcalPreshower/ESOccupancyTask/ES Energy Density Z -1 P 1",
   "EcalPreshower/ESOccupancyTask/ES Energy Density Z -1 P 2",
   "EcalPreshower/ESOccupancyTask/ES Energy Density Z 1 P 1",
   "EcalPreshower/ESOccupancyTask/ES Energy Density Z 1 P 2",
-  "Hcal/DigiRunHarvesting/Occupancy/depth/depth1",
-  "Hcal/DigiRunHarvesting/Occupancy/depth/depth2",
-  "Hcal/DigiRunHarvesting/Occupancy/depth/depth3",
-  "Hcal/DigiRunHarvesting/Occupancy/depth/depth4",
+
+  # "Hcal/DigiRunHarvesting/Occupancy/depth/depth1",
+  # "Hcal/DigiRunHarvesting/Occupancy/depth/depth2",
+  # "Hcal/DigiRunHarvesting/Occupancy/depth/depth3",
+  # "Hcal/DigiRunHarvesting/Occupancy/depth/depth4",
+
+  # Muon
   "CSC/CSCOfflineMonitor/Occupancy/hOStripsAndWiresAndCLCT",
   "RPC/AllHits/SummaryHistograms/Occupancy_for_Barrel",
   "RPC/AllHits/SummaryHistograms/Occupancy_for_Endcap",
-#   "DT/02-Segments/Wheel-1/numberOfSegments_W-1",
-#   "DT/02-Segments/Wheel-2/numberOfSegments_W-2",
-#   "DT/02-Segments/Wheel0/numberOfSegments_W0",
-#   "DT/02-Segments/Wheel1/numberOfSegments_W1",
-#   "DT/02-Segments/Wheel2/numberOfSegments_W2",
+  # "DT/02-Segments/Wheel-1/numberOfSegments_W-1",
+  # "DT/02-Segments/Wheel-2/numberOfSegments_W-2",
+  # "DT/02-Segments/Wheel0/numberOfSegments_W0",
+  # "DT/02-Segments/Wheel1/numberOfSegments_W1",
+  # "DT/02-Segments/Wheel2/numberOfSegments_W2",
 
+  # L1T
   "L1T/L1TObjects/L1TEGamma/timing/egamma_eta_phi_bx_0",
   "L1T/L1TObjects/L1TJet/timing/jet_eta_phi_bx_0",
   "L1T/L1TObjects/L1TMuon/timing/muons_eta_phi_bx_0",

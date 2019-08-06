@@ -1,1 +1,1 @@
-# Unsupervised anomaly detection for CMS (sub-)detecrtor
+# Semi-supervised outlier detection for CMS (sub-)detecrtor

@@ -1,13 +1,18 @@
-from data.new_prompt_reco.features import (ZEROBIAS_FEATURES, JETHT_FEATURES, EGAMMA_FEATURES, SINGLEMUON_FEATURES)
+from data.new_prompt_reco import features, features_2
 
+FEATURE_SET_NUMBER = 2
 FRAC_VALID, FRAC_TEST = 0.2, 0.2
 
 PD_GOOD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/good_data/"
 PD_BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/bad_data/"
-PD_FAILURE_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/raw_prompt_reco_2018/failures/"
+PD_DCS_BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/dcs_bad_data/"
+PD_FAILURE_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/failures/"
 
-GOOD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/raw_prompt_reco_2018/golden_json/"
-BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/raw_prompt_reco_2018/bad_json/"
+PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/pull_labeled_human_dcs_bad/"
+
+GOOD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/raw_prompt_reco_2018/good/"
+BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/raw_prompt_reco_2018/human_bad/"
+BAD_DCS_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/raw_prompt_reco_2018/dcs_bad/"
 FAILURE_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/raw_prompt_reco_2018/failures/"
 
 PDs = {
@@ -17,11 +22,26 @@ PDs = {
     4: 'SingleMuon'
 }
 
-EXTENDED_FEATURES = ["runId", "lumiId", "lumi"]
+EXTENDED_FEATURES = ["runId", "lumiId", "lumi", "EventsPerLs"]
 
-FEATURES = {
-    'ZeroBias': ZEROBIAS_FEATURES,
-    'JetHT': JETHT_FEATURES,
-    'EGamma': EGAMMA_FEATURES,
-    'SingleMuon': SINGLEMUON_FEATURES,
+FEATURESETS = {
+    1: {
+        'ZeroBias': features.ZEROBIAS_FEATURES,
+        'JetHT': features.JETHT_FEATURES,
+        'EGamma': features.EGAMMA_FEATURES,
+        'SingleMuon': features.SINGLEMUON_FEATURES,
+    },
+    2: {
+        'ZeroBias': features_2.ZEROBIAS_FEATURES,
+        'JetHT': features_2.JETHT_FEATURES,
+        'EGamma': features_2.EGAMMA_FEATURES,
+        'SingleMuon': features_2.SINGLEMUON_FEATURES,
+    },
 }
+FEATURES = FEATURESETS[FEATURE_SET_NUMBER]
+
+FIX_FEATURE_COLUMNS_SETS = {
+    1: features.FIX_FEATURE_COLUMNS,
+    2: features.FIX_FEATURE_COLUMNS,
+}
+FIX_FEATURE_COLUMNS = FIX_FEATURE_COLUMNS_SETS[FEATURE_SET_NUMBER]

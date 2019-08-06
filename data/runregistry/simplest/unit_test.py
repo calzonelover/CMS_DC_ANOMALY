@@ -29,4 +29,3 @@ def get_fraction(
                 print("Fraction of {0} in bad LS {1:.2f}% (# {2}) \n".format(sub_detector, 100.0 * n_specific_bad/n_bad, n_specific_bad))
                 sum_percent += 100.0 * n_specific_bad/n_bad
         print("Other cases {0:.2f}%: negative if there is more then one sub-system malfunction at the same time".format(100.0 - sum_percent))
-        # visualize

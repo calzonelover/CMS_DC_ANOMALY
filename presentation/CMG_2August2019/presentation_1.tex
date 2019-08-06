@@ -421,11 +421,11 @@ Mahidol University \\ % Your institution for the title page
     \begin{itemize}
         \item PReLu activation function
         \begin{equation}
-            ||J_h(x)||^2 = \frac{1}{N}\sum_j[\textcolor[RGB]{0,128,0}{\alpha_j}H(-(w_{ji}x^i+b_j)) + H(w_{ji}x^i+b_j)]\sum_i^N(w_{ji})^2
+            ||J_h(x)||^2 = \frac{1}{N}\sum_j[\textcolor[RGB]{0,128,0}{\alpha_j}H(-(w_{ji}x^i+b_j)) + H(w_{ji}x^i+b_j)]\sum_i(w_{ji})^2
         \end{equation}
         \item Sigmoid activation function
         \begin{equation}
-            ||J_h(x)||^2 = \frac{1}{N}\sum_j[h_j*(1-h_j)]\sum_i^N(w_{ji})^2
+            ||J_h(x)||^2 = \frac{1}{N}\sum_j[h_j*(1-h_j)]\sum_i(w_{ji})^2
         \end{equation}
     \end{itemize}
 \end{itemize}
