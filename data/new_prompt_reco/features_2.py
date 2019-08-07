@@ -3,7 +3,17 @@
 #####################
 
 FIX_FEATURE_COLUMNS = {
-
+    "qPUEvt_": "qPUEvt",
+    "qpVtxX_": "qpVtxX",
+    "qpVtxY_": "qpVtxY",
+    "qpVtxZ_": "qpVtxZ",
+    "qgedPhoEn_": "qgedPhoEn",
+    "qgedPhoe1x5_": "qgedPhoe1x5",
+    "qgedPhoe3x3_": "qgedPhoe3x3",
+    "qpVtxChi2_": "qpVtxChi2",
+    "qpVtxNtr_": "qpVtxNtr",
+    "qlumiEvt_": "qlumiEvt",
+    "qglobTkN_": "qglobTkN",
 }
 
 ZEROBIAS_FEATURES = [

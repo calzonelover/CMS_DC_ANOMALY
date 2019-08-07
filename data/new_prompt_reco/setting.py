@@ -8,7 +8,8 @@ PD_BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_rec
 PD_DCS_BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/dcs_bad_data/"
 PD_FAILURE_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/failures/"
 
-PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/pull_labeled_human_dcs_bad/"
+PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/pull_labeled_human_dcs_bad/bad/"
+PD_LABELED_SUBSYSTEM_GOOD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/pull_labeled_human_dcs_bad/good/"
 
 GOOD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/raw_prompt_reco_2018/good/"
 BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/raw_prompt_reco_2018/human_bad/"
@@ -42,6 +43,6 @@ FEATURES = FEATURESETS[FEATURE_SET_NUMBER]
 
 FIX_FEATURE_COLUMNS_SETS = {
     1: features.FIX_FEATURE_COLUMNS,
-    2: features.FIX_FEATURE_COLUMNS,
+    2: features_2.FIX_FEATURE_COLUMNS,
 }
 FIX_FEATURE_COLUMNS = FIX_FEATURE_COLUMNS_SETS[FEATURE_SET_NUMBER]

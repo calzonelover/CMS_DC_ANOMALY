@@ -36,11 +36,6 @@ def extract_and_merge_to_csv(selected_pd, features, data_directory, pd_data_dire
                     tags = read_df[get_feature].apply(pd.Series)
                     tags = tags.rename(columns = lambda x : '{}_'.format(feature) + str(x))
                     read_df.drop(columns=get_feature)
-                # if feature in FIX_FEATURE_COLUMNS:
-                #     get_feature = FIX_FEATURE_COLUMNS[feature]
-                # tags = read_df[get_feature].apply(pd.Series)
-                # tags = tags.rename(columns = lambda x : '{}_'.format(feature) + str(x))
-                # read_df.drop(columns=get_feature)
                 for i in range(0,7):
                     write_df['{}_{}'.format(feature, i)] = tags['{}_{}'.format(feature, i)]
             for feature in EXTENDED_FEATURES:

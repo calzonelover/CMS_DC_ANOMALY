@@ -38,9 +38,8 @@ def main(selected_pd="JetHT"):
     file_auc = open('report/reco/eval/roc_auc_{}.txt'.format(selected_pd), 'w')
     file_auc.write("model_name data_fraction roc_auc\n")
     for model_name, Autoencoder in zip(
-            ["SparseContractive", "SparseVariational", "ContractiveVariational", "Standard"], # [ "Vanilla", "Sparse", "Contractive", "Variational"], 
-            [SparseContractiveAutoencoder, SparseVariationalAutoencoder,
-                ContractiveVariationalAutoencoder, StandardAutoencoder]# [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder]
+            [ "Vanilla", "Sparse", "Contractive", "Variational"], # ["SparseContractive", "SparseVariational", "ContractiveVariational", "Standard"],
+            [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder], #[SparseContractiveAutoencoder, SparseVariationalAutoencoder, ContractiveVariationalAutoencoder, StandardAutoencoder]
             ):
         model_list = [
             Autoencoder(

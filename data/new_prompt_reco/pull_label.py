@@ -73,12 +73,16 @@ def main(
             'tracker_track': 'tracker-track',
             'muon_muon': 'muon-muon'
         },
+        include_bad_dcs = False,
     ):
     print("\n\n Extract {} dataset \n\n".format(selected_pd))
     df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=setting.PD_GOOD_DATA_DIRECTORY)
     df_bad_human = utility.read_data(selected_pd=selected_pd, pd_data_directory=setting.PD_BAD_DATA_DIRECTORY)
     df_bad_dcs = utility.read_data(selected_pd=selected_pd, pd_data_directory=setting.PD_DCS_BAD_DATA_DIRECTORY)
-    df_bad = pd.concat([df_bad_human, df_bad_dcs], ignore_index=True)
+    if include_bad_dcs:
+        df_bad = pd.concat([df_bad_human, df_bad_dcs], ignore_index=True)
+    else:
+        df_bad = df_bad_human
     df_write_good = df_good
     for sub_detector, sub_detector_str in interested_statuses.items():
         df_write_good[sub_detector] = 1
@@ -103,10 +107,12 @@ def main(
         df_label = pd.DataFrame(sub_detector_statuses, columns = [ sub_detector for sub_detector, sub_detector_str in interested_statuses.items() ] )
         df_write = pd.concat([df, df_label], axis=1)
         try:
-            df_write.to_csv(os.path.join(setting.PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY, 'bad', "{}.csv".format(selected_pd)))
+            df_write.to_csv(os.path.join(setting.PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY, 'bad', "{}_feature{}.csv".format(selected_pd, setting.FEATURE_SET_NUMBER)))
         except FileNotFoundError:
             os.mkdir(os.path.join(setting.PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY, 'bad'))
+            df_write.to_csv(os.path.join(setting.PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY, 'bad', "{}_feature{}.csv".format(selected_pd, setting.FEATURE_SET_NUMBER)))
     try:
-        df_write_good.to_csv(os.path.join(setting.PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY, 'good', "{}.csv".format(selected_pd)))
+        df_write_good.to_csv(os.path.join(setting.PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY, 'good', "{}_feature{}.csv".format(selected_pd, setting.FEATURE_SET_NUMBER)))
     except FileNotFoundError:
         os.mkdir(os.path.join(setting.PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY, 'good'))
+        df_write_good.to_csv(os.path.join(setting.PD_LABELED_SUBSYSTEM_BAD_DATA_DIRECTORY, 'good', "{}_feature{}.csv".format(selected_pd, setting.FEATURE_SET_NUMBER)))
