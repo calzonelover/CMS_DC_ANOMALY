@@ -6,7 +6,7 @@ from sklearn.utils import shuffle
 from sklearn.metrics import roc_curve, auc
 from sklearn.model_selection import train_test_split
 
-from data.new_prompt_reco.setting import ( EXTENDED_FEATURES, FEATURES, FRAC_VALID, FRAC_TEST,
+from data.new_prompt_reco.setting import ( FEATURE_SET_NUMBER, EXTENDED_FEATURES, FEATURES, FRAC_VALID, FRAC_TEST,
                                             PD_GOOD_DATA_DIRECTORY, PD_BAD_DATA_DIRECTORY )
 import data.new_prompt_reco.utility as utility
 
@@ -46,7 +46,7 @@ def main(selected_pd="JetHT"):
             Autoencoder(
                 input_dim = [len(features)],
                 summary_dir = "model/reco/summary",
-                model_name = "{} model {} {}".format(model_name, selected_pd, i),
+                model_name = "{}_model_{}_f{}_{}".format(model_name, selected_pd, FEATURE_SET_NUMBER, i),
                 batch_size = BS
             )
             for i in range(1,len(DATA_SPLIT_TRAIN) + 1)

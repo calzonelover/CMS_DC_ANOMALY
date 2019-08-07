@@ -103,6 +103,7 @@ SINGLEMUON_FEATURES = [
     "qglobTkNHits",
 
     "qMuN",
+    "qMuNCh", # just add from FF
     "qMuPt",
     "qMuEta",
     "qMuPhi",

@@ -7,5 +7,7 @@ from data.new_prompt_reco import unit_test as test_data
 # from data.express_2017 import extract as express_2017_extract
 
 if __name__ == "__main__":
-    for selected_pd in ["ZeroBias", "JetHT",]:
-        test_data.main(selected_pd=selected_pd)
+    test_data.main(selected_pd="ZeroBias", include_failure=True)
+    # test_data.main(selected_pd="JetHT", include_failure=True)
+    # test_data.main(selected_pd="EGamma", include_failure=False)
+    # test_data.main(selected_pd="SingleMuon", include_failure=False)

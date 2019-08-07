@@ -27,11 +27,20 @@ def extract_and_merge_to_csv(selected_pd, features, data_directory, pd_data_dire
             np_dat = np.load(os.path.join(data_directory, selected_pd,  dat_numpy), encoding="latin1")
             read_df = pd.DataFrame(np_dat)
             for feature in features:
-                if feature in FIX_FEATURE_COLUMNS:
+                try:
+                    tags = read_df[feature].apply(pd.Series)
+                    tags = tags.rename(columns = lambda x : '{}_'.format(feature) + str(x))
+                    read_df.drop(columns=feature)
+                except KeyError:
                     get_feature = FIX_FEATURE_COLUMNS[feature]
-                tags = read_df[get_feature].apply(pd.Series)
-                tags = tags.rename(columns = lambda x : '{}_'.format(feature) + str(x))
-                read_df.drop(columns=get_feature)
+                    tags = read_df[get_feature].apply(pd.Series)
+                    tags = tags.rename(columns = lambda x : '{}_'.format(feature) + str(x))
+                    read_df.drop(columns=get_feature)
+                # if feature in FIX_FEATURE_COLUMNS:
+                #     get_feature = FIX_FEATURE_COLUMNS[feature]
+                # tags = read_df[get_feature].apply(pd.Series)
+                # tags = tags.rename(columns = lambda x : '{}_'.format(feature) + str(x))
+                # read_df.drop(columns=get_feature)
                 for i in range(0,7):
                     write_df['{}_{}'.format(feature, i)] = tags['{}_{}'.format(feature, i)]
             for feature in EXTENDED_FEATURES:
@@ -65,7 +74,7 @@ def extract_and_merge_to_csv(selected_pd, features, data_directory, pd_data_dire
                             write_df[feature] = read_df[feature]
                         list_df.append(write_df)
     full_df = pd.concat(list_df)
-    print(full_df)
+    print(full_df.shape)
     if not os.path.exists(pd_data_directory):
         os.mkdir(pd_data_directory)
     full_df.to_csv(os.path.join(pd_data_directory, "{}_feature{}.csv".format(selected_pd, FEATURE_SET_NUMBER)))

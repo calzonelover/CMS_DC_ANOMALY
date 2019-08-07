@@ -17,7 +17,7 @@ class Error(Exception):
 class LSNotInRangeError(Error):
     pass
 
-class Instance_sub_detector:
+class SubDetector:
     def __init__(self, sub_detector_status):
         self.sub_detector_status = sub_detector_status
         self.n_extended_binsx = int(json.loads(self.sub_detector_status[4])['fXaxis']['fNbins']+2)
@@ -108,7 +108,7 @@ def main(
                 selected_sub_detector_detail = tuple(filter(lambda x: x[5] == sub_detector_name, table_row))[0]
             except IndexError:
                 print(sub_detector_name, tuple(filter(lambda x: x[5] == sub_detector_name, table_row)))
-            instance_sub_detector = Instance_sub_detector(sub_detector_status=selected_sub_detector_detail)
+            instance_sub_detector = SubDetector(sub_detector_status=selected_sub_detector_detail)
             sub_detector_statuses[sub_detector_name] = instance_sub_detector.get_occupancy()
             
         write_data.append(sub_detector_statuses)
