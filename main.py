@@ -1,5 +1,5 @@
 from training.new_reco import autoencoder
-# from training.new_reco import oneclass_svm
+from training.new_reco import oneclass_svm
 # from training.new_reco import kmeans, random_feature_visual
 
 # from training.reco.autoencoder import sparse
@@ -9,4 +9,5 @@ from training.new_reco import autoencoder
 
 if __name__ == "__main__":
     for selected_pd in ["ZeroBias", "JetHT", "EGamma", "SingleMuon"]:
+        # oneclass_svm.main(selected_pd=selected_pd)
         autoencoder.main(selected_pd=selected_pd)

@@ -16,17 +16,21 @@ from model.reco.new_autoencoder import ( VanillaAutoencoder, SparseAutoencoder,
                                      ContractiveVariationalAutoencoder, StandardAutoencoder)
 
 
-def main(selected_pd="JetHT"):
-    # setting
-    data_preprocessing_mode = 'minmaxscalar'
-    BS = 2**15
-    EPOCHS = 1800
-    DATA_SPLIT_TRAIN = [1.0 for i in range(10)]
-    is_fillna_zero = True
-
+def main(
+        selected_pd="JetHT",
+        is_dropna = True,
+        is_fillna_zero = True,
+        BS = 2**16,
+        EPOCHS = 8000,
+        data_preprocessing_mode = 'minmaxscalar',
+        DATA_SPLIT_TRAIN = [1.0 for i in range(10)],
+    ):
     features = utility.get_full_features(selected_pd)
     df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY)
     df_bad = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY)
+    if is_dropna:
+        df_good = df_good.dropna()
+        df_bad = df_bad.dropna()
     if is_fillna_zero:
         df_good = df_good.fillna(0.0)
         df_bad = df_bad.fillna(0.0)
@@ -117,16 +121,20 @@ def compute_ms_dist(
         selected_pd = "JetHT",
         Autoencoder=VanillaAutoencoder,
         model_name="Vanilla",
-        number_model=1
+        number_model=1,
+        is_dropna = True,
+        is_fillna_zero = True,
     ):
     # setting
     data_preprocessing_mode = 'minmaxscalar'
     BS = 2**15
-    is_fillna_zero = True
 
     features = utility.get_full_features(selected_pd)
     df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY)
     df_bad = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY)
+    if is_dropna:
+        df_good = df_good.dropna()
+        df_bad = df_bad.dropna()        
     if is_fillna_zero:
         df_good = df_good.fillna(0.0)
         df_bad = df_bad.fillna(0.0)

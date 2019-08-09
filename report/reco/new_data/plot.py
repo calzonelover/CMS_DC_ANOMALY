@@ -7,6 +7,8 @@ from sklearn.metrics import auc
 from math import sqrt, isnan
 import os
 
+FEATURE_SET_NUMBER = 2
+
 def plot_loss(x, loss_train, loss_valid, title):
     """Plots the training and validation loss"""
     plt.figure()
@@ -22,16 +24,14 @@ def plot_loss(x, loss_train, loss_valid, title):
 
 def main_loss(
         channel = "JetHT",
-        model_name = "Variational model",
-        datdir = "logs/minmaxscalar/2e16BS12000EP",
+        model_name = "Variational",
+        datdir = "logs/minmaxscalar/2e15BS1800EP",
         ):
     for i in range(1,11):
-        data = pd.read_csv('{}/{} {} {}.txt'.format(datdir, model_name, channel, i), sep=" ")
-        # print(data['EP'].shape)
+        data = pd.read_csv(os.path.join(datdir, '{}_model_{}_f{}_{}.txt'.format(model_name, channel, FEATURE_SET_NUMBER, i)), sep=" ")
         x = data['EP']
-        loss_train = data['loss_train']
-        loss_valid = data['loss_valid']
-        plot_loss(x, loss_train, loss_valid, title="{} {} ({})".format(model_name, i, channel))
+        loss_train, loss_valid = data['loss_train'], data['loss_valid']
+        plot_loss(x, loss_train, loss_valid, title="{}_{}_({}_f{})".format(model_name, i, channel, FEATURE_SET_NUMBER))
 
 def plot_roc(
         channel = "JetHT",
@@ -51,8 +51,8 @@ def plot_roc(
 
 def evalSmooth(
         channel = "JetHT",
-        path_dat='logs/minmaxscalar/2e15BS12000EP',
-        model_list=['SparseContractive', 'SparseVariational', 'ContractiveVariational', 'Standard'],
+        path_dat='logs/minmaxscalar/2e15BS1800EP',
+        model_list=['Sparse', 'Variational', 'Contractive', 'Variational'],
         COLOR_PALETES=['r','g','b','o'],
         datafraction_list=[1.00 for i in range(10)],
         n_bins=40
@@ -132,7 +132,9 @@ def plot_decision_val_dist(
     # plt.show()
 
 if __name__ == "__main__":
-    evalSmooth(channel = "ZeroBias")
-    evalSmooth(channel = "JetHT")
-    evalSmooth(channel = "EGamma")
-    evalSmooth(channel = "SingleMuon")
+    for channel in ["ZeroBias", "JetHT", "EGamma", "SingleMuon"]:
+        for model_name in ['Sparse', 'Variational', 'Contractive', 'Variational']:
+            main_loss(
+                channel = channel,
+                model_name = model_name,
+            )

@@ -73,7 +73,7 @@ def main(
             'tracker_track': 'tracker-track',
             'muon_muon': 'muon-muon'
         },
-        include_bad_dcs = False,
+        include_bad_dcs = True,
     ):
     print("\n\n Extract {} dataset \n\n".format(selected_pd))
     df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=setting.PD_GOOD_DATA_DIRECTORY)
