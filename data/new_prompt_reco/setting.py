@@ -1,6 +1,7 @@
 from data.new_prompt_reco import features, features_2
 
 FEATURE_SET_NUMBER = 2
+CUTOFF_VALUE_EVENTS_LUMI = 500
 FRAC_VALID, FRAC_TEST = 0.2, 0.2
 
 PD_GOOD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/good_data/"

@@ -17,7 +17,7 @@ def main(
         is_dropna = True,
         is_fillna_zero = True,
         data_preprocessing_mode = 'minmaxscalar',
-        DATA_SPLIT_TRAIN = [1.0 for i in range(3)],
+        DATA_SPLIT_TRAIN = [1.0 for i in range(2)],
     ):
     # setting
     model_name = "OneClassSVM_{}_f{}".format(selected_pd, FEATURE_SET_NUMBER)

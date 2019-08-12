@@ -77,12 +77,6 @@ EGAMMA_FEATURES = [
     "qGsfN",
 
     "qPhoN",
-    # "qPhoPt",
-    # "qPhoEta",
-    # "qPhoPhi",
-    # "qPhoEn",
-    # "qPhoe1x5",
-    # "qPhoe3x3",
 
     "qgedPhoPt",
     "qgedPhoEta",
@@ -108,7 +102,6 @@ SINGLEMUON_FEATURES = [
     "qglobTkPt",
     "qglobTkEta",   
     "qglobTkPhi",
-    "qglobTkN_",
     "qglobTkChi2",
     "qglobTkNHits",
 
