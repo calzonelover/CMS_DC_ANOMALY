@@ -105,4 +105,4 @@ The figure below is the mother class of our AE since all the model need their ow
     <em>Main components of the AE's base class</em>
 </p>
 
-Not only the main utility function that we could inherit from mother class to have various child class but we also could mix the technique as we want which has been done in the extended model that located in "model/reco/new_autoencoder.py".
+Not only the main utility function that we could inherit from mother class to have various child class but we also could mix the technique as we want which has been done in the extended model that located in [this script](reco/new_autoencoder.py).
