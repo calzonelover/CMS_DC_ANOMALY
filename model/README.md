@@ -83,10 +83,11 @@
 <img src="https://latex.codecogs.com/svg.latex?\mathcal{L}_{\text{tot}}&space;=&space;\frac{1}{N}\sum_i^N&space;|x_i-\tilde{x}_i|^2&space;&plus;&space;\mathcal{D}_{\text{KL}}(p|q)" title="\mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \mathcal{D}_{\text{KL}}(p|q)" />
 </p>
 
-* Since we represent latent space by applying gaussian
-<p align="center">
-<img src="https://latex.codecogs.com/svg.latex?\mathcal{D}_{\text{KL},&space;i}&space;=&space;\frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2&space;&plus;\sigma_{ik}^2&space;-&space;2\log\sigma_{ik}&space;-&space;1)" title="\mathcal{D}_{\text{KL}, i} = \frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)" />
-</p>
+* Since we represent latent space by applying gaussian. Kullback-Leibler Divergence term would looks like
+  <p align="center">
+  <img src="https://latex.codecogs.com/svg.latex?\mathcal{D}_{\text{KL},&space;i}&space;=&space;\frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2&space;&plus;\sigma_{ik}^2&space;-&space;2\log\sigma_{ik}&space;-&space;1)" title="\mathcal{D}_{\text{KL}, i} = \frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)" />
+  </p>
+  In order to minimize the KL-div's term, the model have to adapt it's origin of random sampling toward nearly the origin of the latent space and have to adapt the sigma to one to make minimize this term. Inn principle, outlier would located quite far from the origin and might eventually not sitting around the dense cluster of inlier.
 
 * Then total loss function would looks like
 <p align="center">
