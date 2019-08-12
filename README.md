@@ -59,3 +59,6 @@ Ref. [2]
 ## References
 1) M. Stankevicius, Data Quality Monitoring: Offline
 2) F. Fiori, ML Applied To Data CertificationStatus and Perspective
+
+## Dependency
+All those script has been done by python3.6 and the libraly version are listed in "requirement.txt"
