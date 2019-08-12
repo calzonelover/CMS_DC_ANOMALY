@@ -30,6 +30,7 @@
 <p align="center">
 <img src="https://latex.codecogs.com/svg.latex?\mathcal{L}_{\text{tot}}&space;\equiv&space;\frac{1}{N}\sum_i^N&space;|x_i-\tilde{x}_i|^2&space;&plus;&space;\lambda_{\text{s}}\sum_j||w_j||" title="\mathcal{L}_{\text{tot}} \equiv \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \lambda_{\text{s}}\sum_j||w_j||" />
 </p>
+
 * where 
 <p align="center">
 <img src="https://latex.codecogs.com/svg.latex?\lambda_{\text{s}}&space;=&space;10^{-5}" title="\lambda_{\text{s}} = 10^{-5}" />
@@ -87,7 +88,7 @@
   <p align="center">
   <img src="https://latex.codecogs.com/svg.latex?\mathcal{D}_{\text{KL},&space;i}&space;=&space;\frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2&space;&plus;\sigma_{ik}^2&space;-&space;2\log\sigma_{ik}&space;-&space;1)" title="\mathcal{D}_{\text{KL}, i} = \frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)" />
   </p>
-  In order to minimize the KL-div's term, the model have to adapt it's origin of random sampling toward nearly the origin of the latent space and have to adapt the sigma to one to make minimize this term. Inn principle, outlier would located quite far from the origin and might eventually not sitting around the dense cluster of inlier.
+  In order to minimize the KL-div's term, the model have to adapt it's origin of random sampling toward nearly the origin of the latent space and have to adapt the sigma to one to minimize this term. In principle, outlier would located quite far from the origin and might eventually not sitting around the dense cluster of inlier.
 
 * Then total loss function would looks like
 <p align="center">
@@ -99,7 +100,7 @@ Since we are using Tensorflow(v1.13), the concept of abstract graph conenction a
 
 Generally we could have a single graph and session for the model as a global session and global graph connection with all variables you have. In case you have multiple model, it's likely that we want an isolate graph and session for various model execution to make sure that it's doesn't share the same variable. That is why we need OOP concept to take care all of those.
 
-The figure below is the mother class of our AE since all the model need their own graph and session as well as other utility function that helps our life easier to have less code and more scalable.
+The figure below is [the mother class](NN/base.py) of our AE since all the model need their own graph and session as well as other utility function that helps our life easier to have less code and more scalable. 
 <p align="center">
     <img src="../static/img/baseclass_nn.png" width="200px" >
     <br>
