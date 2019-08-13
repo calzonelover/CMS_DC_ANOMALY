@@ -57,7 +57,10 @@ ZeroBias, muons to SingleMuon ... etc)
 Ref. [2]
 
 ## Datasets
-Please checkout [this direcotry](data/).
+Please checkout [this direcotry](data/) for full detail of data preparation and the preprocessing.
+
+## Model
+In order to detect the outlier LS, we use the semi-supervised learning where feeding only good LS for the training and validate with both good and bad LS later. For the full detail, please checkout [this link](model/).
 
 ## References
 1) M. Stankevicius, Data Quality Monitoring: Offline
@@ -65,12 +68,73 @@ Please checkout [this direcotry](data/).
 
 # Dependency
 In order to execute the script you have to make sure that you already meet all those criteria 
-* Python3.6 and dependency you have is exactly (or simialr) to [this specific libraly](reco/new_autoencoder.py)
+* Python3.6 and dependency you have is exactly (or simialr) to [this specific libraly](requirement.txt)
 * Every scripts has been designed for execute only in the main directory of this repository which basically you could only run "main" or "unit_test" to get the result
 
 # IBM's Minsky Cluster
-In order to speed up the training process, there are GPU resources from IBM in collaboration with CERN Openlab
 <p align="right">
     <img src="static/img/ibm.png" height="70px" >
     <img src="static/img/cern_openlab.png" height="70px" >
 </p>
+In order to speed up the training process, we are using the GPU resources from IBM in collaboration with CERN Openlab for parallelize the parallalizable task especially for autoencoder algorithm.
+
+Please note that for the general ML approch (no neural network), it would not significantly speed up the algorithm since it doesn't design for GPU executable.
+
+IBM's Minsky cluster consists of 4 nodes of GPU (each node contains 4 NVIDIA Tesla P100-SXM2-16GB) and a single CPU node called "ibmminsky-n" and "ibmminsky-head" sequentially. These machine provide an optimized environment configuration which we highly recommend to use their preinstalled conda virtual-environment as the following step.
+
+Here are the step to use this machine and running the example script (In the following step, we are using only one node of GPU machine because one of them contains 4 Tesla GPU which already more than we need for this work)
+
+1) Make sure that you already got an access (please contact cms-PPD-conveners-DQM-DC@cern.ch in case you need it and include a short description of your use case) and connection for the machine is only possible from the cern net
+2) Remote access to one of GPU machine
+    ```console
+    [yourusername@lxplusxxx ~]$ ssh yourusername@ibmminsky-1
+    ```
+3) If your terminal is still unauthenticated which will looks like
+    ```console
+    -bash-4.2$ 
+    ```
+    Instead of 
+    ```console
+    [yourusername@ibmminsky-1 ~]$ 
+    ```
+    Please execute the below command to reauthenticate your session
+    ```console
+    [yourusername@ibmminsky-1 ~]$ k5reauth
+    ```
+4) Configure the PowerAI envorinment
+    ```console
+    [yourusername@ibmminsky-1 ~]$ source /opt/anaconda3/etc/profile.d/conda.sh
+    ```
+5) Activate preinstalled conda virtual environment
+    * Python2.7
+        ```console
+        [yourusername@ibmminsky-1 ~]$ conda activate dlipy2
+        ```
+    * Python3.6 (In this work we use Python3.6)
+        ```console
+        [yourusername@ibmminsky-1 ~]$ conda activate dlipy3
+        ```
+6) (Optional) Deactivate the conda environment
+    ```console
+    (dlipy3) [yourusername@ibmminsky-1 ~]$ conda deactivate
+    ```
+
+## Running the example script
+After you already activate the environment, we could try to run the example script to training the autoencoder with PromptReco 2018 datasets as 
+
+```console
+(dlipy3) [yourusername@ibmminsky-1 ~]$ python example.py
+```
+
+## (Optional) Running the model in the background
+There is a way to running your model nightly without opening your terminal, I'm using nohup to take care the running process since it's easy to use and lightweight.
+
+```console
+(dlipy3) [yourusername@ibmminsky-1 ~]$ nohup python example.py > training.log &
+```
+
+Checking the running process by execute the following command
+
+```console
+(dlipy3) [yourusername@ibmminsky-1 ~]$ ps aux | grep yourusername
+```

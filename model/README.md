@@ -1,4 +1,4 @@
-# Semi-supervised Learning (For PromptReco)
+# Semi-supervised Learning (PromptReco)
 * Unsupervised Models
   * Schölkopf's One-Class SVM
   * Isolation Forest
