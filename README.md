@@ -69,7 +69,7 @@ In order to detect the outlier LS, we use the semi-supervised learning where fee
 # Dependency
 In order to execute the script you have to make sure that you already meet all those criteria 
 * Python3.6 and dependency you have is exactly (or simialr) to [this specific libraly](requirement.txt)
-* Every scripts has been designed for execute only in the main directory of this repository which basically you could only run "main" or "unit_test" to get the result
+* Every script has been designed for execute only in the main directory of this repository which basically you could only run "main.py" or "unit_test.py" to get the result
 
 # IBM's Minsky Cluster
 <p align="right">
