@@ -122,9 +122,19 @@ Here are the step to use this machine and running the example script (In the fol
 ## Running the example script
 After you already activate the environment, we could try to run the example script to training the autoencoder with PromptReco 2018 datasets as 
 
-```console
-(dlipy3) [yourusername@ibmminsky-1 ~]$ python example.py
-```
+1) Clone the repository
+    ```console
+    (dlipy3) [yourusername@ibmminsky-1 ~]$ git clone https://github.com/calzonelover/CMS_DC_ANOMALY.git
+    ```
+
+2) Access to the directory
+    ```console
+    (dlipy3) [yourusername@ibmminsky-1 ~]$ cd CMS_DC_ANOMALY
+    ```
+3) Running the script
+    ```console
+    (dlipy3) [yourusername@ibmminsky-1 ~]$ python example.py
+    ```
 
 ## (Optional) Running the model in the background
 There is a way to running your model nightly without opening your terminal, I'm using nohup to take care the running process since it's easy to use and lightweight.

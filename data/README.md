@@ -1,5 +1,5 @@
 # Offline (PromptReco)
-* pp collisions, 2016 data, PromptReco, JetHT
+* pp collisions, PromptReco (currently 2018 data, but we also provide the tools for access 2016 data)
 * Each lumisection (datapoint) contains
   * 39 histogram of physics quantity e.g. JetPt, JetEta, JetPhi, etc.
   * Represent one histogram with 7 numbers
@@ -18,7 +18,7 @@ etc.
     <em>Example histogram of Eta distribution</em>
 </p>
 
-1) Quantize [0%, 25%, 50%, 75%, 100%] of the histogram
+1) Quantize [10%, 30%, 50%, 70%, 90%] of the histogram
 2) Combine mean and rms
 3) Use these **7 values to
 represent one histogram**
@@ -32,4 +32,4 @@ represent one histogram**
 
 * Then our datapoint should be in range [0, 1]
 
-# Online (Occupancy)
+<!-- # Online (Occupancy) -->
