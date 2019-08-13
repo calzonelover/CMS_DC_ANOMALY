@@ -63,7 +63,7 @@ Please checkout [this direcotry](data/) for full detail of data preparation and 
 In order to detect the outlier LS, we use the semi-supervised learning where feeding only good LS for the training and validate with both good and bad LS later. For the full detail, please checkout [this link](model/).
 
 ## Report
-There are multiple reports for this study which contains in this [directory](report/) 
+There are multiple reports for this study that are listed in this [directory](report/) 
 
 ## References
 1) M. Stankevicius, Data Quality Monitoring: Offline
