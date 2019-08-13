@@ -1,5 +1,6 @@
 # Offline (PromptReco)
-* pp collisions, PromptReco (currently 2018 data, but we also provide the tools for access 2016 data)
+* pp collisions (Separately study 2016 and 2018 data)
+* 4 different primary datasets: ZeroBias, JetHT, EGamma, SingleMuon
 * Each lumisection (datapoint) contains
   * 39 histogram of physics quantity e.g. JetPt, JetEta, JetPhi, etc.
   * Represent one histogram with 7 numbers
@@ -18,7 +19,7 @@ etc.
     <em>Example histogram of Eta distribution</em>
 </p>
 
-1) Quantize [10%, 30%, 50%, 70%, 90%] of the histogram
+1) Quantize [10%, 30%, 50%, 70%, 90%] of the histogram (For 2016 data, we quantize [0%, 25%, 50%, 75%, 100%] of the histogram)
 2) Combine mean and rms
 3) Use these **7 values to
 represent one histogram**
@@ -32,4 +33,29 @@ represent one histogram**
 
 * Then our datapoint should be in range [0, 1]
 
-<!-- # Online (Occupancy) -->
+## Datasets
+
+### 2016 PromptReco
+* Located in [this directory](prompt_reco/)
+* Available only for JetHT
+* LS definition
+  * <span style="color:green">Good LS</span> defined in Golden JSON
+  * <span style="color:red">Bad LS</span> came from DCS bits, bad run from tagged
+* [Settings](prompt_reco/setting.py)
+
+### 2018 PromptReco
+* Located in [this directory](new_prompt_reco/)
+* LS definition
+  * <span style="color:green">Good LS</span> defined in Golden JSON
+  * <span style="color:red">Bad LS</span> came from LS that marked by DC experts
+* [Settings](new_prompt_reco/setting.py)
+
+
+# Online (Express)
+Occupancy in the detector of CMS sub-detector in some interval of few a few LS
+## Datasets
+<!-- ### 2016 Express -->
+### 2017 Express
+* Located in [this directory](express_2017/)
+* ReReco
+* [Settings](express_2017/setting.py)

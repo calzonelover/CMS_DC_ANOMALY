@@ -6,7 +6,7 @@ import pandas as pd
 
 import runregistry as rr
 
-from data.express_2017 import settings as express_2017_settings
+from data.express_2017 import setting as express_2017_settings
 
 dataset_name_cache = {}
 lumisection_ranges_cache = {}

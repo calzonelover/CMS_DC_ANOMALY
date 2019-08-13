@@ -4,10 +4,7 @@ from data.new_prompt_reco import unit_test as test_data
 # from training.new_reco import kmeans
 
 if __name__ == "__main__":
-    test_data.main(selected_pd="ZeroBias", include_failure=True)
-    test_data.main(selected_pd="JetHT", include_failure=True)
-    test_data.main(selected_pd="EGamma")
-    test_data.main(selected_pd="SingleMuon")
+    # apply filter 500
 
     # kmeans.plot_subsystem3d(selected_pd="JetHT")
     # for selected_pd in ["ZeroBias", "JetHT", "EGamma", "SingleMuon"]:

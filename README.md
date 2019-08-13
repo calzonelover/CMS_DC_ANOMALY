@@ -1,4 +1,4 @@
-# Semi-supervised outlier detection for CMS detector
+# Outlier Detection for Data Certification 
 
 ## Data Quality Monitoring (DQM)
 Data quality in CMS detector could be monitored via GUI by using the tools that provided by DQM team. The pipeline of data flow start at online section which shifters at P5 monitor various measured quantity and control the alarming system to directly contact the experts if there is any sub-system went wrong or report the weird behaviour. Not only the online world, DQM tools also provide the offline inspection after 48hrs of collisions to double check the failure of some sub-system by looking multiple histograms.
@@ -51,7 +51,7 @@ ZeroBias, muons to SingleMuon ... etc)
 <p align="center">
     <img src="static/img/cartoon.png" width="700px" >
     <br>
-    <em>Pipeline of data certificaiton that we proposed in this work</em>
+    <em>Pipeline of data certificaiton that we proposed in this work, retrieved from F. Fiori, ML Applied To Data CertificationStatus and Perspective</em>
 </p>
 
 Ref. [2]
@@ -61,6 +61,9 @@ Please checkout [this direcotry](data/) for full detail of data preparation and 
 
 ## Model
 In order to detect the outlier LS, we use the semi-supervised learning where feeding only good LS for the training and validate with both good and bad LS later. For the full detail, please checkout [this link](model/).
+
+## Report
+There are multiple reports for this study which contains in this [directory](report/) 
 
 ## References
 1) M. Stankevicius, Data Quality Monitoring: Offline
@@ -76,11 +79,11 @@ In order to execute the script you have to make sure that you already meet all t
     <img src="static/img/ibm.png" height="70px" >
     <img src="static/img/cern_openlab.png" height="70px" >
 </p>
-In order to speed up the training process, we are using the GPU resources from IBM in collaboration with CERN Openlab for parallelize the parallalizable task especially for autoencoder algorithm.
+In order to speed up the training process, we are using the GPU resources from IBM in collaboration with CERN Openlab for parallelize a parallalizable task especially for autoencoder algorithm.
 
 Please note that for the general ML approch (no neural network), it would not significantly speed up the algorithm since it doesn't design for GPU executable.
 
-IBM's Minsky cluster consists of 4 nodes of GPU (each node contains 4 NVIDIA Tesla P100-SXM2-16GB) and a single CPU node called "ibmminsky-n" and "ibmminsky-head" sequentially. These machine provide an optimized environment configuration which we highly recommend to use their preinstalled conda virtual-environment as the following step.
+Minsky cluster consists of 4 nodes of GPU (each node contains 4 NVIDIA Tesla P100-SXM2-16GB) and a single CPU node called "ibmminsky-n" and "ibmminsky-head" sequentially. These machine provide an optimized environment configuration which we highly recommend to use their preinstalled conda virtual-environment as the following step.
 
 Here are the step to use this machine and running the example script (In the following step, we are using only one node of GPU machine because one of them contains 4 Tesla GPU which already more than we need for this work)
 
@@ -99,7 +102,7 @@ Here are the step to use this machine and running the example script (In the fol
     ```
     Please execute the below command to reauthenticate your session
     ```console
-    -bash-4.2$  k5reauth
+    -bash-4.2$ k5reauth
     ```
 4) Configure the PowerAI envorinment
     ```console
@@ -120,7 +123,7 @@ Here are the step to use this machine and running the example script (In the fol
     ```
 
 ## Running the example script
-After you already activate the environment, we could try to run the example script to training the autoencoder with PromptReco 2018 datasets as 
+After you already activate the environment, we could try to run the example script to train an autoencoder with PromptReco 2018 datasets as 
 
 1) Clone the repository
     ```console
@@ -148,3 +151,13 @@ Checking the running process by execute the following command
 ```console
 (dlipy3) [yourusername@ibmminsky-1 ~]$ ps aux | grep yourusername
 ```
+
+## Acknowledgement
+* CERN Summer Student program 2019
+* Especially
+  * **Marcel Andre Schneider**
+  * Francesco Fiori
+  * Kaori Maeshima
+  * Adrian Alan Pol
+  * Countless CMS DQM people :)
+* GPU resources from IBM in collaboration with CERN Openlab
