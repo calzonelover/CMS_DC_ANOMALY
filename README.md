@@ -56,9 +56,21 @@ ZeroBias, muons to SingleMuon ... etc)
 
 Ref. [2]
 
+## Datasets
+Please checkout [this direcotry](data/).
+
 ## References
 1) M. Stankevicius, Data Quality Monitoring: Offline
 2) F. Fiori, ML Applied To Data CertificationStatus and Perspective
 
-## Dependency
-All those script has been done by python3.6 and the libraly version are listed in "requirement.txt"
+# Dependency
+In order to execute the script you have to make sure that you already meet all those criteria 
+* Python3.6 and dependency you have is exactly (or simialr) to [this specific libraly](reco/new_autoencoder.py)
+* Every scripts has been designed for execute only in the main directory of this repository which basically you could only run "main" or "unit_test" to get the result
+
+# IBM's Minsky Cluster
+In order to speed up the training process, there are GPU resources from IBM in collaboration with CERN Openlab
+<p align="right">
+    <img src="static/img/ibm.png" height="70px" >
+    <img src="static/img/cern_openlab.png" height="70px" >
+</p>

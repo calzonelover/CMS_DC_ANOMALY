@@ -96,9 +96,9 @@
 </p>
 
 ### Mother Class for various AE inheritance
-Since we are using Tensorflow(v1.13), the concept of abstract graph conenction and session execution require a comprehension to maximize the profit of parallelizable task.
+Since we are using Tensorflow(v1.13), the concept of abstract graph connection and session execution require a comprehension to maximize the profit of parallelizable task.
 
-Generally we could have a single graph and session for the model as a global session and global graph connection with all variables you have. In case you have multiple model, it's likely that we want an isolate graph and session for various model execution to make sure that it's doesn't share the same variable. That is why we need OOP concept to take care all of those.
+Generally, we could have a single graph and session for the model as a global session and global graph connection with all variables you have. In case you have multiple model, it's likely that we want an isolate graph and session for various model execution to make sure that it doesn't share the same variable. That is why we need OOP concept to take care all of those.
 
 The figure below is [the mother class](NN/base.py) of our AE since all the model need their own graph and session as well as other utility function that helps our life easier to have less code and more scalable. 
 <p align="center">
