@@ -99,7 +99,7 @@ Here are the step to use this machine and running the example script (In the fol
     ```
     Please execute the below command to reauthenticate your session
     ```console
-    [yourusername@ibmminsky-1 ~]$ k5reauth
+    -bash-4.2$  k5reauth
     ```
 4) Configure the PowerAI envorinment
     ```console
@@ -131,11 +131,11 @@ After you already activate the environment, we could try to run the example scri
     ```console
     (dlipy3) [yourusername@ibmminsky-1 ~]$ cd CMS_DC_ANOMALY
     ```
-3) Running the script
+3) Running the script 
     ```console
     (dlipy3) [yourusername@ibmminsky-1 ~]$ python example.py
     ```
-
+    Please note that it might takes a few hour to finish. By the way, we could see each model is running and finishing on the terminal.
 ## (Optional) Running the model in the background
 There is a way to running your model nightly without opening your terminal, I'm using nohup to take care the running process since it's easy to use and lightweight.
 
