@@ -16,7 +16,7 @@ def get_full_features(selected_pd):
     for feature in FEATURES[selected_pd]: features.extend(["{}_{}".format(feature, i) for i in range(0,7)])
     return features
 
-def read_data(selected_pd, pd_data_directory, cutoff_eventlumi=True):
+def read_data(selected_pd, pd_data_directory, cutoff_eventlumi=False):
     read_df = pd.read_csv(os.path.join(pd_data_directory, "{}_feature{}.csv".format(selected_pd, FEATURE_SET_NUMBER)))
     if cutoff_eventlumi:
         read_df = read_df.query('EventsPerLs >= {}'.format(CUTOFF_VALUE_EVENTS_LUMI))

@@ -85,9 +85,9 @@ Please note that for the general ML approch (no neural network), it would not si
 
 Minsky cluster consists of 4 nodes of GPU (each node contains 4 NVIDIA Tesla P100-SXM2-16GB) and a single CPU node called "ibmminsky-n" and "ibmminsky-head" sequentially. These machine provide an optimized environment configuration which we highly recommend to use their preinstalled conda virtual-environment as the following step.
 
-Here are the step to use this machine and running the example script (In the following step, we are using only one node of GPU machine because one of them contains 4 Tesla GPU which already more than we need for this work)
+Here are the step to use this machine and running the example script (In the following step, we are using only one node of GPU machine because one of them contains 4 Tesla GPU which more than we need for this work already)
 
-1) Make sure that you already got an access (please contact cms-PPD-conveners-DQM-DC@cern.ch in case you need it and include a short description of your use case) and connection for the machine is only possible from the cern net
+1) Make sure that you already got an access (please contact cms-PPD-conveners-DQM-DC@cern.ch in case you need it and include a short description of your use case) and connection for the machine is only possible from cern net
 2) Remote access to one of GPU machine
     ```console
     [yourusername@lxplusxxx ~]$ ssh yourusername@ibmminsky-1
@@ -139,7 +139,7 @@ After you already activate the environment, we could try to run the example scri
     (dlipy3) [yourusername@ibmminsky-1 ~]$ python example.py
     ```
     Please note that it might takes a few hour to finish. By the way, we could see each model is running and finishing on the terminal.
-## (Optional) Running the model in the background
+## (Optional) Running the model in background
 There is a way to running your model nightly without opening your terminal, I'm using nohup to take care the running process since it's easy to use and lightweight.
 
 ```console

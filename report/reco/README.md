@@ -1,20 +1,23 @@
-# 2018 Dataset
-\-
-
 # 2016 Dataset (Only JetHT)
 
 ### Primary Analysis
-In order to roughly understand the clustering (similar patterns) of data, one way to do it is to reduce the dimension of data. In our case, there are 259 features which be transformed into 2 dimension on the basis of 2 eigenvectors that belonging to covariance matrix that computed from the datasets
+In order to roughly understand a group (similar patterns) of data, one way to do it is to reduce the dimension of data. In our case, there are 259 features which will be transformed into two dimension on the basis of two eigenvectors (selected by two largest eigenvalues) belonging to covariance matrix which computed from the datasets. You could checkout more nicer mathematical exprssion in [this link](https://www2.imm.dtu.dk/pubdb/views/edoc_download.php/4000/pdf/imm4000).
+
 <p align="center">
     <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/JetHT_label.png" width="500px" >
     <br>
     <em>Principal component with the labeled color from the system</em>
 </p>
 
-As you could see on the green line that there are nice tubular shape which is good LS and a few weird LSs that located outside the tubular shape as well as bad LS that could be divided into the bad LS with some patterns and anamaly bad LS which I would called both of them as "outlier". That's essentially the punchline why I called outlier detection instead of anomaly detection.
+As you could see on the green line that there are nice band which is good LS and a few weird LSs that located outside the tubular shape as well as bad LS that could be divided into the bad LS with some patterns and anamaly bad LS which I would called both of them as "outlier". That's essentially the punchline why I called outlier detection instead of anomaly detection.
 
 ### Performance
 We Iteratively retrain the model 10times to make sure that it's working systematically and plot the root mean square as the shady fluctuation in the following figures
+
+<p align="center">
+    <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/performance.png" width="500px" >
+    <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/performance_ml.png" width="500px" >
+</p>
 <p align="center">
     <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/performance.png" width="500px" >
     <br>
@@ -50,7 +53,7 @@ Here are the example of LS reconstruction which calculated from x and x' between
 </p>
 
 ### Extended Investigation
-You might wondering why many of bad LS seems to have a group of bad LS as you have seen in the plot of hyperspace and few collection of bad LS in decision value distribution. In this section, I want to explicitly prove that the model really see that the right cluster is the worse bad LS and more closer to tubular is less bad LS which decision value have to be quite similar to good LS. In order to prove that, I choose our best candidate to shading the decision value as z-axis color to represent how bad LS in each data point is.
+You might wondering why many of bad LS seems to have a group of bad LS as you have seen in the plot of hyperspace and few collection of bad LS in decision value distribution (As the black arrow that link between the distribution and 2D-hyperspace). In this section, I want to explicitly prove that the model really see that the right cluster is the worse bad LS and more closer to tubular is less bad LS which decision value have to be quite similar to good LS. In order to prove that, I choose our best candidate to shading the decision value as z-axis color to represent how bad LS in each data point is.
 <p align="center">
     <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/guess_visual.png" width="700px" >
     <br>
@@ -63,3 +66,50 @@ You might wondering why many of bad LS seems to have a group of bad LS as you ha
 * Bad LS could be divided into two parts
   * Bad with some pattern
   * Anomaly
+
+For the weekly report which contain the full detail of this study please checkout [this direcotry](Old_Data/reports/).
+
+# 2018 Dataset
+
+### Primary Analysis
+For 2018 data, we dig a bit more to understand which cause the badness of bad LS by taking sub-system label into account from 
+[RR's API](https://github.com/fabioespinosa/runregistry_api_client). There are a plenty of sub-system in CMS detector. In order to roughly understand the malfunction of sub-system, we decided to pull label only for HCAL, ECAL, TRACKER and MUON detector which are the main part of the detector.
+
+* EGamma
+  
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/LastSubmission/EGamma_subsystem_label.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/LastSubmission/EGamma_subsystem_label_short_range.png" width="400px" >
+</p>
+
+
+* Single Muon
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/LastSubmission/SingleMuon_subsystem_label.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/LastSubmission/SingleMuon_subsystem_label_short_range.png" width="400px" >
+</p>
+
+* ZeroBias
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/LastSubmission/ZeroBias_label_separate.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/LastSubmission/ZeroBias_label_separate_short_range.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/LastSubmission/ZeroBias_subsystem_label.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/LastSubmission/ZeroBias_subsystem_label_short_range.png" width="400px" >
+</p>
+
+* JetHT
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/LastSubmission/JetHT_label_separate.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/LastSubmission/JetHT_label_separate_short_range.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/LastSubmission/JetHT_subsystem_label.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/LastSubmission/JetHT_subsystem_label_short_range.png" width="400px" >
+</p>
+
+It's obviously to tell that the cluter of outlier are mainly consists of malfunction from MUON and TRACKER sub-detector. Not only the outlier that has an interesting patterns but clustering in inlier is also remarkably considerable as clustering mainly from malfunction of ECAL and HCAL that located near or inside the green band.
+
+Please note that calculation of the matrix transform exclude failure scenario since it's a fake data and it might leading to a weird correlation in covariance matrix.
+
+### Performance
+\- still waiting for the training of cutoff
+
+For the weekly report which contain the full detail of this study please checkout [this direcotry](new_data/reports/).
