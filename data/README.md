@@ -2,9 +2,9 @@
 * pp collisions (Separately study 2016 and 2018 data)
 * 4 different primary datasets: ZeroBias, JetHT, EGamma, SingleMuon
 * Each lumisection (datapoint) contains
-  * 39 histogram of physics quantity e.g. JetPt, JetEta, JetPhi, etc.
+  * n histogram of physics quantity e.g. JetPt, JetEta, JetPhi, etc.
   * Represent one histogram with 7 numbers
-  * 259 Features (39 × 7)
+  * n x 7 Features
 * <span style="color:green">Good LS</span> defined in Golden JSON else <span style="color:red">Bad LS</span>
 
 ## Histogram representation

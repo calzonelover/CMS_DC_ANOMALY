@@ -27,7 +27,7 @@ def extract_and_merge_to_csv(selected_pd, features, data_directory, pd_data_dire
     if failure:
         for dat_numpy in os.listdir(os.path.join(data_directory, selected_pd)):
             write_df = pd.DataFrame()
-            np_dat = np.load(os.path.join(data_directory, selected_pd,  dat_numpy), encoding="latin1")
+            np_dat = np.load(os.path.join(data_directory, selected_pd,  dat_numpy), encoding="latin1", allow_pickle=True)
             read_df = pd.DataFrame(np_dat)
             for feature in features:
                 try:

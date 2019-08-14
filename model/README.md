@@ -10,7 +10,7 @@
 ## Autoencoder (AE)
 * Truncated normal initializer
     
-    For model weight initializer, we are using truncaed normal initializer which basically you take a gaussian distribution and putting the cutoff only inside ![](https://latex.codecogs.com/svg.latex?\pm2\sigma) to prevent some high absolute value that might leading to divergence of model in the training process.
+    For model weight initializer, we are using truncated normal initializer which basically you take a gaussian distribution and putting the cutoff only inside ![](https://latex.codecogs.com/svg.latex?\pm2\sigma) to prevent some high absolute value that might leading to divergence of model in the training process.
 
     In our case, we set up ![](https://latex.codecogs.com/svg.latex?\sigma&space;=&space;1) and ![](https://latex.codecogs.com/svg.latex?\mu&space;=&space;1)
 
@@ -22,7 +22,7 @@
 
 * Adam optimizer
 
-    Adam stands for **adaptive moment estimation**. Basically, it's combine Momentum optimization and RMSProp to keep the residue from gradients decaying from the previous one.
+    Adam stands for **adaptive moment estimation**. Basically, it's combine Momentum optimization and RMSProp to keep the residue of the gradients decaying from the previous update.
 
     With configuration: ![](https://latex.codecogs.com/svg.latex?lr&space;=&space;0.2) (learning rate), ![](https://latex.codecogs.com/svg.latex?\beta_1&space;=&space;0.7) and ![](https://latex.codecogs.com/svg.latex?\beta_2&space;=&space;0.9)
 
@@ -77,7 +77,7 @@
     <img src="https://latex.codecogs.com/svg.latex?||J_h(x)||^2&space;=&space;\frac{1}{N}\sum_i^N\sum_j[\alpha_j&space;H(-(w_{jk}x^{ik}&plus;b_j))&space;&plus;&space;H(w_{jk}x^{ik}&plus;b_j)]\sum_k(w_{jk})^2" title="||J_h(x)||^2 = \frac{1}{N}\sum_i^N\sum_j[\alpha_j H(-(w_{jk}x^{ik}+b_j)) + H(w_{jk}x^{ik}+b_j)]\sum_k(w_{jk})^2" />
     </p>
 
-    where ![](https://latex.codecogs.com/svg.latex?\alpha_j) is the pivot components which is inside the body of PReLu activation function itself
+    where ![](https://latex.codecogs.com/svg.latex?\alpha_j) is the pivot components on the negative side which is inside the body of PReLu activation function itself
   * Sigmoid activation function
     <p align="center">
     <img src="https://latex.codecogs.com/svg.latex?||J_h(x)||^2&space;=&space;\frac{1}{N}\sum_{ij}[h_{ij}(1-h_{ij})]\sum_k(w_{jk})^2" title="||J_h(x)||^2 = \frac{1}{N}\sum_{ij}[h_{ij}(1-h_{ij})]\sum_k(w_{jk})^2" />
@@ -117,7 +117,7 @@ Ref: Rifai, Salah et al. “Contractive Auto-Encoders: Explicit Invariance Durin
   <p align="center">
   <img src="https://latex.codecogs.com/svg.latex?\mathcal{D}_{\text{KL},&space;i}&space;=&space;\frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2&space;&plus;\sigma_{ik}^2&space;-&space;2\log\sigma_{ik}&space;-&space;1)" title="\mathcal{D}_{\text{KL}, i} = \frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)" />
   </p>
-  In order to minimize the KL-div's term, the model have to adapt it's origin of random sampling toward nearly the origin of the latent space and have to adapt the sigma to one to minimize this term. In principle, outlier would located quite far from the origin and might eventually not sitting around the dense cluster of inlier.
+  In order to minimize the KL-div's term, the model have to adapt it's origin of random sampling toward nearly the origin of the latent space and have to adapt a standata deviation to unity to minimize this term. In principle, outlier would located quite far from the origin and might eventually not sitting around the dense cluster of inlier.
 
 * Then total loss function would looks like
 <p align="center">

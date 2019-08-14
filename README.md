@@ -28,7 +28,7 @@ The Golden JSON contains the list of all good LS
 * Reduce manual work of DC Experts
 
 ## Expectation
-The key concept of this work is to find a decision value to find the cutoff which will be use for certify data quality in LS granularity
+The key concept of this work is to find a decision value for determining the cutoff which will be use for certify data quality in LS granularity
 <p align="center">
     <img src="static/img/expected_greyzone.png" width="500px" >
     <br>
@@ -72,7 +72,7 @@ There are multiple reports for this study that are listed in this [directory](re
 # Dependency
 In order to execute the script you have to make sure that you already meet all those criteria 
 * Python3.6 and dependency you have is exactly (or simialr) to [this specific libraly](requirement.txt)
-* Every script has been designed for execute only in the main directory of this repository which basically you could only run "main.py" or "unit_test.py" to get the result
+* Every script has been designed for execute only in the main directory of this repository which basically you could only run ["main.py"](main.py) or ["unit_test.py"](unit_test.py) to get the result
 
 # IBM's Minsky Cluster
 <p align="right">

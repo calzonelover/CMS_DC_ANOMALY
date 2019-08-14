@@ -12,7 +12,7 @@ In order to roughly understand a group (similar patterns) of data, one way to do
 As you could see on the green line that there are nice band which is good LS and a few weird LSs that located outside the tubular shape as well as bad LS that could be divided into the bad LS with some patterns and anamaly bad LS which I would called both of them as "outlier". That's essentially the punchline why I called outlier detection instead of anomaly detection.
 
 ### Performance
-We Iteratively retrain the model 10times to make sure that it's working systematically and plot the root mean square as the shady fluctuation in the following figures
+We Iteratively retrain the model ten times to make sure that it's working systematically and plot the root mean square as a shady fluctuation in the following figures
 
 <p align="center">
     <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/performance.png" width="500px" >
@@ -103,7 +103,7 @@ For 2018 data, we dig a bit more to understand which cause the badness of bad LS
     <img src="new_data/logs/minmaxscalar/LastSubmission/JetHT_subsystem_label_short_range.png" width="400px" >
 </p>
 
-It's obviously to tell that the cluter of outlier are mainly consists of malfunction from MUON and TRACKER sub-detector. Not only the outlier that has an interesting patterns but clustering in inlier is also remarkably considerable as clustering mainly from malfunction of ECAL and HCAL that located near or inside the green band.
+It's obviously to tell that the cluster of outlier are mainly consists of malfunction from MUON and TRACKER sub-detector. Not only the outlier that has an interesting patterns but clustering in inlier is also remarkably considerable as clustering mainly from malfunction of ECAL and HCAL that located near or inside the green band.
 
 Please note that calculation of the matrix transform exclude failure scenario since it's a fake data and it might leading to a weird correlation in covariance matrix.
 
