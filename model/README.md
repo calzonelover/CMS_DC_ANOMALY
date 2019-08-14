@@ -76,11 +76,16 @@
     <p align="center">
     <img src="https://latex.codecogs.com/svg.latex?||J_h(x)||^2&space;=&space;\frac{1}{N}\sum_i^N\sum_j[\alpha_j&space;H(-(w_{jk}x^{ik}&plus;b_j))&space;&plus;&space;H(w_{jk}x^{ik}&plus;b_j)]\sum_k(w_{jk})^2" title="||J_h(x)||^2 = \frac{1}{N}\sum_i^N\sum_j[\alpha_j H(-(w_{jk}x^{ik}+b_j)) + H(w_{jk}x^{ik}+b_j)]\sum_k(w_{jk})^2" />
     </p>
+
+    where ![](https://latex.codecogs.com/svg.latex?\alpha_j) is the pivot components which is inside the body of PReLu activation function itself
   * Sigmoid activation function
     <p align="center">
     <img src="https://latex.codecogs.com/svg.latex?||J_h(x)||^2&space;=&space;\frac{1}{N}\sum_{ij}[h_{ij}(1-h_{ij})]\sum_k(w_{jk})^2" title="||J_h(x)||^2 = \frac{1}{N}\sum_{ij}[h_{ij}(1-h_{ij})]\sum_k(w_{jk})^2" />
     </p>
-    
+
+    For sigmoid, there is no component inside the activation function. Then it's simpler to represent ![](https://latex.codecogs.com/svg.latex?h_{ij}) as the output of an activation funciton
+
+Ref: Rifai, Salah et al. “Contractive Auto-Encoders: Explicit Invariance During Feature Extraction.” ICML (2011)
 
 ### Variational AE
 <p align="center">
@@ -101,6 +106,13 @@
 <img src="https://latex.codecogs.com/svg.latex?\mathcal{L}_{\text{tot}}&space;=&space;\frac{1}{N}\sum_i^N&space;|x_i-\tilde{x}_i|^2&space;&plus;&space;\mathcal{D}_{\text{KL}}(p|q)" title="\mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \mathcal{D}_{\text{KL}}(p|q)" />
 </p>
 
+* Explicit example of removing discontinuity in latent space
+<p align="center">
+    <img src="../static/img/latent_mnist.png" width="600px" >
+    <br>
+    <em>Latent space of MNIST before and after applying the technique , Image revised from hhttps://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf </em>
+</p>
+
 * Since we represent latent space by applying gaussian. Kullback-Leibler Divergence term would looks like
   <p align="center">
   <img src="https://latex.codecogs.com/svg.latex?\mathcal{D}_{\text{KL},&space;i}&space;=&space;\frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2&space;&plus;\sigma_{ik}^2&space;-&space;2\log\sigma_{ik}&space;-&space;1)" title="\mathcal{D}_{\text{KL}, i} = \frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)" />
@@ -111,6 +123,10 @@
 <p align="center">
 <img src="https://latex.codecogs.com/svg.latex?\mathcal{L}_{\text{tot}}&space;=&space;\frac{1}{N}\sum_i^N&space;|x_i-\tilde{x}_i|^2&space;&plus;&space;\frac{1}{2N}\sum_i^N\sum_k^{n_{\text{latent}}}(\mu_{ik}^2&space;&plus;\sigma_{ik}^2&space;-&space;2\log\sigma_{ik}&space;-&space;1)" title="\mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \frac{1}{2N}\sum_i^N\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)" />
 </p>
+
+Ref:
+- Kingma and Welling,  Auto-Encoding Variational Bayes. arXiv:1312.6114.
+- Hinton G, Salakhutdinov R. Reducing the Dimensionality of Data with Neural Networks. Science. 2006;313(5786):504–507. Available from: https://www.cs.toronto.edu/~hinton/science.pdf.
 
 ### Mother Class for various AE inheritance
 Since we are using Tensorflow(v1.13), the concept of abstract graph connection and session execution require a comprehension to maximize the profit of parallelizable task.

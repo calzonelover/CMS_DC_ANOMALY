@@ -16,10 +16,6 @@ We Iteratively retrain the model 10times to make sure that it's working systemat
 
 <p align="center">
     <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/performance.png" width="500px" >
-    <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/performance_ml.png" width="500px" >
-</p>
-<p align="center">
-    <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/performance.png" width="500px" >
     <br>
     <em>Various AE</em>
 </p>
@@ -33,11 +29,13 @@ To sum up, even there are fancy mathematical expression of non-vanilla autoencod
 
 ### Distribution of decision value (to find the threshold)
 The story behind the performance figure is genuinely extracted from the distribution of decision value and slowly moving a threshold of minimal point in the overlapping region of good and bad LS from label in the distribution until it got the maximal value. The below figures are the comparison between our two great candidates by consider to pick some threshold and see the contamination in each side
+
 <p align="center">
     <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/decision_value_dist.png" width="700px" >
     <br>
     <em>Various AE</em>
 </p>
+
 For Vanilla AE, the contamination of bad LS falling into good LS is around 1% over the good LS below the cutoff and there are only countable of good LS falling into bad LS which might be ignorable.
 
 For OneClass-SVM, the contamination LS that bad falling into good LS is almost exactly the same as Vanilla AE does. There is no coincidence for totally different approach of model train and spot the same thing. This might implicitly implies that it either came from some imperfection of data in the training and testing or some kind of malfunction in the sub-system couldn't propagated into JetHT physics objects.
