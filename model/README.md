@@ -10,20 +10,21 @@
 ## Autoencoder (AE)
 * Truncated normal initializer
     
-    For model weight initializer, we are using truncaed normal initializer which basically you take a gaussian distribution and putting the cutoff only inside $\pm2\sigma$ to prevent some high absolute value that might leading to divergence of model in the training process.
+    For model weight initializer, we are using truncaed normal initializer which basically you take a gaussian distribution and putting the cutoff only inside ![](https://latex.codecogs.com/svg.latex?\pm2\sigma) to prevent some high absolute value that might leading to divergence of model in the training process.
 
-    In our case, we set up $\sigma=1$ and $\mu = 1$
-<p align="center">
+    In our case, we set up ![](https://latex.codecogs.com/svg.latex?\sigma&space;=&space;1) and ![](https://latex.codecogs.com/svg.latex?\mu&space;=&space;1)
+
+    <p align="center">
     <img src="../static/img/normal_dist.png" width="500px" >
     <br>
     <em>Gaussian distribution, retrieved from https://towardsdatascience.com/understanding-the-68-95-99-7-rule-for-a-normal-distribution-b7b7cbf760c2</em>
-</p>
+    </p>
 
 * Adam optimizer
 
     Adam stands for **adaptive moment estimation**. Basically, it's combine Momentum optimization and RMSProp to keep the residue from gradients decaying from the previous one.
 
-    With configuration: $lr = 0.2$ (learning rate), $\beta_1 = 0.7$ and $\beta_2 = 0.9$
+    With configuration: ![](https://latex.codecogs.com/svg.latex?lr&space;=&space;0.2) (learning rate), ![](https://latex.codecogs.com/svg.latex?\beta_1&space;=&space;0.7) and ![](https://latex.codecogs.com/svg.latex?\beta_2&space;=&space;0.9)
 
     Ref: Adam: A Method for Stochastic Optimization, D. Kingma, J. Ba (2015)
 
