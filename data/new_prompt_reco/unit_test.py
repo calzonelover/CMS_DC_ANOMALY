@@ -18,10 +18,10 @@ def main(
     features = FEATURES[selected_pd]
     df = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY, cutoff_eventlumi=False)
     df_cut = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY, cutoff_eventlumi=True)
-    print("# good LS: {}, # ", "# good LS filter < 500: {}".format(df.shape[0], df_cut.shape[0]))
+    print("# good LS: {}, # good LS filter < 500: {}, # filtered_out: {}".format(df.shape[0], df_cut.shape[0], df.shape[0] - df_cut.shape[0]))
     df = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY, cutoff_eventlumi=False)
     df_cut = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY, cutoff_eventlumi=True)
-    print("# bad human LS: {}, # ", "# bad human LS filter < 500: {}".format(df.shape[0], df_cut.shape[0]))
+    print("# bad human LS: {}, # bad human LS filter < 500: {}, # filtered_out: {}".format(df.shape[0], df_cut.shape[0], df.shape[0] - df_cut.shape[0]))
 
     ## Extract data
     # features = FEATURES[selected_pd]

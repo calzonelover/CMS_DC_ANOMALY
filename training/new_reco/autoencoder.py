@@ -18,6 +18,7 @@ from model.reco.new_autoencoder import ( VanillaAutoencoder, SparseAutoencoder,
 
 def main(
         selected_pd="JetHT",
+        cutoff_eventlumi = False,
         is_dropna = True,
         is_fillna_zero = True,
         BS = 2**16,
@@ -26,8 +27,8 @@ def main(
         DATA_SPLIT_TRAIN = [1.0 for i in range(10)],
     ):
     features = utility.get_full_features(selected_pd)
-    df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY)
-    df_bad = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY)
+    df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+    df_bad = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
     if is_dropna:
         df_good = df_good.dropna()
         df_bad = df_bad.dropna()

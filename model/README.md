@@ -9,7 +9,23 @@
 
 ## Autoencoder (AE)
 * Truncated normal initializer
+    
+    For model weight initializer, we are using truncaed normal initializer which basically you take a gaussian distribution and putting the cutoff only inside $\pm2\sigma$ to prevent some high absolute value that might leading to divergence of model in the training process.
+
+    In our case, we set up $\sigma=1$ and $\mu = 1$
+<p align="center">
+    <img src="../static/img/normal_dist.png" width="500px" >
+    <br>
+    <em>Gaussian distribution, retrieved from https://towardsdatascience.com/understanding-the-68-95-99-7-rule-for-a-normal-distribution-b7b7cbf760c2</em>
+</p>
+
 * Adam optimizer
+
+    Adam stands for **adaptive moment estimation**. Basically, it's combine Momentum optimization and RMSProp to keep the residue from gradients decaying from the previous one.
+
+    With configuration: $lr = 0.2$ (learning rate), $\beta_1 = 0.7$ and $\beta_2 = 0.9$
+
+    Ref: Adam: A Method for Stochastic Optimization, D. Kingma, J. Ba (2015)
 
 ### Vanilla AE
 <p align="center">
@@ -107,4 +123,4 @@ The figure below is [the mother class](NN/base.py) of our AE since all the model
     <em>Main components of the AE's base class</em>
 </p>
 
-Not only the main utility function that we could inherit from mother class to have various child class but we also could mix the technique as we want which has been done in the extended model that located in [this script](reco/new_autoencoder.py).
+Not only the main utility function that we could inherit from mother class to have various child class but we could also combine multiple contrains as we want which has been done in the extended model that located in [this script](reco/new_autoencoder.py).

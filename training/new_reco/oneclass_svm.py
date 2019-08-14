@@ -14,17 +14,18 @@ import data.new_prompt_reco.utility as utility
 
 def main(
         selected_pd = "JetHT",
+        cutoff_eventlumi = False, 
         is_dropna = True,
         is_fillna_zero = True,
         data_preprocessing_mode = 'minmaxscalar',
-        DATA_SPLIT_TRAIN = [1.0 for i in range(2)],
+        DATA_SPLIT_TRAIN = [1.0 for i in range(3)],
     ):
     # setting
     model_name = "OneClassSVM_{}_f{}".format(selected_pd, FEATURE_SET_NUMBER)
 
     features = utility.get_full_features(selected_pd)
-    df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY)
-    df_bad = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY)
+    df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+    df_bad = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
     if is_dropna:
         df_good = df_good.dropna()
         df_bad = df_bad.dropna()

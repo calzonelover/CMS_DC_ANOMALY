@@ -35,7 +35,7 @@ The key concept of this work is to find a decision value to find the cutoff whic
     <em>Three possible regions of prediction</em>
 </p>
 
-## Proposal for An Alternative approach: two steps
+## Proposal for an alternative approach: two steps
 * The automatic DCS bit flagging will stay, ML applied on top of it
 * Automatize the Data Certification procedure in two steps
   1) Provide a reliable quality flag per Run using grey-zone approach and Supervised models (artificial BAD data can be used for training)
