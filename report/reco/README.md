@@ -116,7 +116,7 @@ Please note that calculation of the matrix transform exclude failure scenario si
 * Autoencoder
   
 <p align="center">
-    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_Egamma_VanillaSparseContractiveVariational.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_EGamma_VanillaSparseContractiveVariational.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_SingleMuon_VanillaSparseContractiveVariational.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_ZeroBias_VanillaSparseContractiveVariational.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_JetHT_VanillaSparseContractiveVariational.png" width="400px" >
@@ -125,7 +125,7 @@ The perfance of AE for EGamma primary dataset is totally inefficient and even wo
 
 * Extended Autoencoder
 <p align="center">
-    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_Egamma_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_EGamma_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
