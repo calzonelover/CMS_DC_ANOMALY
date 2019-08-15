@@ -24,7 +24,7 @@
 
     Adam stands for **adaptive moment estimation**. Basically, it's combine Momentum optimization and RMSProp to keep the residue of the gradients decaying from the previous update.
 
-    With configuration: ![](https://latex.codecogs.com/svg.latex?lr&space;=&space;0.2) (learning rate), ![](https://latex.codecogs.com/svg.latex?\beta_1&space;=&space;0.7) and ![](https://latex.codecogs.com/svg.latex?\beta_2&space;=&space;0.9)
+    With configuration: ![](https://latex.codecogs.com/svg.latex?lr&space;=&space;10^{-4}) (learning rate), ![](https://latex.codecogs.com/svg.latex?\beta_1&space;=&space;0.7) and ![](https://latex.codecogs.com/svg.latex?\beta_2&space;=&space;0.9)
 
     Ref: Adam: A Method for Stochastic Optimization, D. Kingma, J. Ba (2015)
 

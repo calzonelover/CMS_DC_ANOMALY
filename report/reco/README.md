@@ -83,6 +83,8 @@ For 2018 data, we dig a bit more to understand which cause the badness of bad LS
 
 * Single Muon
 <p align="center">
+    <img src="new_data/logs/minmaxscalar/LastSubmission/SingleMuon_label_separate.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/LastSubmission/SingleMuon_label_separate_short_range.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/LastSubmission/SingleMuon_subsystem_label.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/LastSubmission/SingleMuon_subsystem_label_short_range.png" width="400px" >
 </p>
