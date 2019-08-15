@@ -110,7 +110,7 @@ Ref: Rifai, Salah et al. “Contractive Auto-Encoders: Explicit Invariance Durin
 <p align="center">
     <img src="../static/img/latent_mnist.png" width="600px" >
     <br>
-    <em>Latent space of MNIST before and after applying the technique , Image revised from hhttps://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf </em>
+    <em>Latent space of MNIST before and after applying the technique , Image revised from https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf </em>
 </p>
 
 * Since we represent latent space by applying gaussian. Kullback-Leibler Divergence term would looks like

@@ -1,7 +1,11 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+from functools import reduce
 import pandas as pd
 import numpy as np
+
+
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import auc
 from math import sqrt, isnan
@@ -51,8 +55,8 @@ def plot_roc(
 
 def evalSmooth(
         channel = "JetHT",
-        path_dat='logs/minmaxscalar/2e15BS1800EP',
-        model_list=['Sparse', 'Variational', 'Contractive', 'Variational'],
+        path_dat='logs/minmaxscalar/2e15BS12000EP',
+        model_list= ["SparseContractive", "SparseVariational", "ContractiveVariational", "Standard"],# ['Vanilla', 'Sparse', 'Contractive', 'Variational'],
         COLOR_PALETES=['r','g','b','o'],
         datafraction_list=[1.00 for i in range(10)],
         n_bins=40
@@ -96,7 +100,8 @@ def evalSmooth(
         plt.legend(["{}, AUC {:.2f} $\pm$ {:.3f}".format(model, 100.0*model_roc_auc_mean[model], 100.0*model_roc_auc_rms[model]) for model in model_list], loc="upper left", frameon=False)
     plt.ylim(0.0, 1.01)
     # plt.show()
-    plt.savefig(os.path.join(path_dat, 'performance_{}.png').format(channel))
+    model_list_str = reduce(lambda x,y: x+y, model_list)
+    plt.savefig(os.path.join(path_dat, 'performance_{}_{}.png').format(channel, model_list_str))
 
 def plot_decision_val_dist(
         path_dat='logs/minmaxscalar/2e15BS12000EP',
@@ -133,8 +138,4 @@ def plot_decision_val_dist(
 
 if __name__ == "__main__":
     for channel in ["ZeroBias", "JetHT", "EGamma", "SingleMuon"]:
-        for model_name in ['Sparse', 'Variational', 'Contractive', 'Variational']:
-            main_loss(
-                channel = channel,
-                model_name = model_name,
-            )
+        evalSmooth(channel=channel)

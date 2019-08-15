@@ -4,6 +4,8 @@ FEATURE_SET_NUMBER = 2
 CUTOFF_VALUE_EVENTS_LUMI = 500
 FRAC_VALID, FRAC_TEST = 0.2, 0.2
 
+
+# peronal storage of patomp
 PD_GOOD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/good_data/"
 PD_BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/bad_data/"
 PD_DCS_BAD_DATA_DIRECTORY = "/afs/cern.ch/work/p/ppayoung/public/data2018/prompt_reco_2018/dcs_bad_data/"

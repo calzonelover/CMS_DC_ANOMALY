@@ -47,7 +47,7 @@ represent one histogram**
 * Located in [this directory](new_prompt_reco/)
 * LS definition
   * <span style="color:green">Good LS</span> defined in Golden JSON
-  * <span style="color:red">Bad LS</span> came from LS that marked by DC experts
+  * <span style="color:red">Bad LS</span> came from LS that marked by DC experts and [failure scenario](https://twiki.cern.ch/twiki/bin/viewauth/CMS/ML4DQM#Failure_scenarios_studies)
 * [Settings](new_prompt_reco/setting.py)
 
 

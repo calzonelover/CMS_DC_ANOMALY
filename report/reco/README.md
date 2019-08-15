@@ -110,6 +110,36 @@ It's obviously to tell that the cluster of outlier are mainly consists of malfun
 Please note that calculation of the matrix transform exclude failure scenario since it's a fake data and it might leading to a weird correlation in covariance matrix.
 
 ### Performance
-\- still waiting for the training of cutoff
+
+#### Include low statistics (Fill null with zero) and testing with only bad LS form human
+
+* Autoencoder
+  
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_Egamma_VanillaSparseContractiveVariational.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_SingleMuon_VanillaSparseContractiveVariational.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_ZeroBias_VanillaSparseContractiveVariational.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_JetHT_VanillaSparseContractiveVariational.png" width="400px" >
+</p>
+The perfance of AE for EGamma primary dataset is totally inefficient and even worse than randomly picking up which means that model even saw most of bad LS even looks better than many of good LS in the testing datasets. The rest of them is fairly acceptable but still not eought to exploit in the real system. Another interesting spot is the performance between couple of AE in SingleMuon PD.
+
+* Extended Autoencoder
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_Egamma_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
+</p>
+
+Even extended model has been combined various constrains that we known but it is still not improve any further in term of performance. Nevertheless, it has a remarkable stability especially for ContractiveVariational AE.
+
+#### Exclude low statistics (Filter LS that has low EventsPerLs with value in the [settings](../../data/new_prompt_reco/setting.py))
+
+* Autoencoder
+
+--
+* Extended Autoencoder
+
+--
 
 For the weekly report which contain the full detail of this study please checkout [this direcotry](new_data/reports/).

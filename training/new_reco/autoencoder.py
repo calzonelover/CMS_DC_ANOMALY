@@ -7,7 +7,7 @@ from sklearn.metrics import roc_curve, auc
 from sklearn.model_selection import train_test_split
 
 from data.new_prompt_reco.setting import ( FEATURE_SET_NUMBER, EXTENDED_FEATURES, FEATURES, FRAC_VALID, FRAC_TEST,
-                                            PD_GOOD_DATA_DIRECTORY, PD_BAD_DATA_DIRECTORY )
+                                            PD_GOOD_DATA_DIRECTORY, PD_BAD_DATA_DIRECTORY, PD_FAILURE_DATA_DIRECTORY )
 import data.new_prompt_reco.utility as utility
 
 from model.reco.new_autoencoder import ( VanillaAutoencoder, SparseAutoencoder,
@@ -21,14 +21,16 @@ def main(
         cutoff_eventlumi = False,
         is_dropna = True,
         is_fillna_zero = True,
-        BS = 2**16,
-        EPOCHS = 8000,
+        BS = 2**15,
+        EPOCHS = 1800,
         data_preprocessing_mode = 'minmaxscalar',
         DATA_SPLIT_TRAIN = [1.0 for i in range(10)],
     ):
     features = utility.get_full_features(selected_pd)
     df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
-    df_bad = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+    df_bad_human = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+    df_bad_failure = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_FAILURE_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+    df_bad = pd.concat([df_bad_human, df_bad_failure], ignore_index=True)
     if is_dropna:
         df_good = df_good.dropna()
         df_bad = df_bad.dropna()
