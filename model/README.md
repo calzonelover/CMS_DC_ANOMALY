@@ -140,4 +140,4 @@ The figure below is [the mother class](NN/base.py) of our AE since all the model
     <em>Main components of the AE's base class</em>
 </p>
 
-Not only the main utility function that we could inherit from mother class to have various child class but we could also combine multiple contrains as we want which has been done in the extended model that located in [this script](reco/new_autoencoder.py).
+Not only the main utility function that we could inherit from mother class to have various child class but we could also combine multiple contrains as we want which has been done in the [extended model](../report/reco/new_data/reports/22july2019.pdf) that located in [this script](reco/new_autoencoder.py).
