@@ -138,7 +138,13 @@ After you already activate the environment, we could try to run the example scri
     ```console
     (dlipy3) [yourusername@ibmminsky-1 ~]$ python example.py
     ```
-    Please note that it might takes a few hour to finish. By the way, we could see each model is running and finishing on the terminal.
+    Please note that it might takes a few hour to finish. By the way, we could see each model is running and finishing on the terminal as well.
+    
+    There log file of the training process would be divide into two parts.
+    
+    * **Loss value** over the training process between training and validation in each epoch in the directory (report/reco/logs/)
+    * **Receiver operating characteristic (ROC)** from decision values located in (report/reco/eval/)
+
 ## (Optional) Running the model in background
 There is a way to running your model nightly without opening your terminal, I'm using nohup to take care the running process since it's easy to use and lightweight.
 

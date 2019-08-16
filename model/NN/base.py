@@ -11,8 +11,15 @@ class BaseAutoencoder:
         self.summary_dir = summary_dir
         self.log_dir = log_dir
         # session and log
+        #self.graph = tf.Graph()
+        #self.sess = tf.Session(graph=self.graph)
+        self.config = tf.ConfigProto()
+        self.config.gpu_options.allow_growth = True
         self.graph = tf.Graph()
-        self.sess = tf.Session(graph=self.graph)
+        self.sess = tf.Session(graph=self.graph, config=self.config)
+    def __del__(self):
+        self.sess.close()
+        print("object {} deleted".format(self.model_name))
     # fundamental func
     def init_variables(self):
         with self.graph.as_default():

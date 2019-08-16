@@ -9,6 +9,6 @@ from training.new_reco import oneclass_svm
 
 if __name__ == "__main__":
     for selected_pd in ["ZeroBias", "JetHT", "EGamma", "SingleMuon"]:
-        autoencoder.main(selected_pd=selected_pd, cutoff_eventlumi=True)
+        autoencoder.main(selected_pd=selected_pd, BS = 2**16, EPOCHS = 2200, cutoff_eventlumi=True)
     # for selected_pd in ["ZeroBias", "JetHT", "EGamma", "SingleMuon"]:
     #     oneclass_svm.main(selected_pd=selected_pd, cutoff_eventlumi=True)

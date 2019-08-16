@@ -22,7 +22,7 @@ def main(
         is_dropna = True,
         is_fillna_zero = True,
         BS = 2**15,
-        EPOCHS = 1800,
+        EPOCHS = 1200,
         data_preprocessing_mode = 'minmaxscalar',
         DATA_SPLIT_TRAIN = [1.0 for i in range(10)],
     ):

@@ -121,7 +121,7 @@ Please note that calculation of the matrix transform exclude failure scenario si
     <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_ZeroBias_VanillaSparseContractiveVariational.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/2e15BS12000EP/performance_JetHT_VanillaSparseContractiveVariational.png" width="400px" >
 </p>
-The perfance of AE for EGamma primary dataset is totally inefficient and even worse than randomly picking up which means that model even saw most of bad LS even looks better than many of good LS in the testing datasets. The rest of them is fairly acceptable but still not eought to exploit in the real system. Another interesting spot is the performance between couple of AE in SingleMuon PD.
+The performance of AE for EGamma primary dataset is totally inefficient and even worse than randomly picking up which means that model even saw most of bad LS even looks better than many of good LS in the testing datasets. The rest of them is fairly acceptable but still not eought to exploit in the real system. Another interesting spot is the performance between couple of AE in SingleMuon PD.
 
 * Extended Autoencoder
 <p align="center">
