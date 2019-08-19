@@ -3,7 +3,7 @@ import os
 import abc
 
 class BaseAutoencoder:
-    def __init__(self, summary_dir="model/summary", save_dir="model_repo", log_dir="log_dir", model_name="model_name", save_checkpoint_time=0.1):
+    def __init__(self, summary_dir="model/summary", save_dir="model_repo", log_dir="log_dir", model_name="model_name", save_checkpoint_time=0.1, gpu_memory_growth=True):
         # base
         self.save_checkpoint_time = save_checkpoint_time
         self.save_dir = save_dir
@@ -11,12 +11,14 @@ class BaseAutoencoder:
         self.summary_dir = summary_dir
         self.log_dir = log_dir
         # session and log
-        #self.graph = tf.Graph()
-        #self.sess = tf.Session(graph=self.graph)
-        self.config = tf.ConfigProto()
-        self.config.gpu_options.allow_growth = True
-        self.graph = tf.Graph()
-        self.sess = tf.Session(graph=self.graph, config=self.config)
+        if not gpu_memory_growth:
+            self.graph = tf.Graph()
+            self.sess = tf.Session(graph=self.graph)
+        else:
+            self.config = tf.ConfigProto()
+            self.config.gpu_options.allow_growth = True
+            self.graph = tf.Graph()
+            self.sess = tf.Session(graph=self.graph, config=self.config)
     def __del__(self):
         self.sess.close()
         print("object {} deleted".format(self.model_name))

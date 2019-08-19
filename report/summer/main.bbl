@@ -1,0 +1,23 @@
+\begin{thebibliography}{xx}
+
+\harvarditem{Barney}{2016}{cms_onion}
+Barney, D.  \harvardyearleft 2016\harvardyearright , {CMS Detector Slice}.
+\newblock CMS Collection.
+\newline\harvardurl{https://cds.cern.ch/record/2120661}
+
+\harvarditem{Committee}{1997}{cms_design_report}
+Committee, C. G. L.~E.  \harvardyearleft 1997\harvardyearright , `{The CMS muon
+  project}'.
+
+\harvarditem[P~Bauer et~al.]{P~Bauer, Bawej, Behrens, Branson, Chaze, Cittolin,
+  Coarasa, Darlea, Deldicque, Dobson, Dupont, Erhan, Gigi, Glege,
+  Gomez-Ceballos, Gomez-Reino, Hartl, Hegeman, Holzner \harvardand\
+  Zejdl}{2014}{cms_daq}
+P~Bauer, G., Bawej, T., Behrens, U., Branson, J., Chaze, O., Cittolin, S.,
+  Coarasa, J., Darlea, G.-L., Deldicque, C., Dobson, M., Dupont, A., Erhan, S.,
+  Gigi, D., Glege, F., Gomez-Ceballos, G., Gomez-Reino, R., Hartl, C., Hegeman,
+  J., Holzner, A. \harvardand\ Zejdl, P.  \harvardyearleft
+  2014\harvardyearright , `Automating the cms daq', {\em Journal of Physics:
+  Conference Series} {\bf 513},~012031.
+
+\end{thebibliography}

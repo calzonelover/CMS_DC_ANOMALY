@@ -26,6 +26,7 @@ def main(
         EPOCHS = 1200,
         data_preprocessing_mode = 'minmaxscalar',
         DATA_SPLIT_TRAIN = [1.0 for i in range(10)],
+        gpu_memory_growth = True,
     ):
     features = utility.get_full_features(selected_pd)
     df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
@@ -57,7 +58,8 @@ def main(
                 input_dim = [len(features)],
                 summary_dir = "model/reco/summary",
                 model_name = "{}_model_{}_f{}_{}".format(model_name, selected_pd, FEATURE_SET_NUMBER, i),
-                batch_size = BS
+                batch_size = BS,
+                gpu_memory_growth = gpu_memory_growth,
             )
             for i in range(1,len(DATA_SPLIT_TRAIN) + 1)
         ]
@@ -183,3 +185,35 @@ def compute_ms_dist(
         f.write('total_se run lumi\n')
         for bad_totalsd, run, lumi in zip(autoencoder.get_sd(x_test_bad_tf, scalar=True), run_bad, lumi_bad):
             f.write('{} {} {}\n'.format(bad_totalsd, run, lumi))
+
+
+def error_features(
+        selected_pd="JetHT",
+        include_bad_failure = False,
+        cutoff_eventlumi = False,
+        is_dropna = True,
+        is_fillna_zero = True,
+        BS = 2**15,
+        EPOCHS = 1200,
+        data_preprocessing_mode = 'minmaxscalar',
+        DATA_SPLIT_TRAIN = [1.0 for i in range(10)],
+        gpu_memory_growth = True,
+    ):
+    features = utility.get_full_features(selected_pd)
+    df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+    if include_bad_failure:
+        df_bad_human = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+        df_bad_failure = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_FAILURE_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+        df_bad = pd.concat([df_bad_human, df_bad_failure], ignore_index=True)
+    else:
+        df_bad = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+    if is_dropna:
+        df_good = df_good.dropna()
+        df_bad = df_bad.dropna()
+    if is_fillna_zero:
+        df_good = df_good.fillna(0.0)
+        df_bad = df_bad.fillna(0.0)
+    x = df_good[features]
+    x_train_full, x_valid, x_test_good = utility.split_dataset(x, frac_test=FRAC_TEST, frac_valid=FRAC_VALID)
+    y_test = np.concatenate([np.full(x_test_good.shape[0], 0.0), np.full(df_bad[features].shape[0], 1.0)])
+    x_test = np.concatenate([x_test_good, df_bad[features].to_numpy()])

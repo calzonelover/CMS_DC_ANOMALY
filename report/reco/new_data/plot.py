@@ -55,8 +55,8 @@ def plot_roc(
 
 def evalSmooth(
         channel = "JetHT",
-        path_dat='logs/minmaxscalar/2e15BS12000EP',
-        model_list= ["SparseContractive", "SparseVariational", "ContractiveVariational", "Standard"],# ['Vanilla', 'Sparse', 'Contractive', 'Variational'],
+        path_dat='logs/minmaxscalar/2e16BS1200EP',
+        model_list= ['Vanilla', 'Sparse', 'Contractive', 'Variational'], # ["SparseContractive", "SparseVariational", "ContractiveVariational", "Standard"],
         COLOR_PALETES=['r','g','b','o'],
         datafraction_list=[1.00 for i in range(10)],
         n_bins=40
@@ -64,7 +64,7 @@ def evalSmooth(
     model_roc_auc = {model: [] for model in model_list}
     for model in model_list:
         for index, data_frac in enumerate(datafraction_list):
-            read_df = pd.read_csv(os.path.join(path_dat, '{} model {} {} {}.txt'.format(model, channel, index+1, data_frac)), sep=" ", index_col=False)
+            read_df = pd.read_csv(os.path.join(path_dat, '{}_model_{}_f{}_{} {}.txt'.format(model, channel, FEATURE_SET_NUMBER, index+1, data_frac)), sep=" ", index_col=False)
             model_roc_auc[model].append(auc(read_df['fpr'], read_df['tpr']))
     model_roc_auc_mean = { key: np.sqrt(np.mean(np.square(roc_auc))) for key, roc_auc in model_roc_auc.items() }
     model_roc_auc_rms = { key: np.std(roc_auc) for key, roc_auc in model_roc_auc.items() }
@@ -75,7 +75,7 @@ def evalSmooth(
     y_rms_bins = {model:[] for model in model_list}
     for model in model_list:
         df_model = pd.concat([
-            pd.read_csv(os.path.join(path_dat, '{} model {} {} {}.txt'.format(model, channel, index+1, dat_frac)), sep=" ", index_col=False)
+            pd.read_csv(os.path.join(path_dat, '{}_model_{}_f{}_{} {}.txt'.format(model, channel, FEATURE_SET_NUMBER, index+1, data_frac)), sep=" ", index_col=False)
             for index, dat_frac in enumerate(datafraction_list)])
         for bin_i in range(n_bins):
             df_bin_i = df_model.query('fpr > {} & fpr < {}'.format(x_chunk[bin_i], x_chunk[bin_i+1]))
@@ -104,7 +104,7 @@ def evalSmooth(
     plt.savefig(os.path.join(path_dat, 'performance_{}_{}.png').format(channel, model_list_str))
 
 def plot_decision_val_dist(
-        path_dat='logs/minmaxscalar/2e15BS12000EP',
+        path_dat='logs/minmaxscalar/2e16BS1200EP',
         channel = 'JetHT',
         model_name = 'Vanilla',
         model_number = 1,
@@ -137,5 +137,5 @@ def plot_decision_val_dist(
     # plt.show()
 
 if __name__ == "__main__":
-    for channel in ["ZeroBias", "JetHT", "EGamma", "SingleMuon"]:
-        evalSmooth(channel=channel)
+    for channel in ["ZeroBias", "JetHT", "SingleMuon"]:
+        evalSmooth(channel=channel, n_bins=50, datafraction_list=[1.00 for i in range(5)])
