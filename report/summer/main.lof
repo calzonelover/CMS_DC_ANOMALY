@@ -1,0 +1,18 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Sectional view of the CMS detector. The LHC beams travel in opposite directions along the central axis of the CMS cylinder colliding in the middle of the CMS detector. Image retrieved from http://cms.web.cern.ch/news/cms-detector-design\relax }}{2}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Onion-like crossection of CMS. Image retrieved from \cite {cms_onion}\relax }}{3}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Overview of the CMS online systems. Image retrieved from \cite {cms_daq}\relax }}{4}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Tools and Processes of DQM. Image retrieved from M. Schneider, CHEP 2018\relax }}{5}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Three possible regions of prediction\relax }}{6}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces ML certificaiton procedure, Image taken from \cite {fiori_ml_dc_florence}\relax }}{7}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces $\eta $ distribution, Image taken from DQM GUI\relax }}{8}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Gaussian distribution, retrieved from https://towardsdatascience.com/understanding-the-68-95-99-7-rule-for-a-normal-distribution-b7b7cbf760c2\relax }}{10}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Body of Vanilla AE\relax }}{11}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Body of Variational AE retrieved from https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf\relax }}{12}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

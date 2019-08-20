@@ -128,19 +128,26 @@ def main(
 
 def compute_ms_dist(
         selected_pd = "JetHT",
-        Autoencoder=VanillaAutoencoder,
-        model_name="Vanilla",
-        number_model=1,
+        Autoencoder = VanillaAutoencoder,
+        model_name = "Vanilla",
+        number_model = 1,
+        include_bad_failure = False,
+        cutoff_eventlumi = False,
         is_dropna = True,
         is_fillna_zero = True,
+        BS = 2**15,
+        data_preprocessing_mode = 'minmaxscalar',
+        gpu_memory_growth = True,
+        dir_log = 'report/reco',
     ):
-    # setting
-    data_preprocessing_mode = 'minmaxscalar'
-    BS = 2**15
-
     features = utility.get_full_features(selected_pd)
     df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY)
-    df_bad = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY)
+    if include_bad_failure:
+        df_bad_human = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+        df_bad_failure = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_FAILURE_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
+        df_bad = pd.concat([df_bad_human, df_bad_failure], ignore_index=True)
+    else:
+        df_bad = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_BAD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
     if is_dropna:
         df_good = df_good.dropna()
         df_bad = df_bad.dropna()        
@@ -172,32 +179,34 @@ def compute_ms_dist(
     autoencoder = Autoencoder(
         input_dim = [len(features)],
         summary_dir = "model/reco/summary",
-        model_name = "{} model {} {}".format(model_name, selected_pd, number_model),
-        batch_size = BS   
+        model_name =  "{}_model_{}_f{}_{}".format(model_name, selected_pd, FEATURE_SET_NUMBER, number_model),
+        batch_size = BS,
     )
     autoencoder.restore()
 
-    with open('good_totalSE_{}_{}_{}.txt'.format(model_name, selected_pd, number_model), 'w') as f:
+    with open(os.path.join(dir_log, 'good_totalSE_{}_{}_f{}_{}.txt'.format(model_name, selected_pd, FEATURE_SET_NUMBER,number_model)), 'w') as f:
         f.write('total_se run lumi\n')
         for good_totalsd, run, lumi in zip(autoencoder.get_sd(x_test_good_tf, scalar=True), run_good, lumi_good):
             f.write('{} {} {}\n'.format(good_totalsd, run, lumi))
-    with open('bad_totalSE_{}_{}_{}.txt'.format(model_name, selected_pd, number_model), 'w') as f:
+    with open(os.path.join(dir_log, 'bad_totalSE_{}_{}_f{}_{}.txt'.format(model_name, selected_pd, FEATURE_SET_NUMBER, number_model)), 'w') as f:
         f.write('total_se run lumi\n')
         for bad_totalsd, run, lumi in zip(autoencoder.get_sd(x_test_bad_tf, scalar=True), run_bad, lumi_bad):
             f.write('{} {} {}\n'.format(bad_totalsd, run, lumi))
 
 
 def error_features(
-        selected_pd="JetHT",
+        selected_pd = "JetHT",
+        Autoencoder = VanillaAutoencoder,
+        model_name = "Vanilla",
+        number_model = 1,
         include_bad_failure = False,
         cutoff_eventlumi = False,
         is_dropna = True,
         is_fillna_zero = True,
         BS = 2**15,
-        EPOCHS = 1200,
         data_preprocessing_mode = 'minmaxscalar',
-        DATA_SPLIT_TRAIN = [1.0 for i in range(10)],
         gpu_memory_growth = True,
+        dir_log = 'report/reco',
     ):
     features = utility.get_full_features(selected_pd)
     df_good = utility.read_data(selected_pd=selected_pd, pd_data_directory=PD_GOOD_DATA_DIRECTORY, cutoff_eventlumi=cutoff_eventlumi)
@@ -217,3 +226,31 @@ def error_features(
     x_train_full, x_valid, x_test_good = utility.split_dataset(x, frac_test=FRAC_TEST, frac_valid=FRAC_VALID)
     y_test = np.concatenate([np.full(x_test_good.shape[0], 0.0), np.full(df_bad[features].shape[0], 1.0)])
     x_test = np.concatenate([x_test_good, df_bad[features].to_numpy()])
+
+    x_train = x_train_full
+
+    # Data Preprocessing
+    if data_preprocessing_mode == 'standardize':
+        transformer = StandardScaler()
+    elif data_preprocessing_mode == 'minmaxscalar':
+        transformer = MinMaxScaler(feature_range=(0,1))
+    if data_preprocessing_mode == 'normalize':
+        x_test_good_tf = normalize(x_test_good, norm='l1') 
+        x_test_bad_tf = normalize(df_bad[features].to_numpy(), norm='l1')
+    else:
+        transformer.fit(x_train)
+        x_test_good_tf = transformer.transform(x_test_good)
+        x_test_bad_tf = transformer.transform(df_bad[features].to_numpy())
+    
+    autoencoder = Autoencoder(
+        input_dim = [len(features)],
+        model_name =  "{}_model_{}_f{}_{}".format(model_name, selected_pd, FEATURE_SET_NUMBER, number_model),
+        batch_size = BS,
+    )
+    autoencoder.restore()
+
+    print(np.mean(autoencoder.get_sd(x_test_good_tf), axis=0).shape)
+    print(np.mean(autoencoder.get_sd(x_test_bad_tf), axis=0).shape)
+    print(np.sum(autoencoder.get_sd(x_test_good_tf), axis=0).shape)
+    print(np.sum(autoencoder.get_sd(x_test_bad_tf), axis=0).shape)
+    print(type(autoencoder.get_sd(x_test_bad_tf)))

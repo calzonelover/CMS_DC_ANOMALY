@@ -10,7 +10,8 @@ The Compact Muon Solenoid (CMS) detector be designed for collect the collision a
 It has more resolution in the transverse direction from the equipment that has been designed to focus in transverse direction as the Figure \ref{fig:cms_structure}.
 According to \cite{cms_design_report}, The detector itself consist of different sub-detector for their own purpose where the main components are
 \begin{figure}[h!]
-    \includegraphics[width=\textwidth]{images/cms_structure.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/cms_structure.png}
     \caption{Sectional view of the CMS detector. The LHC beams travel in opposite directions along the central axis of the CMS cylinder colliding in the middle of the CMS detector. Image retrieved from http://cms.web.cern.ch/news/cms-detector-design}
     \label{fig:cms_structure}
 \end{figure}
@@ -22,7 +23,8 @@ According to \cite{cms_design_report}, The detector itself consist of different 
     \item \textbf{Muon Detectors} is one of the most important sub-detector for measuring the muon momentum and the track of them by also take the footprint tracking system into account to get more precise information which is also the most important task of CMS detector
 \end{enumerate}
 \begin{figure}[h!]
-    \includegraphics[width=\textwidth]{images/cms_slide.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/cms_slide.png}
     \caption{Onion-like crossection of CMS. Image retrieved from \cite{cms_onion}}
     \label{fig:cms_slide}
 \end{figure}
@@ -32,23 +34,28 @@ According to \cite{cms_design_report}, The detector itself consist of different 
 %     CMS-DAQ
 %%%%%%%%%%%%%%%%%%%%%%
 
-% \section{Data Acquisition (DAQ)}
+\section{Data Acquisition (DAQ)}
 
 
-% Figure \ref{fig:cms_structure} \cite{cms_daq} According to seminal research by \cite{Reference1}, lorem ipsum dolor sit amet.  However, this result was already known in the 1990s \citep{Reference2,Reference3}.  % Note the use of \cite{} and \citep{}
+According to \cite{cms_tridas_2002}, the collision rate takes around 40Mhz (100 Tbyte/s) which is impossible for the instrument to ollect all of those signal that happen at a time.
+The harvested signal that CMS detector select are determined from low level trigger where the detector frontend (electronic circuit determination) process to select an interesting signal.
+The level-1 (L1) trigger filter and produce the signal at 100 kHz (100 Gbyte/s). Then it has been send to high level trigger (HLT) where we could start to really see the interpretable physical quantities from here.
 
+\subsection{CMS Online System}
 
-% \begin{figure}[ht]
-% \includegraphics[width=15cm]{figures/figure1.png}
-% \caption{A simple figure in \LaTeX. Reproduced from http://tinyurl.com/nqtrlj5 with the permission of the copyright owner.}
-% \label{fig:graph}
-% \end{figure}
+CMS team also provide the tools for automate data acquisition as \cite{cms_daq} where the big picture has been demonstrated in Figure \ref{fig:cms_online_system}.
+Apparently, the system still need some people to double check by using various tools e.g. Web GUI and so on during the running process of beam collider in LHC from the low level system to high level system.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{images/cms_online_system.png}
+    \caption{Overview of the CMS online systems. Image retrieved from \cite{cms_daq}}
+    \label{fig:cms_online_system}
+\end{figure}
 
+\subsection{Data Granularity}
 
-% See Figure \ref{fig:graph}.
-
-
-% % \section{A Section that Contains a Table}
+We decide to divide a big chunk of data into one run and each run contain multiple lumisection which has an 23 seconds of interval due to the beam does not change much where we consider a 23 seconds of time.
+Moreover, each lumisection contain multiple events. If we consider in term of time to reconstruction, there are Express and PromptReco where data are reconstructed at nearly real-time and two days after collision.
 
 % \begin{table}[ht]
 % \center
@@ -65,12 +72,29 @@ According to \cite{cms_design_report}, The detector itself consist of different 
 % \end{table}
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%
 %     CMS-DQM
 %%%%%%%%%%%%%%%%%%%%%%
 
 \section{Data Quality Monitoring (DQM)}
 
-CMS team also provide the tools for automate data acquisition as \cite{cms_daq}. 
+In order to make sure that data quality is nearly perfectly well collected, there is another story called DQM where it's actually the subset of the run control system in the Figure \ref{fig:cms_online_system}.
+CMS DQM team provide the tool where there is online and offline shifter checking the result from beam collision real-time and 48 hours after collision orderly. Figure \ref{fig:dqm_flow} is the schematic of DQM workflow where including the tools and person who responsible for each module.
+If some sub-system went weird such as peak of the histogram drastically increase with no physical sense or some part of the detector turnoff, they will report in the log of the system in running process and calling detector experts to inspect the problem.
+In this work, we will only focus on the red box which is the offline world.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/dqm_flow.png}
+    \caption{Tools and Processes of DQM. Image retrieved from M. Schneider, CHEP 2018}
+    \label{fig:dqm_flow}
+\end{figure}
+
+Regarding the scope that we want to mimic, offline shifter and detector experts check a multiple distribution histogram to inspect and certify data quality.
+The certification is made run and lumisection granularity. The procedure to certify the data are the following list
+\begin{enumerate}
+    \item Runs tagged as bad by human (whole run)
+    \item Automatically filter by DCS bits, beam status and etc. (LS levels)
+    \item In rare cases are marked by DC experts (LS levels)
+\end{enumerate}
+Then the rest of them that pass all of those criteria are defined in Golden JSON which are all of good LS.

@@ -141,3 +141,31 @@ The figure below is [the mother class](NN/base.py) of our AE since all the model
 </p>
 
 Not only the main utility function that we could inherit from mother class to have various child class but we could also combine multiple contrains as we want which has been done in the [extended model](../report/reco/new_data/reports/22july2019.pdf) that located in [this script](reco/new_autoencoder.py).
+
+### (Optional) Additional Detail
+* **Dynamical GPU memory**
+  
+  keep in mind that when you declare the graph and execute it by a session then it will allocate the memory on the GPU as much as model could go. Sometimes it could be an overwhelming memory allocation and weird bug about GPU running out of memory would come up on your screen. However, tensorflow also provide the built in solution where it could deallocate and reallocate as much as the session growth as 
+    ```python
+        self.config = tf.ConfigProto()
+        self.config.gpu_options.allow_growth = True
+    ```
+    and do not forget to combine those configuration with your specific session
+    ```python
+        self.graph = tf.Graph()
+        self.sess = tf.Session(graph=self.graph, config=self.config)
+    ```
+    I suspect that this configuration might increase the time consuming since it has to allocate the GPU memory and deallocate it back and forth. If the static memory allocation running fine in your process, I strongly suggest to go with the static way.
+
+* **Object deletion** 
+    
+    Python backend is smart enough to know when each object are no longer used and it will release the memory by delete the object. In order to make sure that not only the memory on the local are already released but a memory on the GPU and session are also perfectly close. we want to ensure that the session which belonging to this object has been closed by overwriting the delete function as
+    ```python
+    def __del__(self):
+        self.sess.close()
+        print("object {} deleted".format(self.model_name))
+    ```
+    It happen during you executing the program without typing any delete on your script. For example, You could checkout by running some various model. If some model are no longer use, there will be a message like
+    ```bash
+    object Vanilla_model_JetHT_f2_1 deleted
+    ```

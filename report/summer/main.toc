@@ -1,0 +1,30 @@
+\contentsline {chapter}{\numberline {1}Overview}{1}
+\contentsline {chapter}{\numberline {2}Background}{2}
+\contentsline {section}{\numberline {2.1}Compact Muon Solenoid (CMS) Detector}{2}
+\contentsline {section}{\numberline {2.2}Data Acquisition (DAQ)}{3}
+\contentsline {subsection}{\numberline {2.2.1}CMS Online System}{4}
+\contentsline {subsection}{\numberline {2.2.2}Data Granularity}{4}
+\contentsline {section}{\numberline {2.3}Data Quality Monitoring (DQM)}{4}
+\contentsline {chapter}{\numberline {3}Objectives}{6}
+\contentsline {section}{\numberline {3.1}Expectation}{6}
+\contentsline {section}{\numberline {3.2}Proposal For an Alternative Approach}{7}
+\contentsline {chapter}{\numberline {4}Methodology}{8}
+\contentsline {section}{\numberline {4.1}Datasets}{8}
+\contentsline {subsubsection}{Offline (PromptReco)}{8}
+\contentsline {subsection}{\numberline {4.1.1}Histogram Representation}{8}
+\contentsline {subsection}{\numberline {4.1.2}Data Preprocessing}{9}
+\contentsline {section}{\numberline {4.2}Semi-Supervised Learning}{9}
+\contentsline {subsection}{\numberline {4.2.1}Sch\"{o}lkopf's One-Class SVM}{9}
+\contentsline {subsection}{\numberline {4.2.2}Isolation Forest}{10}
+\contentsline {subsection}{\numberline {4.2.3}Autoencoder (AE)}{10}
+\contentsline {subsubsection}{Vanilla AE}{11}
+\contentsline {subsubsection}{Sparse AE}{11}
+\contentsline {subsubsection}{Contractive AE}{12}
+\contentsline {subsubsection}{Variational AE}{12}
+\contentsline {chapter}{\numberline {5}Results and Interpretation}{14}
+\contentsline {section}{\numberline {5.1}2016 Datasets}{14}
+\contentsline {section}{\numberline {5.2}2018 Datasets}{14}
+\contentsline {chapter}{\numberline {6}Conclusions}{15}
+\contentsline {chapter}{Appendices}{17}
+\contentsline {chapter}{\numberline {A}An Appendix of Some Kind}{18}
+\contentsline {chapter}{\numberline {B}Another Appendix}{19}

@@ -5,9 +5,32 @@ Barney, D.  \harvardyearleft 2016\harvardyearright , {CMS Detector Slice}.
 \newblock CMS Collection.
 \newline\harvardurl{https://cds.cern.ch/record/2120661}
 
+\harvarditem[Cittolin et~al.]{Cittolin, Rácz \harvardand\
+  Sphicas}{2002}{cms_tridas_2002}
+Cittolin, S., Rácz, A. \harvardand\ Sphicas, P.  \harvardyearleft
+  2002\harvardyearright , {\em {CMS The TriDAS Project: Technical Design
+  Report, Volume 2: Data Acquisition and High-Level Trigger. CMS trigger and
+  data-acquisition project}}, Technical Design Report CMS, CERN, Geneva.
+\newline\harvardurl{http://cds.cern.ch/record/578006}
+
 \harvarditem{Committee}{1997}{cms_design_report}
 Committee, C. G. L.~E.  \harvardyearleft 1997\harvardyearright , `{The CMS muon
   project}'.
+
+\harvarditem{Fiori}{2019}{fiori_ml_dc_florence}
+Fiori, F.  \harvardyearleft 2019\harvardyearright , {ML Applied To Data
+  CertificationStatus and Perspective}.
+
+\harvarditem{{Kingma} \harvardand\ {Ba}}{2014}{adam}
+{Kingma}, D.~P. \harvardand\ {Ba}, J.  \harvardyearleft 2014\harvardyearright ,
+  `{Adam: A Method for Stochastic Optimization}', {\em arXiv e-prints}
+  p.~arXiv:1412.6980.
+
+\harvarditem[{Liu} et~al.]{{Liu}, {Ting} \harvardand\
+  {Zhou}}{2008}{isolation_forest}
+{Liu}, F.~T., {Ting}, K.~M. \harvardand\ {Zhou}, Z.  \harvardyearleft
+  2008\harvardyearright , Isolation forest, {\em in} `2008 Eighth IEEE
+  International Conference on Data Mining', pp.~413--422.
 
 \harvarditem[P~Bauer et~al.]{P~Bauer, Bawej, Behrens, Branson, Chaze, Cittolin,
   Coarasa, Darlea, Deldicque, Dobson, Dupont, Erhan, Gigi, Glege,
@@ -19,5 +42,14 @@ P~Bauer, G., Bawej, T., Behrens, U., Branson, J., Chaze, O., Cittolin, S.,
   J., Holzner, A. \harvardand\ Zejdl, P.  \harvardyearleft
   2014\harvardyearright , `Automating the cms daq', {\em Journal of Physics:
   Conference Series} {\bf 513},~012031.
+
+\harvarditem[Schölkopf et~al.]{Schölkopf, Williamson, Smola, Shawe-Taylor
+  \harvardand\ Platt}{1999}{oneclasssvm}
+Schölkopf, B., Williamson, R., Smola, A., Shawe-Taylor, J. \harvardand\
+  Platt, J.  \harvardyearleft 1999\harvardyearright , Support vector method for
+  novelty detection, {\em in} `Proceedings of the 12th International Conference
+  on Neural Information Processing Systems', NIPS'99, MIT Press, Cambridge, MA,
+  USA, pp.~582--588.
+\newline\harvardurl{http://dl.acm.org/citation.cfm?id=3009657.3009740}
 
 \end{thebibliography}

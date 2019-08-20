@@ -3,44 +3,46 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: agsm.bst
 Database file #1: mybibliography.bib
-You've used 3 entries,
+Warning--empty note in fiori_ml_dc_florence
+You've used 8 entries,
             2909 wiz_defined-function locations,
-            657 strings with 5336 characters,
-and the built_in function-call counts, 32046 in all, are:
-= -- 5344
-> -- 475
+            691 strings with 6309 characters,
+and the built_in function-call counts, 55518 in all, are:
+= -- 9171
+> -- 798
 < -- 0
-+ -- 2738
-- -- 154
-* -- 2933
-:= -- 6164
-add.period$ -- 4
-call.type$ -- 3
-change.case$ -- 42
-chr.to.int$ -- 3
-cite$ -- 3
-duplicate$ -- 40
-empty$ -- 79
-format.name$ -- 161
-if$ -- 5738
++ -- 4552
+- -- 252
+* -- 4933
+:= -- 10792
+add.period$ -- 9
+call.type$ -- 8
+change.case$ -- 111
+chr.to.int$ -- 8
+cite$ -- 9
+duplicate$ -- 161
+empty$ -- 262
+format.name$ -- 276
+if$ -- 10020
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 2
-newline$ -- 14
-num.names$ -- 31
-pop$ -- 11
+missing$ -- 7
+newline$ -- 31
+num.names$ -- 84
+pop$ -- 37
 preamble$ -- 1
-purify$ -- 45
+purify$ -- 120
 quote$ -- 0
-skip$ -- 37
+skip$ -- 162
 stack$ -- 0
-substring$ -- 7856
-swap$ -- 4
-text.length$ -- 42
+substring$ -- 13221
+swap$ -- 55
+text.length$ -- 112
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
-warning$ -- 0
-while$ -- 64
+type$ -- 30
+warning$ -- 1
+while$ -- 175
 width$ -- 0
-write$ -- 41
+write$ -- 115
+(There was 1 warning)
