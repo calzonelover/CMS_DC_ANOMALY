@@ -136,42 +136,7 @@ def plot_decision_val_dist(
     plt.savefig(os.path.join(path_dat, 'se_dist_{}{}f{}_{}.png'.format(model_name, model_number, FEATURE_SET_NUMBER, channel)))
     # plt.show()
 
-
-# def plot_se_dist(
-#         channel = 'JetHT',
-#         path_dat='logs/minmaxscalar/2e16BS1200EP/',
-#         model_name = 'Vanilla',
-#         model_number = 1,
-#         n_bins = 80, # 80
-#         cufoff_totse = 10.5
-#     ):
-#     df_good = pd.read_csv(os.path.join(path_dat, 'good_totalSE_{}_{}_f{}_{}.txt'.format(model_name, channel, FEATURE_SET_NUMBER, model_number)), sep=" ")
-#     df_bad = pd.read_csv(os.path.join(path_dat, 'bad_totalSE_{}_{}_f{}_{}.txt'.format(model_name, channel, FEATURE_SET_NUMBER, model_number)), sep=" ")
     
-#     good_channels = df_good['total_se']
-#     bad_channels = df_bad['total_se']
-#     se_max = max(pd.concat([good_channels, bad_channels]))
-#     se_min = min(pd.concat([good_channels, bad_channels]))
-
-#     n_bad_below_cutoff = len(list(filter(lambda x: x < cufoff_totse, bad_channels)))
-#     percent_contamination = 100.0 * (n_bad_below_cutoff/(len(good_channels)+n_bad_below_cutoff))
-#     print("n_labeled {}, n_bad_below_cutoff {}, contamination {}".format(len(good_channels), n_bad_below_cutoff, percent_contamination))
-#     plt.figure()
-
-#     # bins = se_min + ((se_max-se_min)/n_bins * np.arange(1, n_bins+1))
-#     bins = 1.1**(np.arange(-10,n_bins))
-#     plt.hist(good_channels, bins=bins, alpha=0.5, label='Labeled Good')
-#     plt.hist(bad_channels,  bins=bins, alpha=0.5, label='Labeled Bad (Human and FailureScenario)')
-#     plt.legend(loc='upper right')
-#     # plt.hist([good_channels, bad_channels], n_bins, histtype='step', stacked=True, fill=False)
-#     plt.title('Distribution of Total Error ({})'.format(model_name))
-#     plt.xlabel("Total Square Error")
-#     plt.ylabel("#")
-#     plt.yscale('log')
-#     # plt.xlim((0, 80.0))
-#     plt.xscale('log')
-#     plt.savefig('se_dist_{}{}_{}.png'.format(model_name, model_number, channel))
-#     # plt.show()
 
 if __name__ == "__main__":
     plot_decision_val_dist(
