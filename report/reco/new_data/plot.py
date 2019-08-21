@@ -108,7 +108,7 @@ def plot_decision_val_dist(
         path_dat='logs/minmaxscalar/2e16BS1200EP',
         model_name = 'Vanilla',
         model_number = 1,
-        n_bins = 80, # 80
+        n_bins = 80, # 80 500
         base_log = 1.1
         ):
     df_good = pd.read_csv(os.path.join(path_dat, 'good_totalSE_{}_{}_f{}_{}.txt'.format(model_name, channel, FEATURE_SET_NUMBER, model_number)), sep=" ")
@@ -122,21 +122,22 @@ def plot_decision_val_dist(
     fig, ax = plt.subplots()
 
     # bins = se_min + ((se_max-se_min)/n_bins * np.arange(0, n_bins+1))
+    # bins = 0.05 * np.arange(1, n_bins)
     bins = base_log**(np.arange(-10, n_bins))
-    plt.hist(good_channels, bins=bins, alpha=0.5, label='Labeled Good (Human)')
-    plt.hist(bad_channels,  bins=bins, alpha=0.5, label='Labeled Bad (Human)')
+    plt.hist(good_channels, bins=bins, alpha=0.5, label='Labeled Good')
+    plt.hist(bad_channels,  bins=bins, alpha=0.5, label='Labeled Bad (Human and DCS)')
     plt.legend(loc='upper right')
     # plt.hist([good_channels, bad_channels], n_bins, histtype='step', stacked=True, fill=False)
     plt.title('Distribution of Decision Value ({}, {} datasets)'.format(model_name, channel))
     plt.xlabel("Total Square Error")
     plt.ylabel("#")
-    plt.yscale('log')
+    # plt.yscale('log')
     # plt.xlim((0, 80.0))
     plt.xscale('log')
-    plt.savefig(os.path.join(path_dat, 'se_dist_{}{}f{}_{}.png'.format(model_name, model_number, FEATURE_SET_NUMBER, channel)))
+    plt.savefig(os.path.join(path_dat, 'se_dist_{}{}f{}_{}_unlog.png'.format(model_name, model_number, FEATURE_SET_NUMBER, channel)))
     # plt.show()
 
-    
+
 
 if __name__ == "__main__":
     plot_decision_val_dist(

@@ -19,5 +19,4 @@ def spectrum_component_weights(
         plt.title('{} largest absolute weight in {} principal component ({})'.format(n_first_component, axis,selected_pd))    
         plt.yscale('log')
         fig.autofmt_xdate()
-        plt.savefig(os.path.join(path_dat, '{}_pc{}.pdf'.format(selected_pd, axis)), bbox_inches='tight')
-
+        plt.savefig(os.path.join(path_dat, '{}_pc{}.png'.format(selected_pd, axis)), bbox_inches='tight')

@@ -51,7 +51,7 @@ For OneClass-SVM, the contamination LS that bad falling into good LS is almost e
 As can be seen in the distribution, there is no clear grey zone for this study so far.
 
 \subsection{Example of square error from reconstruction}
-Figure \ref{fig:2016_example_se} show the example of LS reconstruction which calculated from x and x' between good and bad LS.
+Figure \ref{fig:2016_example_se} show the example of LS reconstruction which calculated from $x$ and $\tilde{x}$ between good and bad LS.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{images/reco/2016/example_se.png}
@@ -78,6 +78,9 @@ You might wondering why many of bad LS seems to have a group of bad LS as you ha
 \subsection{Primary Analysis}
 For 2018 data, we dig a bit more to understand which cause the badness of bad LS by taking sub-system label into account from RR's API. There are a plenty of sub-system in CMS detector. In order to roughly understand the malfunction of sub-system, we decided to pull label only for HCAL, ECAL, TRACKER and MUON detector which are the main part of the detector.
 
+In order to roughly describe each features contribute to each principal components, we extract the element in matrix transform (equivalent to an element in each eigenvector) and take the absolute value to consider only for the magnitude and ignore the direction in the space where it directly proportional to contribution of each one.
+The spectrum of contribution will provide in the following hyperspace of each primary dataset.
+
 \begin{figure}[h!]
 \centering
     \begin{subfigure}[b]{0.49\linewidth}
@@ -88,7 +91,15 @@ For 2018 data, we dig a bit more to understand which cause the badness of bad LS
         \includegraphics[width=\linewidth]{images/reco/2018/EGamma_subsystem_label_short_range.png}
         \caption{Zoom in}
     \end{subfigure}
-\caption{Two principal component of EGamma}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/EGamma_pc1.pdf}
+        \caption{Contribution of features on PC1 \\ (explained variance ratio = 0.31)}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/EGamma_pc2.pdf}
+        \caption{Contribution of features on PC2 \\ (explained variance ratio = 0.25)}
+    \end{subfigure}
+\caption{Two principal components of EGamma}
 \label{fig:2018_EGamma_subsystem_label}
 \end{figure}
 
@@ -110,7 +121,15 @@ For 2018 data, we dig a bit more to understand which cause the badness of bad LS
         \includegraphics[width=\linewidth]{images/reco/2018/SingleMuon_subsystem_label_short_range.png}
         \caption{Zoom in}
     \end{subfigure}
-    \caption{Two principal component of Single Muon}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/SingleMuon_pc1.pdf}
+        \caption{Contribution of features on PC1 \\ (explained variance ratio = 0.37)}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/SingleMuon_pc2.pdf}
+        \caption{Contribution of features on PC2 \\ (explained variance ratio = 0.22)}
+    \end{subfigure}
+    \caption{Two principal components of Single Muon}
 \label{fig:2018_SingleMuon_subsystem_label}
 \end{figure}
 
@@ -133,7 +152,15 @@ For 2018 data, we dig a bit more to understand which cause the badness of bad LS
         \includegraphics[width=\linewidth]{images/reco/2018/ZeroBias_subsystem_label_short_range.png}
         \caption{Zoom in}
     \end{subfigure}
-    \caption{Two principal component of ZeroBias}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/ZeroBias_pc1.pdf}
+        \caption{Contribution of features on PC1 \\ (explained variance ratio = 0.89)}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/ZeroBias_pc2.pdf}
+        \caption{Contribution of features on PC2 \\ (explained variance ratio = 0.0225)}
+    \end{subfigure}
+    \caption{Two principal components of ZeroBias}
 \label{fig:2018_ZeroBias_subsystem_label}
 \end{figure}
 
@@ -155,13 +182,32 @@ For 2018 data, we dig a bit more to understand which cause the badness of bad LS
         \includegraphics[width=\linewidth]{images/reco/2018/JetHT_subsystem_label_short_range.png}
         \caption{Zoom in}
     \end{subfigure}
-    \caption{Two principal component of JetHT}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/JetHT_pc1.pdf}
+        \caption{Contribution of features on PC1 \\ (explained variance ratio = 0.45)}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/JetHT_pc2.pdf}
+        \caption{Contribution of features on PC2 \\ (explained variance ratio = 0.21)}
+    \end{subfigure}
+    \caption{Two principal components of JetHT}
 \label{fig:2018_JetHT_subsystem_label}
 \end{figure}
 
 According to Figure (\ref{fig:2018_EGamma_subsystem_label}, \ref{fig:2018_SingleMuon_subsystem_label}, \ref{fig:2018_ZeroBias_subsystem_label}, \ref{fig:2018_JetHT_subsystem_label}), It's obviously to tell that the cluster of outlier are mainly consists of malfunction from MUON and TRACKER sub-detector. Not only the outlier that has an interesting patterns but clustering in inlier is also remarkably considerable as clustering mainly from malfunction of ECAL and HCAL that located near or inside the green band.
 
 Please note that calculation of the matrix transform exclude failure scenario since it's a fake data and it might leading to a weird correlation in covariance matrix.
+The following list are the list of important features that highly correlated to the rest of them in our dataset
+\begin{itemize}
+    \item From Figure \ref{fig:2018_EGamma_subsystem_label}, qpVt in transverse direction and qSigmalEta contribute in first component.
+    Secondly, second component mostly consists of qPUEvt and qlumiEvt. Lastly, there are overlapping feature where both of them sharing the different value which are qSigmalPhi and qpVtxChi2.
+    \item Regarding Figure \ref{fig:2018_SingleMuon_subsystem_label}, qglobTkChi2 and qpVtx in perpendicular direction of the beam are dominated in first component and second component mostly consists of qPUEvt, qMuN and qMuNCh orderly.
+    The only overlapping feature in SingleMuon is qglobTkNHits.
+    \item For ZeroBias in Figure \ref{fig:2018_ZeroBias_subsystem_label}, both qgTkPt and qgTkPhi highly dominate in first component.
+    Second component has smaller correlation which the faetures are qPUEvt, qlumiEvt and qgTkN.
+    \item First component are constantly diminated to qCalJetN, qCalJetPt and qPUEvt orderly according to Figure \ref{fig:2018_JetHT_subsystem_label}.
+    Feature qpVtxChi2, qPFMetPt and qPFJetEta also fairly equally contribute to the second component. 
+\end{itemize}
 
 \subsection{Performance}
 \subsubsection{1) Include low statistics (Fill null with zero) and testing with only bad LS form human}
@@ -248,15 +294,15 @@ The distribution of decision value could be seen in Figure \ref{fig:2018_f2_se_d
 \begin{figure}[h!]
 \centering
     \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/se_dist_Vanilla1f2_SingleMuon.png}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/se_dist_Vanilla1f2_SingleMuon_unlog.png}
         \caption{SingleMuon}
     \end{subfigure}
     \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/se_dist_Variational1f2_ZeroBias.png}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/se_dist_Variational1f2_ZeroBias_unlog.png}
         \caption{ZeroBias}
     \end{subfigure}
     \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/se_dist_Variational1f2_JetHT.png}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/se_dist_Variational1f2_JetHT_unlog.png}
         \caption{JetHT}
     \end{subfigure}
     \caption{Distribution of decision value}

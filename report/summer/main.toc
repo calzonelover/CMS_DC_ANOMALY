@@ -30,8 +30,8 @@
 \contentsline {subsection}{\numberline {5.1.5}Extended Investigation}{16}
 \contentsline {section}{\numberline {5.2}2018 Datasets}{16}
 \contentsline {subsection}{\numberline {5.2.1}Primary Analysis}{16}
-\contentsline {subsection}{\numberline {5.2.2}Performance}{17}
-\contentsline {subsubsection}{1) Include low statistics (Fill null with zero) and testing with only bad LS form human}{17}
+\contentsline {subsection}{\numberline {5.2.2}Performance}{18}
+\contentsline {subsubsection}{1) Include low statistics (Fill null with zero) and testing with only bad LS form human}{18}
 \contentsline {subsubsection}{2) Exclude low statistics (Filter LS that has low EventsPerLs with value in the settings)}{19}
 \contentsline {subsubsection}{Distribution of decision value (to find the threshold)}{19}
-\contentsline {chapter}{\numberline {6}Conclusions}{26}
+\contentsline {chapter}{\numberline {6}Conclusions}{27}

@@ -73,7 +73,7 @@ With Gaussian Base Radial function (GBF) as a kernel like equation \ref{eq:gbf}
 \end{equation}
 
 \subsection{Isolation Forest}
-The idea of bagging the sample and contruct a tree are incredibly beautiful are interpreted and adapt in a way that unsupervised learning are come to the place are study by \cite{isolation_forest}.
+The idea of bagging the sample and construct a tree are incredibly beautiful are interpreted and adapt in a way that unsupervised learning are come to the place are study by \cite{isolation_forest}.
 Forest are construct by picking up subsampling ($\Psi$) and Iteratively picking up features and random value to construct the node (equivalent to step function), then Anomaly score evaluate from average depth of the instance over forest
 \begin{equation}
     s(x, \Psi) = \exp^{-<h(x)>/c(\Psi)}
@@ -101,7 +101,7 @@ In our case, we set up $\sigma=1$ and $\mu=1$
 Adam stands for \textbf{adaptive moment estimation} \cite{adam}. Basically, it's combine Momentum optimization and RMSProp to keep the residue of the gradients decaying from the previous update.
 We set up $lr = 10^{-4}$ (learning rate), $\beta_1 = 0.7$ and $\beta_2$ = 0.9.
 \vspace{0.4in}
-\par There are 4 flavours of our autoencoder that we contructed
+\par There are 4 flavours of our autoencoder that we constructed
 
 \subsubsection{Vanilla AE}
 \begin{figure}[h!]
@@ -112,9 +112,8 @@ We set up $lr = 10^{-4}$ (learning rate), $\beta_1 = 0.7$ and $\beta_2$ = 0.9.
 \end{figure}
 \begin{itemize}
     \item Concise the information into small latent space and reconstruct
-    \item Loss function is defined by
+    \item Loss function is designed by taking the square different reconstructed vector from the latent space and origin vector as equation \ref{eq:loss_vanilla}
 \end{itemize}
-The loss function is designed by taking the square different reconstructed vector from the latent space and origin vector as \ref{eq:loss_vanilla}
 \begin{equation}\label{eq:loss_vanilla}
     \mathcal{L}_{\text{tot}} \equiv \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2
 \end{equation}

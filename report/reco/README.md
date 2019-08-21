@@ -69,13 +69,18 @@ For the weekly report which contain the full detail of this study please checkou
 
 ### Primary Analysis
 For 2018 data, we dig a bit more to understand which cause the badness of bad LS by taking sub-system label into account from 
-[RR's API](https://github.com/fabioespinosa/runregistry_api_client). There are a plenty of sub-system in CMS detector. In order to roughly understand the malfunction of sub-system, we decided to pull label only for HCAL, ECAL, TRACKER and MUON detector which are the main part of the detector.
+[RR's API](https://github.com/fabioespinosa/runregistry_api_client). There are a plenty of sub-system in CMS detector. In order to roughly understand the malfunction of sub-system, we decided to pull label only for HCAL, ECAL, TRACKER and MUON detector which are the main part of the detector. In order to roughly describe each features contribute to each principal components, we extract the element in matrix transform (equivalent to an element in each eigenvector) and take the absolute value to consider only for the magnitude and ignore the direction in the space where it directly proportional to contribution of each one.
 
 * EGamma
   
 <p align="center">
     <img src="new_data/logs/minmaxscalar/LastSubmission/EGamma_subsystem_label.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/LastSubmission/EGamma_subsystem_label_short_range.png" width="400px" >
+</p>
+
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/EGamma_pc1.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/EGamma_pc2.png" width="400px" >
 </p>
 
 
@@ -87,6 +92,11 @@ For 2018 data, we dig a bit more to understand which cause the badness of bad LS
     <img src="new_data/logs/minmaxscalar/LastSubmission/SingleMuon_subsystem_label_short_range.png" width="400px" >
 </p>
 
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/SingleMuon_pc1.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/SingleMuon_pc2.png" width="400px" >
+</p>
+
 * ZeroBias
 <p align="center">
     <img src="new_data/logs/minmaxscalar/LastSubmission/ZeroBias_label_separate.png" width="400px" >
@@ -95,12 +105,22 @@ For 2018 data, we dig a bit more to understand which cause the badness of bad LS
     <img src="new_data/logs/minmaxscalar/LastSubmission/ZeroBias_subsystem_label_short_range.png" width="400px" >
 </p>
 
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/ZeroBias_pc1.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/ZeroBias_pc2.png" width="400px" >
+</p>
+
 * JetHT
 <p align="center">
     <img src="new_data/logs/minmaxscalar/LastSubmission/JetHT_label_separate.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/LastSubmission/JetHT_label_separate_short_range.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/LastSubmission/JetHT_subsystem_label.png" width="400px" >
     <img src="new_data/logs/minmaxscalar/LastSubmission/JetHT_subsystem_label_short_range.png" width="400px" >
+</p>
+
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/JetHT_pc1.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/JetHT_pc2.png" width="400px" >
 </p>
 
 It's obviously to tell that the cluster of outlier are mainly consists of malfunction from MUON and TRACKER sub-detector. Not only the outlier that has an interesting patterns but clustering in inlier is also remarkably considerable as clustering mainly from malfunction of ECAL and HCAL that located near or inside the green band.
