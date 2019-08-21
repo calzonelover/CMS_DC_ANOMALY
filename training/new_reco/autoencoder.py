@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import os
@@ -50,8 +51,8 @@ def main(
     file_auc = open('report/reco/eval/roc_auc_{}.txt'.format(selected_pd), 'w')
     file_auc.write("model_name data_fraction roc_auc\n")
     for model_name, Autoencoder in zip(
-            [ "Vanilla", "Sparse", "Contractive", "Variational"], # ["SparseContractive", "SparseVariational", "ContractiveVariational", "Standard"],
-            [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder], #[SparseContractiveAutoencoder, SparseVariationalAutoencoder, ContractiveVariationalAutoencoder, StandardAutoencoder]
+            ["SparseContractive", "SparseVariational", "ContractiveVariational", "Standard"], # [ "Vanilla", "Sparse", "Contractive", "Variational"], 
+            [SparseContractiveAutoencoder, SparseVariationalAutoencoder, ContractiveVariationalAutoencoder, StandardAutoencoder] # [ VanillaAutoencoder, SparseAutoencoder, ContractiveAutoencoder, VariationalAutoencoder], 
             ):
         model_list = [
             Autoencoder(
@@ -249,8 +250,39 @@ def error_features(
     )
     autoencoder.restore()
 
-    print(np.mean(autoencoder.get_sd(x_test_good_tf), axis=0).shape)
-    print(np.mean(autoencoder.get_sd(x_test_bad_tf), axis=0).shape)
-    print(np.sum(autoencoder.get_sd(x_test_good_tf), axis=0).shape)
-    print(np.sum(autoencoder.get_sd(x_test_bad_tf), axis=0).shape)
-    print(type(autoencoder.get_sd(x_test_bad_tf)))
+    vec_avg_sd_good = np.mean(autoencoder.get_sd(x_test_good_tf), axis=0)
+    vec_avg_sd_bad = np.mean(autoencoder.get_sd(x_test_bad_tf), axis=0)
+    vec_sum_sd_good = np.sum(autoencoder.get_sd(x_test_good_tf), axis=0)
+    vec_sum_sd_bad = np.sum(autoencoder.get_sd(x_test_bad_tf), axis=0)
+    # visualize
+    x = range(1,len(features)+1)
+
+    fig, axs = plt.subplots(2, 1, constrained_layout=True)
+    axs[0].plot(x, vec_avg_sd_good)
+    axs[0].set_title('Good LS')
+    axs[0].set_xlabel("Feature Number")
+    axs[0].set_ylabel("|x - $\~{x}|^2$")
+
+    axs[1].plot(x, vec_avg_sd_bad)
+    axs[1].set_title('Bad LS')
+    axs[1].set_xlabel("Feature Number")
+    axs[1].set_ylabel("|x - $\~{x}|^2$")
+
+    fig.suptitle("Average reconstruction error over testing sample ({}, {})".format(selected_pd, model_name))
+    plt.savefig('avg_sd_{}_{}_f{}_{}.png'.format(model_name, selected_pd, FEATURE_SET_NUMBER, number_model))
+
+    fig, axs = plt.subplots(2, 1, constrained_layout=True)
+    axs[0].plot(x, vec_sum_sd_good)
+    axs[0].set_title('Good LS')
+    axs[0].set_xlabel("Feature Number")
+    axs[0].set_ylabel("|x - $\~{x}|^2$")
+
+    axs[1].plot(x, vec_sum_sd_bad)
+    axs[1].set_title('Bad LS')
+    axs[1].set_xlabel("Feature Number")
+    axs[1].set_ylabel("|x - $\~{x}|^2$")
+
+    fig.suptitle("Sum reconstruction error over testing sample ({}, {})".format(selected_pd, model_name))
+    plt.savefig('sum_sd_{}_{}_f{}_{}.png'.format(model_name, selected_pd, FEATURE_SET_NUMBER, number_model))
+
+    print(features[20:30], '\n', features[50:58], '\n', features[61:72], '\n', features[65:75], '\n',)

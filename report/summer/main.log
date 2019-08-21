@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.27)  20 AUG 2019 12:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.27)  21 AUG 2019 14:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -191,6 +191,10 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \caption@hangindent=\dimen128
 )
 \c@ContinuedFloat=\count110
+) (/usr/local/texlive/2017/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+\c@subfigure=\count111
+\c@subtable=\count112
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
  (/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -209,18 +213,18 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -258,16 +262,16 @@ LaTeX Font Info:    ... okay on input line 27.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count111
+\scratchcounter=\count113
 \scratchdimen=\dimen129
 \scratchbox=\box28
-\nofMPsegments=\count112
-\nofMParguments=\count113
+\nofMPsegments=\count114
+\nofMParguments=\count115
 \everyMPshowfont=\toks28
-\MPscratchCnt=\count114
+\MPscratchCnt=\count116
 \MPscratchDim=\dimen130
-\MPnumerator=\count115
-\makeMPintoPDFobject=\count116
+\MPnumerator=\count117
+\makeMPintoPDFobject=\count118
 \everyMPtoPDFconversion=\toks29
 ) (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO)
@@ -294,26 +298,26 @@ Package caption Info: End \AtBeginDocument code.
  <images/CMS_logo_May2014-eps-converted-to.pdf, id=1, 395.4775pt x 395.4775pt>
 File: images/CMS_logo_May2014-eps-converted-to.pdf Graphic file (type pdf)
  <use images/CMS_logo_May2014-eps-converted-to.pdf>
-Package pdftex.def Info: images/CMS_logo_May2014-eps-converted-to.pdf used on input line 48.
+Package pdftex.def Info: images/CMS_logo_May2014-eps-converted-to.pdf used on input line 49.
 (pdftex.def)             Requested size: 85.35826pt x 85.3579pt.
-LaTeX Font Info:    Try loading font information for U+msa on input line 49.
+LaTeX Font Info:    Try loading font information for U+msa on input line 50.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 49.
+LaTeX Font Info:    Try loading font information for U+msb on input line 50.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 49.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 50.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 49.
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <6> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 49.
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 50.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <6> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 50.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 51.
  [1
 
 
@@ -439,49 +443,256 @@ Underfull \hbox (badness 10000) in paragraph at lines 157--157
 
 [12 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/variational_ae.png>]) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/sections/results_and_discussion.tex [13]
 Chapter 5.
-) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/sections/conclusion.tex [14
+<images/reco/2016/JetHT_label_2016.png, id=106, 462.528pt x 346.896pt>
+File: images/reco/2016/JetHT_label_2016.png Graphic file (type png)
+ <use images/reco/2016/JetHT_label_2016.png>
+Package pdftex.def Info: images/reco/2016/JetHT_label_2016.png used on input line 12.
+(pdftex.def)             Requested size: 264.51115pt x 198.39441pt.
+ <images/reco/2016/performance.png, id=107, 462.528pt x 346.896pt>
+File: images/reco/2016/performance.png Graphic file (type png)
+ <use images/reco/2016/performance.png>
+Package pdftex.def Info: images/reco/2016/performance.png used on input line 24.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2016/performance_ml.png, id=108, 462.528pt x 346.896pt>
+File: images/reco/2016/performance_ml.png Graphic file (type png)
+ <use images/reco/2016/performance_ml.png>
+Package pdftex.def Info: images/reco/2016/performance_ml.png used on input line 28.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ [14
 
-]
+ </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2016/JetHT_label_2016.png>] <images/reco/2016/decision_value_dist.png, id=114, 861.2175pt x 499.8675pt>
+File: images/reco/2016/decision_value_dist.png Graphic file (type png)
+ <use images/reco/2016/decision_value_dist.png>
+Package pdftex.def Info: images/reco/2016/decision_value_dist.png used on input line 42.
+(pdftex.def)             Requested size: 440.84746pt x 255.88246pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2016/example_se.png, id=115, 462.528pt x 346.896pt>
+File: images/reco/2016/example_se.png Graphic file (type png)
+ <use images/reco/2016/example_se.png>
+Package pdftex.def Info: images/reco/2016/example_se.png used on input line 57.
+(pdftex.def)             Requested size: 352.6793pt x 264.52235pt.
+ [15 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2016/performance.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2016/performance_ml.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2016/guess_visual.png, id=121, 896.34875pt x 706.64pt>
+File: images/reco/2016/guess_visual.png Graphic file (type png)
+ <use images/reco/2016/guess_visual.png>
+Package pdftex.def Info: images/reco/2016/guess_visual.png used on input line 66.
+(pdftex.def)             Requested size: 440.84746pt x 347.53973pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2018/EGamma_subsystem_label.png, id=122, 408.3255pt x 328.8285pt>
+File: images/reco/2018/EGamma_subsystem_label.png Graphic file (type png)
+ <use images/reco/2018/EGamma_subsystem_label.png>
+Package pdftex.def Info: images/reco/2018/EGamma_subsystem_label.png used on input line 84.
+(pdftex.def)             Requested size: 216.01767pt x 173.96217pt.
+ <images/reco/2018/EGamma_subsystem_label_short_range.png, id=123, 411.939pt x 328.8285pt>
+File: images/reco/2018/EGamma_subsystem_label_short_range.png Graphic file (type png)
+ <use images/reco/2018/EGamma_subsystem_label_short_range.png>
+Package pdftex.def Info: images/reco/2018/EGamma_subsystem_label_short_range.png used on input line 88.
+(pdftex.def)             Requested size: 216.01767pt x 172.43182pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2018/SingleMuon_label_separate.png, id=124, 409.7709pt x 327.3831pt>
+File: images/reco/2018/SingleMuon_label_separate.png Graphic file (type png)
+ <use images/reco/2018/SingleMuon_label_separate.png>
+Package pdftex.def Info: images/reco/2018/SingleMuon_label_separate.png used on input line 98.
+(pdftex.def)             Requested size: 216.01767pt x 172.58305pt.
+ <images/reco/2018/SingleMuon_label_separate_short_range.png, id=125, 411.939pt x 327.3831pt>
+File: images/reco/2018/SingleMuon_label_separate_short_range.png Graphic file (type png)
+ <use images/reco/2018/SingleMuon_label_separate_short_range.png>
+Package pdftex.def Info: images/reco/2018/SingleMuon_label_separate_short_range.png used on input line 102.
+(pdftex.def)             Requested size: 216.01767pt x 171.67387pt.
+ <images/reco/2018/SingleMuon_subsystem_label.png, id=126, 408.3255pt x 328.8285pt>
+File: images/reco/2018/SingleMuon_subsystem_label.png Graphic file (type png)
+ <use images/reco/2018/SingleMuon_subsystem_label.png>
+Package pdftex.def Info: images/reco/2018/SingleMuon_subsystem_label.png used on input line 106.
+(pdftex.def)             Requested size: 216.01767pt x 173.96217pt.
+ <images/reco/2018/SingleMuon_subsystem_label_short_range.png, id=127, 411.939pt x 328.8285pt>
+File: images/reco/2018/SingleMuon_subsystem_label_short_range.png Graphic file (type png)
+ <use images/reco/2018/SingleMuon_subsystem_label_short_range.png>
+Package pdftex.def Info: images/reco/2018/SingleMuon_subsystem_label_short_range.png used on input line 110.
+(pdftex.def)             Requested size: 216.01767pt x 172.43182pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2018/ZeroBias_label_separate.png, id=128, 422.0568pt x 328.8285pt>
+File: images/reco/2018/ZeroBias_label_separate.png Graphic file (type png)
+ <use images/reco/2018/ZeroBias_label_separate.png>
+Package pdftex.def Info: images/reco/2018/ZeroBias_label_separate.png used on input line 121.
+(pdftex.def)             Requested size: 216.01767pt x 168.30241pt.
+ <images/reco/2018/ZeroBias_label_separate_short_range.png, id=129, 411.939pt x 328.8285pt>
+File: images/reco/2018/ZeroBias_label_separate_short_range.png Graphic file (type png)
+ <use images/reco/2018/ZeroBias_label_separate_short_range.png>
+Package pdftex.def Info: images/reco/2018/ZeroBias_label_separate_short_range.png used on input line 125.
+(pdftex.def)             Requested size: 216.01767pt x 172.43182pt.
+ <images/reco/2018/ZeroBias_subsystem_label.png, id=130, 417.7206pt x 328.8285pt>
+File: images/reco/2018/ZeroBias_subsystem_label.png Graphic file (type png)
+ <use images/reco/2018/ZeroBias_subsystem_label.png>
+Package pdftex.def Info: images/reco/2018/ZeroBias_subsystem_label.png used on input line 129.
+(pdftex.def)             Requested size: 216.01767pt x 170.04851pt.
+ <images/reco/2018/ZeroBias_subsystem_label_short_range.png, id=131, 411.939pt x 328.8285pt>
+File: images/reco/2018/ZeroBias_subsystem_label_short_range.png Graphic file (type png)
+ <use images/reco/2018/ZeroBias_subsystem_label_short_range.png>
+Package pdftex.def Info: images/reco/2018/ZeroBias_subsystem_label_short_range.png used on input line 133.
+(pdftex.def)             Requested size: 216.01767pt x 172.43182pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2018/JetHT_label_separate.png, id=132, 408.3255pt x 328.8285pt>
+File: images/reco/2018/JetHT_label_separate.png Graphic file (type png)
+ <use images/reco/2018/JetHT_label_separate.png>
+Package pdftex.def Info: images/reco/2018/JetHT_label_separate.png used on input line 143.
+(pdftex.def)             Requested size: 216.01767pt x 173.96217pt.
+ <images/reco/2018/JetHT_label_separate_short_range.png, id=133, 411.939pt x 328.8285pt>
+File: images/reco/2018/JetHT_label_separate_short_range.png Graphic file (type png)
+ <use images/reco/2018/JetHT_label_separate_short_range.png>
+Package pdftex.def Info: images/reco/2018/JetHT_label_separate_short_range.png used on input line 147.
+(pdftex.def)             Requested size: 216.01767pt x 172.43182pt.
+ <images/reco/2018/JetHT_subsystem_label.png, id=134, 408.3255pt x 328.8285pt>
+File: images/reco/2018/JetHT_subsystem_label.png Graphic file (type png)
+ <use images/reco/2018/JetHT_subsystem_label.png>
+Package pdftex.def Info: images/reco/2018/JetHT_subsystem_label.png used on input line 151.
+(pdftex.def)             Requested size: 216.01767pt x 173.96217pt.
+ <images/reco/2018/JetHT_subsystem_label_short_range.png, id=135, 411.939pt x 328.8285pt>
+File: images/reco/2018/JetHT_subsystem_label_short_range.png Graphic file (type png)
+ <use images/reco/2018/JetHT_subsystem_label_short_range.png>
+Package pdftex.def Info: images/reco/2018/JetHT_subsystem_label_short_range.png used on input line 155.
+(pdftex.def)             Requested size: 216.01767pt x 172.43182pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[16 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2016/decision_value_dist.png>] <images/reco/2018/feature_1/performance_EGamma_VanillaSparseContractiveVariational.png, id=140, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_1/performance_EGamma_VanillaSparseContractiveVariational.png Graphic file (type png)
+ <use images/reco/2018/feature_1/performance_EGamma_VanillaSparseContractiveVariational.png>
+Package pdftex.def Info: images/reco/2018/feature_1/performance_EGamma_VanillaSparseContractiveVariational.png used on input line 175.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_1/performance_SingleMuon_VanillaSparseContractiveVariational.png, id=141, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_1/performance_SingleMuon_VanillaSparseContractiveVariational.png Graphic file (type png)
+ <use images/reco/2018/feature_1/performance_SingleMuon_VanillaSparseContractiveVariational.png>
+Package pdftex.def Info: images/reco/2018/feature_1/performance_SingleMuon_VanillaSparseContractiveVariational.png used on input line 179.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_1/performance_ZeroBias_VanillaSparseContractiveVariational.png, id=142, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_1/performance_ZeroBias_VanillaSparseContractiveVariational.png Graphic file (type png)
+ <use images/reco/2018/feature_1/performance_ZeroBias_VanillaSparseContractiveVariational.png>
+Package pdftex.def Info: images/reco/2018/feature_1/performance_ZeroBias_VanillaSparseContractiveVariational.png used on input line 183.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_1/performance_JetHT_VanillaSparseContractiveVariational.png, id=143, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_1/performance_JetHT_VanillaSparseContractiveVariational.png Graphic file (type png)
+ <use images/reco/2018/feature_1/performance_JetHT_VanillaSparseContractiveVariational.png>
+Package pdftex.def Info: images/reco/2018/feature_1/performance_JetHT_VanillaSparseContractiveVariational.png used on input line 187.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2018/feature_1/performance_EGamma_SparseContractiveSparseVariationalContractiveVariationalStandard.png, id=144, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_1/performance_EGamma_SparseContractiveSparseVariationalContractiveVariationalStandard.png Graphic file (type png)
+ <use images/reco/2018/feature_1/performance_EGamma_SparseContractiveSparseVariationalContractiveVariationalStandard.png>
+Package pdftex.def Info: images/reco/2018/feature_1/performance_EGamma_SparseContractiveSparseVariationalContractiveVariationalStandard.png used on input line 199.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_1/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png, id=145, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_1/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png Graphic file (type png)
+ <use images/reco/2018/feature_1/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png>
+Package pdftex.def Info: images/reco/2018/feature_1/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png used on input line 203.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_1/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png, id=146, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_1/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png Graphic file (type png)
+ <use images/reco/2018/feature_1/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png>
+Package pdftex.def Info: images/reco/2018/feature_1/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png used on input line 207.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_1/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png, id=147, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_1/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png Graphic file (type png)
+ <use images/reco/2018/feature_1/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png>
+Package pdftex.def Info: images/reco/2018/feature_1/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png used on input line 211.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2018/feature_2/performance_SingleMuon_VanillaSparseContractiveVariational.png, id=148, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/performance_SingleMuon_VanillaSparseContractiveVariational.png Graphic file (type png)
+ <use images/reco/2018/feature_2/performance_SingleMuon_VanillaSparseContractiveVariational.png>
+Package pdftex.def Info: images/reco/2018/feature_2/performance_SingleMuon_VanillaSparseContractiveVariational.png used on input line 226.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_2/performance_ZeroBias_VanillaSparseContractiveVariational.png, id=149, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/performance_ZeroBias_VanillaSparseContractiveVariational.png Graphic file (type png)
+ <use images/reco/2018/feature_2/performance_ZeroBias_VanillaSparseContractiveVariational.png>
+Package pdftex.def Info: images/reco/2018/feature_2/performance_ZeroBias_VanillaSparseContractiveVariational.png used on input line 230.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_2/performance_JetHT_VanillaSparseContractiveVariational.png, id=150, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/performance_JetHT_VanillaSparseContractiveVariational.png Graphic file (type png)
+ <use images/reco/2018/feature_2/performance_JetHT_VanillaSparseContractiveVariational.png>
+Package pdftex.def Info: images/reco/2018/feature_2/performance_JetHT_VanillaSparseContractiveVariational.png used on input line 234.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ [17 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2016/example_se.png>]
+
+LaTeX Warning: Text page 18 contains only floats.
+
+[18 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2016/guess_visual.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/EGamma_subsystem_label.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/EGamma_subsystem_label_short_range.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2018/feature_2/se_dist_Vanilla1f2_SingleMuon.png, id=161, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/se_dist_Vanilla1f2_SingleMuon.png Graphic file (type png)
+ <use images/reco/2018/feature_2/se_dist_Vanilla1f2_SingleMuon.png>
+Package pdftex.def Info: images/reco/2018/feature_2/se_dist_Vanilla1f2_SingleMuon.png used on input line 250.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_2/se_dist_Variational1f2_ZeroBias.png, id=162, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/se_dist_Variational1f2_ZeroBias.png Graphic file (type png)
+ <use images/reco/2018/feature_2/se_dist_Variational1f2_ZeroBias.png>
+Package pdftex.def Info: images/reco/2018/feature_2/se_dist_Variational1f2_ZeroBias.png used on input line 254.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_2/se_dist_Variational1f2_JetHT.png, id=163, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/se_dist_Variational1f2_JetHT.png Graphic file (type png)
+ <use images/reco/2018/feature_2/se_dist_Variational1f2_JetHT.png>
+Package pdftex.def Info: images/reco/2018/feature_2/se_dist_Variational1f2_JetHT.png used on input line 258.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/sections/conclusion.tex [19 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/SingleMuon_label_separate.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/SingleMuon_label_separate_short_range.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/SingleMuon_subsystem_label.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/SingleMuon_subsystem_label_short_range.png>] [20 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/ZeroBias_label_separate.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/ZeroBias_label_separate_short_range.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/ZeroBias_subsystem_label.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/ZeroBias_subsystem_label_short_range.png>] [21 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/JetHT_label_separate.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/JetHT_label_separate_short_range.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/JetHT_subsystem_label.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/JetHT_subsystem_label_short_range.png>] [22 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_EGamma_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_SingleMuon_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_ZeroBias_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_JetHT_VanillaSparseContractiveVariational.png>] [23 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_EGamma_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png>] [24 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_SingleMuon_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_ZeroBias_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_JetHT_VanillaSparseContractiveVariational.png>] [25 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/se_dist_Vanilla1f2_SingleMuon.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/se_dist_Variational1f2_ZeroBias.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/se_dist_Variational1f2_JetHT.png>]
 Chapter 6.
-) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.bbl [15
+) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.bbl [26
 
 ]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¡ in font cmr10!
 Missing character: There is no Ì in font cmr10!
 Missing character: There is no ˆ in font cmr10!
-) [16
-
-] [17
-
-
-] (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/appendices/appendixA.tex
-Appendix A.
-) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/appendices/appendixB.tex [18
-
-]
-Appendix B.
 )
 
-Package caption Warning: Unused \captionsetup[table] on input line 30.
+Package caption Warning: Unused \captionsetup[table] on input line 31.
 See the caption package documentation for explanation.
 
-[19
+[27
 
 ] (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.aux) ) 
 Here is how much of TeX's memory you used:
- 5382 strings out of 492995
- 78981 string characters out of 6132703
- 250556 words of memory out of 5000000
- 8794 multiletter control sequences out of 15000+600000
+ 5614 strings out of 492995
+ 90503 string characters out of 6132703
+ 258989 words of memory out of 5000000
+ 8997 multiletter control sequences out of 15000+600000
  19376 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,8n,42p,511b,409s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,9n,42p,780b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.pdf (24 pages, 6411631 bytes).
+Output written on /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.pdf (32 pages, 8529397 bytes).
 PDF statistics:
- 183 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
+ 277 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 226 words of extra memory for PDF output out of 10000 (max. 10000000)
 

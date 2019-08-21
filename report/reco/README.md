@@ -32,8 +32,6 @@ The story behind the performance figure is genuinely extracted from the distribu
 
 <p align="center">
     <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/decision_value_dist.png" width="700px" >
-    <br>
-    <em>Various AE</em>
 </p>
 
 For Vanilla AE, the contamination of bad LS falling into good LS is around 1% over the good LS below the cutoff and there are only countable of good LS falling into bad LS which might be ignorable.
@@ -47,7 +45,7 @@ Here are the example of LS reconstruction which calculated from x and x' between
 <p align="center">
     <img src="Old_Data/logs/ReducedFeatures/minmaxscalar/BS256_EP1200_noshuffle/example_se.png" width="500px" >
     <br>
-    <em>Reconstruction error from Vanilla AE</em>
+    <em>Colorize reconstruction error from Vanilla AE</em>
 </p>
 
 ### Extended Investigation
@@ -111,7 +109,10 @@ Please note that calculation of the matrix transform exclude failure scenario si
 
 ### Performance
 
-#### Include low statistics (Fill null with zero) and testing with only bad LS form human
+#### 1) Include low statistics (Fill null with zero) and testing with only bad LS form human
+
+Training with [feature set 1](../../data/new_prompt_reco/features.py)
+
 
 * Autoencoder
   
@@ -133,13 +134,48 @@ The performance of AE for EGamma primary dataset is totally inefficient and even
 
 Even extended model has been combined various constrains that we known but it is still not improve any further in term of performance. Nevertheless, it has a remarkable stability especially for ContractiveVariational AE.
 
-#### Exclude low statistics (Filter LS that has low EventsPerLs with value in the [settings](../../data/new_prompt_reco/setting.py))
+#### 2) Exclude low statistics and include bad LS from Failure Scenario for testing (Filter LS that has low EventsPerLs with value in the [settings](../../data/new_prompt_reco/setting.py))
+
+Training with [feature set 2](../../data/new_prompt_reco/features_2.py)
 
 * Autoencoder
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/performance_SingleMuon_VanillaSparseContractiveVariational.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/performance_ZeroBias_VanillaSparseContractiveVariational.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/performance_JetHT_VanillaSparseContractiveVariational.png" width="400px" >
+</p>
 
---
 * Extended Autoencoder
 
---
+* Reconstruction Error
+  * EGamma
+
+  * SingleMuon
+    <p align="center">
+        <img src="new_data/logs/minmaxscalar/2e16BS1200EP/avg_sd_Vanilla_SingleMuon_f2_1.png" width="400px" >
+        <img src="new_data/logs/minmaxscalar/2e16BS1200EP/sum_sd_Vanilla_SingleMuon_f2_1.png" width="400px" >
+    </p>
+
+  * ZeroBias
+    <p align="center">
+        <img src="new_data/logs/minmaxscalar/2e16BS1200EP/avg_sd_Variational_ZeroBias_f2_1.png" width="400px" >
+        <img src="new_data/logs/minmaxscalar/2e16BS1200EP/sum_sd_Variational_ZeroBias_f2_1.png" width="400px" >
+    </p>
+    The residue in feature number 20 to 30 is qpVtxY. There are two huddle in bad LS where it mainly consists of qgTkPt, qgTkEta, and qgTkPhi. The clump in good LS around 70 to 80 mostly are qgTkPhi and qgTkN.
+
+  * JetHT
+    <p align="center">
+        <img src="new_data/logs/minmaxscalar/2e16BS1200EP/avg_sd_Variational_JetHT_f2_1.png" width="400px" >
+        <img src="new_data/logs/minmaxscalar/2e16BS1200EP/sum_sd_Variational_JetHT_f2_1.png" width="400px" >
+    </p>
+    The features that contains a very first peak in bad LS is qpVtxChi2. Secondly, around feature number 80 to 90 are qPFMetPt and qPFMetPhi. Lastly there are last two chunks of features (~120-127 and ~130-145) that behave like a noisy for both good and bad LS. Highly correlated features that show a similar features (~15-35) are qpVtxX, qpVtxY and qpVtxZ.
+
+### Distribution of decision value (to find the threshold)
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/se_dist_Vanilla1f2_SingleMuon.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/se_dist_Variational1f2_ZeroBias.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/se_dist_Variational1f2_JetHT.png" width="400px" >
+</p>
+
 
 For the weekly report which contain the full detail of this study please checkout [this direcotry](new_data/reports/).

@@ -1,3 +1,9 @@
+# Folder Description
+Each directory contain different interested data
+* **[express](express/)** is the occupancy map
+* **[prompt_reco](prompt_reco/)** contain PromptReco data from 2016 (only JetHT)
+* **[new_prompt_reco](new_prompt_reco/)** consists of PromptReco data from 2018 (JetHT, EGamma, ZeroBias and SingleMuon)
+
 # Offline (PromptReco)
 * pp collisions (Separately study 2016 and 2018 data)
 * 4 different primary datasets: ZeroBias, JetHT, EGamma, SingleMuon

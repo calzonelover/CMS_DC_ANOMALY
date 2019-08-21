@@ -155,17 +155,17 @@ Not only the main utility function that we could inherit from mother class to ha
         self.graph = tf.Graph()
         self.sess = tf.Session(graph=self.graph, config=self.config)
     ```
-    I suspect that this configuration might increase the time consuming since it has to allocate the GPU memory and deallocate it back and forth. If the static memory allocation running fine in your process, I strongly suggest to go with the static way.
+    I suspect that this configuration might increase time consumption since it has to allocate the GPU memory and deallocate it back and forth. If the static memory allocation running fine in your process, I strongly suggest to go with the static way.
 
 * **Object deletion** 
     
-    Python backend is smart enough to know when each object are no longer used and it will release the memory by delete the object. In order to make sure that not only the memory on the local are already released but a memory on the GPU and session are also perfectly close. we want to ensure that the session which belonging to this object has been closed by overwriting the delete function as
+    Python backend is smart enough to know when each object are no longer used and it will release the memory by delete the object. In order to make sure that not only the memory on local are already released but a memory on the GPU be free and session are also perfectly close. We want to ensure that the session which belonging to this object has been closed by overriding a delete function as
     ```python
     def __del__(self):
         self.sess.close()
         print("object {} deleted".format(self.model_name))
     ```
-    It happen during you executing the program without typing any delete on your script. For example, You could checkout by running some various model. If some model are no longer use, there will be a message like
+    It happen during the time when you are executing the program without typing any delete on your script. For more explicit example, You could checkout by running some various model. If some model are no longer use, there will be a message appears like
     ```bash
     object Vanilla_model_JetHT_f2_1 deleted
     ```

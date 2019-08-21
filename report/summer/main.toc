@@ -23,8 +23,15 @@
 \contentsline {subsubsection}{Variational AE}{12}
 \contentsline {chapter}{\numberline {5}Results and Interpretation}{14}
 \contentsline {section}{\numberline {5.1}2016 Datasets}{14}
-\contentsline {section}{\numberline {5.2}2018 Datasets}{14}
-\contentsline {chapter}{\numberline {6}Conclusions}{15}
-\contentsline {chapter}{Appendices}{17}
-\contentsline {chapter}{\numberline {A}An Appendix of Some Kind}{18}
-\contentsline {chapter}{\numberline {B}Another Appendix}{19}
+\contentsline {subsection}{\numberline {5.1.1}Primary Analysis}{14}
+\contentsline {subsection}{\numberline {5.1.2}Performance}{15}
+\contentsline {subsection}{\numberline {5.1.3}Distribution of decision value (to find the threshold)}{15}
+\contentsline {subsection}{\numberline {5.1.4}Example of square error from reconstruction}{16}
+\contentsline {subsection}{\numberline {5.1.5}Extended Investigation}{16}
+\contentsline {section}{\numberline {5.2}2018 Datasets}{16}
+\contentsline {subsection}{\numberline {5.2.1}Primary Analysis}{16}
+\contentsline {subsection}{\numberline {5.2.2}Performance}{17}
+\contentsline {subsubsection}{1) Include low statistics (Fill null with zero) and testing with only bad LS form human}{17}
+\contentsline {subsubsection}{2) Exclude low statistics (Filter LS that has low EventsPerLs with value in the settings)}{19}
+\contentsline {subsubsection}{Distribution of decision value (to find the threshold)}{19}
+\contentsline {chapter}{\numberline {6}Conclusions}{26}
