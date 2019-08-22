@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex main"] 1566485257 "main.aux" "main.bbl" "main" 1566485793
+["bibtex main"] 1566485257 "main.aux" "main.bbl" "main" 1566485905
   "/usr/local/texlive/2017/texmf-dist/bibtex/bst/harvard/agsm.bst" 1480098435 25549 e3d0f1ab4ae55e777f7352db30e2c6f7 ""
-  "main.aux" 1566485792 10319 b714ad6ac2876d5867e4b03ccd4113bb ""
+  "main.aux" 1566485904 10319 b714ad6ac2876d5867e4b03ccd4113bb ""
   "mybibliography.bib" 1566297498 6978 3df322bece2ac767e9d52688ddfcfdb8 ""
   (generated)
-  "main.blg"
   "main.bbl"
-["pdflatex"] 1566485773 "/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.tex" "/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.pdf" "main" 1566485793
-  "/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.aux" 1566485792 10319 b714ad6ac2876d5867e4b03ccd4113bb ""
+  "main.blg"
+["pdflatex"] 1566485893 "/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.tex" "/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.pdf" "main" 1566485905
+  "/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.aux" 1566485904 10319 b714ad6ac2876d5867e4b03ccd4113bb ""
   "/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.tex" 1566476536 4193 b3662e591265bfc4e85292438f44e948 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
@@ -184,11 +184,11 @@
   "images/reco/2018/feature_2/sum_sd_Variational_ZeroBias_f2_1.png" 1566376678 51743 eb7d665319253eca431e43b7d5ac26f1 ""
   "images/vanilla_ae.png" 1563882310 102827 7c0856e476b7af3b48c2124f0eed20e8 ""
   "images/variational_ae.png" 1563883518 133678 85d42c655621e3988f7d5545fdce0761 ""
-  "main.aux" 1566485792 10319 b714ad6ac2876d5867e4b03ccd4113bb ""
+  "main.aux" 1566485904 10319 b714ad6ac2876d5867e4b03ccd4113bb ""
   "main.bbl" 1566485257 2680 decd14abedb64a2dac4fc7513ba62bbf "bibtex main"
-  "main.lof" 1566485792 3579 cfbac30c170939af388b46ba71d93e8f ""
+  "main.lof" 1566485904 3579 cfbac30c170939af388b46ba71d93e8f ""
   "main.tex" 1566476536 4193 b3662e591265bfc4e85292438f44e948 ""
-  "main.toc" 1566485792 2622 9899e7f2f1013ab388cc42848fe7a205 ""
+  "main.toc" 1566485904 2622 9899e7f2f1013ab388cc42848fe7a205 ""
   "sections/abstract.tex" 1566477567 1199 d7aacb35f6785421a5c8837ce6080c72 ""
   "sections/acknowledgement.tex" 1566465655 979 bf24029b735936e3e69165b58ec37983 ""
   "sections/background.tex" 1566479957 6559 ae7941af913c3c1d4cae7658dbc0360c ""
@@ -196,12 +196,12 @@
   "sections/methodology.tex" 1566482514 9303 799b4380742dbd727eb5ec149408a08a ""
   "sections/objectives.tex" 1566482090 2335 e3a8b450bce37aad45be3e8845dee03b ""
   "sections/overview.tex" 1566478129 1807 7104c114af4f097c48a7a9983579ccaf ""
-  "sections/results_and_discussion.tex" 1566485772 22131 f51617b39f505ab7f8b961e45d99ce50 ""
+  "sections/results_and_discussion.tex" 1566485892 22131 f51617b39f505ab7f8b961e45d99ce50 ""
   (generated)
-  "main.toc"
-  "main.pdf"
+  "main.log"
+  "/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.pdf"
   "/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.log"
   "main.aux"
+  "main.toc"
   "main.lof"
-  "/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.pdf"
-  "main.log"
+  "main.pdf"
