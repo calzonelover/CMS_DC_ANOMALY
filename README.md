@@ -164,6 +164,7 @@ Checking the running process by execute the following command
   * **Marcel Andre Schneider**
   * Francesco Fiori
   * Kaori Maeshima
+  * Javier Fernandez
   * Adrian Alan Pol
   * Countless CMS DQM people :)
 * GPU resources from IBM in collaboration with CERN Openlab
