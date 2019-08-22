@@ -185,21 +185,21 @@ We also perform an extended autoencoder for testing with this case, the above fi
         <img src="new_data/logs/minmaxscalar/2e16BS1200EP/avg_sd_Vanilla_SingleMuon_f2_1.png" width="400px" >
         <img src="new_data/logs/minmaxscalar/2e16BS1200EP/sum_sd_Vanilla_SingleMuon_f2_1.png" width="400px" >
     </p>
-    The peak around feature 50 in good LS are qglobTkN. Secondly the couple clump around feature 80 is qglobTkChi2. The next pile is qglobTkNHits as well as last forky shape in around feature hundred domanated by qMuNCh. 
+    The peak around feature 50 in good LS is qglobTkN. Secondly, the couple clump around feature 80 is qglobTkChi2. The next pile is qglobTkNHits as well as last forky shape in around feature hundred dominated by qMuNCh. 
 
   * ZeroBias
     <p align="center">
         <img src="new_data/logs/minmaxscalar/2e16BS1200EP/avg_sd_Variational_ZeroBias_f2_1.png" width="400px" >
         <img src="new_data/logs/minmaxscalar/2e16BS1200EP/sum_sd_Variational_ZeroBias_f2_1.png" width="400px" >
     </p>
-    The residue in feature number 20 to 30 is qpVtxY. There are two huddle in bad LS where it mainly consists of qgTkPt, qgTkEta, and qgTkPhi. The clump in good LS around 70 to 80 mostly are qgTkPhi and qgTkN.
+    The residue in feature number 20 to 30 is qpVtxY. There are two huddles in bad LS where it mainly consists of qgTkPt, qgTkEta, and qgTkPhi. The clump in good LS around 70 to 80 mostly is qgTkPhi and qgTkN.
 
   * JetHT
     <p align="center">
         <img src="new_data/logs/minmaxscalar/2e16BS1200EP/avg_sd_Variational_JetHT_f2_1.png" width="400px" >
         <img src="new_data/logs/minmaxscalar/2e16BS1200EP/sum_sd_Variational_JetHT_f2_1.png" width="400px" >
     </p>
-    The features that contains a very first peak in bad LS is qpVtxChi2. Secondly, around feature number 80 to 90 are qPFMetPt and qPFMetPhi. Lastly there are last two chunks of features (~120-127 and ~130-145) that behave like a noisy for both good and bad LS. Highly correlated features that show a similar features (~15-35) are qpVtxX, qpVtxY and qpVtxZ.
+    The features that contain a very first peak in bad LS is qpVtxChi2. Secondly, around feature number 80 to 90 are qPFMetPt and qPFMetPhi. Lastly, there are the last two chunks of features (~120-127 and ~130-145) that behave like a noisy for both good and bad LS. Highly correlated features that show similar features (~15-35) are qpVtxX, qpVtxY, and qpVtxZ.
 
 ### Distribution of decision value (to find the threshold)
 <p align="center">
