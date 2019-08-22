@@ -56,7 +56,7 @@ def plot_roc(
 def evalSmooth(
         channel = "JetHT",
         path_dat='logs/minmaxscalar/2e16BS1200EP',
-        model_list= ['Vanilla', 'Sparse', 'Contractive', 'Variational'], # ["SparseContractive", "SparseVariational", "ContractiveVariational", "Standard"],
+        model_list =  ['Vanilla', 'Sparse', 'Contractive', 'Variational'], # ["SparseContractive", "SparseVariational", "ContractiveVariational", "Standard"],
         COLOR_PALETES=['r','g','b','o'],
         datafraction_list=[1.00 for i in range(10)],
         n_bins=40
@@ -140,17 +140,17 @@ def plot_decision_val_dist(
 
 
 if __name__ == "__main__":
-    plot_decision_val_dist(
-        channel = 'SingleMuon',
-        model_name = 'Vanilla',
-    )
-    plot_decision_val_dist(
-        channel = 'JetHT',
-        model_name = 'Variational',
-    )
-    plot_decision_val_dist(
-        channel = 'ZeroBias',
-        model_name = 'Variational',
-    )
-    # for channel in ["ZeroBias", "JetHT", "SingleMuon"]:
-    #     evalSmooth(channel=channel, n_bins=50, datafraction_list=[1.00 for i in range(5)])
+    # plot_decision_val_dist(
+    #     channel = 'SingleMuon',
+    #     model_name = 'Vanilla',
+    # )
+    # plot_decision_val_dist(
+    #     channel = 'JetHT',
+    #     model_name = 'Variational',
+    # )
+    # plot_decision_val_dist(
+    #     channel = 'ZeroBias',
+    #     model_name = 'Variational',
+    # )
+    for channel in ["ZeroBias", "JetHT", "SingleMuon"]:
+        evalSmooth(channel=channel, n_bins=50, datafraction_list=[1.00 for i in range(5)])

@@ -111,7 +111,7 @@ We set up $lr = 10^{-4}$ (learning rate), $\beta_1 = 0.7$ and $\beta_2$ = 0.9.
     \label{fig:vanilla_ae}
 \end{figure}
 \begin{itemize}
-    \item Concise the information into small latent space and reconstruct
+    \item Concise the information into small latent space and reconstruct the vector $\tilde{x}$ from latent space as in the Figure \ref{fig:vanilla_ae}
     \item Loss function is designed by taking the square different reconstructed vector from the latent space and origin vector as equation \ref{eq:loss_vanilla}
 \end{itemize}
 \begin{equation}\label{eq:loss_vanilla}
@@ -131,6 +131,12 @@ We set up $lr = 10^{-4}$ (learning rate), $\beta_1 = 0.7$ and $\beta_2$ = 0.9.
 
 \subsubsection{Contractive AE}
 \begin{itemize}
+    \item Tweak by \textcolor[RGB]{0,128,0}{Jacobi Matrix (Prevent variation in dataset)}
+    \item Loss function
+    \begin{equation}
+        \mathcal{L}_{\text{tot}} \equiv \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \textcolor[RGB]{0,128,0}{\lambda_{\text{c}}||J_h(x)||^2}
+    \end{equation}
+    \item where $\lambda_{\text{c}} = 10^{-5}$
     \item Definition
     \begin{equation}
         \textcolor[RGB]{0,128,0}{||J_h(x)||^2 \equiv \frac{1}{N}\sum_{ij}\left(\frac{\partial h_j}{\partial x_i}\right)^2}
@@ -158,13 +164,31 @@ We set up $lr = 10^{-4}$ (learning rate), $\beta_1 = 0.7$ and $\beta_2$ = 0.9.
 \end{figure}
 
 \begin{itemize}
-    \item Random \say{new sampling} in latent space by gaussian random generator
+    \item Random \say{new sampling} in latent space by gaussian random generator as demonstrated in Figure \ref{fig:variational_ae}
     \begin{equation}
         \mathcal{Z} \equiv \mathcal{N}(\mu_i, \sigma_i)
     \end{equation}
     \item Tweak by \textcolor[RGB]{148,0,211}{reduce discontinuity in latent space}
     \item Loss function
     \begin{equation}
-        \mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \frac{1}{2N}\sum_i^N\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)
+        \mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \textcolor[RGB]{148,0,211}{\mathcal{D}_{\text{KL}}(p|q)}
     \end{equation}
 \end{itemize}
+
+
+\begin{theorem}
+    How much information is loss after represent data with function could be measured by Kullback-Leibler Divergence
+    \begin{equation}
+        \mathcal{D}_{\text{KL}} \equiv < \log p - \log q >
+    \end{equation}
+    Where $p$ is observed value and $q$ is approximation function \\
+    Since our $q$ is Gaussian function, then D-KL term would looks like
+    \begin{equation}
+        \mathcal{D}_{\text{KL}, i} = \frac{1}{2}\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)
+    \end{equation}
+\end{theorem}
+
+Consequently, loss function of variational autoencoder could be written in the closed form as Equation \ref{eq:varia_ae_close_form}
+\begin{equation}\label{eq:varia_ae_close_form}
+    \mathcal{L}_{\text{tot}} = \frac{1}{N}\sum_i^N |x_i-\tilde{x}_i|^2 + \textcolor[RGB]{148,0,211}{\frac{1}{2N}\sum_i^N\sum_k^{n_{\text{latent}}}(\mu_{ik}^2 +\sigma_{ik}^2 - 2\log\sigma_{ik} - 1)}
+\end{equation}

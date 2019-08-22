@@ -167,6 +167,16 @@ Training with [feature set 2](../../data/new_prompt_reco/features_2.py)
 
 * Extended Autoencoder
 
+<p align="center">
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png" width="400px" >
+</p>
+
+We also perform an extended autoencoder for testing with this case, the above figure has shown the stability and smoothness of the threshold as we have seen in the previous feature selection.
+
+
+
 * Reconstruction Error
   * EGamma
 
@@ -192,9 +202,9 @@ Training with [feature set 2](../../data/new_prompt_reco/features_2.py)
 
 ### Distribution of decision value (to find the threshold)
 <p align="center">
-    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/se_dist_Vanilla1f2_SingleMuon.png" width="400px" >
-    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/se_dist_Variational1f2_ZeroBias.png" width="400px" >
-    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/se_dist_Variational1f2_JetHT.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/se_dist_Vanilla1f2_SingleMuon_unlog.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/se_dist_Variational1f2_ZeroBias_unlog.png" width="400px" >
+    <img src="new_data/logs/minmaxscalar/2e16BS1200EP/se_dist_Variational1f2_JetHT_unlog.png" width="400px" >
 </p>
 
 

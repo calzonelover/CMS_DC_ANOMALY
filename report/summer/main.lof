@@ -11,7 +11,7 @@
 \contentsline {figure}{\numberline {4.1}{\ignorespaces $\eta $ distribution, Image taken from DQM GUI\relax }}{8}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Gaussian distribution, retrieved from https://towardsdatascience.com/understanding-the-68-95-99-7-rule-for-a-normal-distribution-b7b7cbf760c2\relax }}{10}
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Body of Vanilla AE\relax }}{11}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Body of Variational AE retrieved from https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf\relax }}{12}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Body of Variational AE retrieved from https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf\relax }}{13}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Principal component with the labeled color from the system\relax }}{14}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Comparative visualization of model performance\relax }}{15}
@@ -25,5 +25,6 @@
 \contentsline {figure}{\numberline {5.10}{\ignorespaces Model performance for feature set 1 with 2018 data\relax }}{23}
 \contentsline {figure}{\numberline {5.11}{\ignorespaces Extended model performance for feature set 1 with 2018 data\relax }}{24}
 \contentsline {figure}{\numberline {5.12}{\ignorespaces Model performance for feature set 2 with 2018 data\relax }}{25}
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Distribution of decision value\relax }}{26}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Extended model performance for feature set 2 with 2018 data\relax }}{26}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Distribution of decision value\relax }}{27}
 \addvspace {10\p@ }

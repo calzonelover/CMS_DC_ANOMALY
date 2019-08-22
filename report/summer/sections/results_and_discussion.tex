@@ -264,7 +264,7 @@ Figure \ref{fig:2018_f1_exteded_ae_performance} has demonstrated that even exten
 
 \subsubsection{2) Exclude low statistics (Filter LS that has low EventsPerLs with value in the settings)}
 Train with feature set 1 and the result has shown in Figure \ref{fig:2018_f2_ae_performance}.
-
+We also perform an extended autoencoder for testing with this case, Figure \ref{fig:2018_f2_extended_ae_performance} has shown the stability and smoothness of the threshold as we have seen in Figure \ref{fig:2018_f1_exteded_ae_performance}.
 
 \begin{figure}[h!]
 \centering
@@ -286,6 +286,28 @@ Train with feature set 1 and the result has shown in Figure \ref{fig:2018_f2_ae_
     % \end{subfigure}
     \caption{Model performance for feature set 2 with 2018 data}
 \label{fig:2018_f2_ae_performance}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png}
+        \caption{Full range}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png}
+        \caption{Zoom in}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{images/reco/2018/feature_2/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png}
+        \caption{Full range}
+    \end{subfigure}
+    % \begin{subfigure}[b]{0.49\linewidth}
+    %     \includegraphics[width=\linewidth]{images/reco/2018/feature_1/performance_JetHT_VanillaSparseContractiveVariational.png}
+    %     \caption{Zoom in}
+    % \end{subfigure}
+    \caption{Extended model performance for feature set 2 with 2018 data}
+\label{fig:2018_f2_extended_ae_performance}
 \end{figure}
 
 \subsubsection{Distribution of decision value (to find the threshold)}

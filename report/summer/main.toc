@@ -34,4 +34,4 @@
 \contentsline {subsubsection}{1) Include low statistics (Fill null with zero) and testing with only bad LS form human}{18}
 \contentsline {subsubsection}{2) Exclude low statistics (Filter LS that has low EventsPerLs with value in the settings)}{19}
 \contentsline {subsubsection}{Distribution of decision value (to find the threshold)}{19}
-\contentsline {chapter}{\numberline {6}Conclusions}{27}
+\contentsline {chapter}{\numberline {6}Conclusions}{28}
