@@ -140,26 +140,26 @@ The figure below is [the mother class](NN/base.py) of our AE since all the model
     <em>Main components of the AE's base class</em>
 </p>
 
-Not only the main utility function that we could inherit from mother class to have various child class but we could also combine multiple contrains as we want which has been done in the [extended model](../report/reco/new_data/reports/22july2019.pdf) that located in [this script](reco/new_autoencoder.py).
+Not only the main utility function that we could inherit from mother class to have various child class but we could also combine multiple constrains as we want which has been done in the [extended model](../report/reco/new_data/reports/22july2019.pdf) that located in [this script](reco/new_autoencoder.py).
 
 ### (Optional) Additional Detail
 * **Dynamical GPU memory**
   
-  keep in mind that when you declare the graph and execute it by a session then it will allocate the memory on the GPU as much as model could go. Sometimes it could be an overwhelming memory allocation and weird bug about GPU running out of memory would come up on your screen. However, tensorflow also provide the built in solution where it could deallocate and reallocate as much as the session growth as 
+  keep in mind that when you declare the graph and execute it by a session then it will allocate the memory on the GPU as much as model could go. Sometimes it could be an overwhelming memory allocation and weird bug about GPU running out of memory would come up on your screen. However, tensorflow also provide the built in solution where it could release and reallocate a memory as much as the session growth as 
     ```python
-        self.config = tf.ConfigProto()
-        self.config.gpu_options.allow_growth = True
+    self.config = tf.ConfigProto()
+    self.config.gpu_options.allow_growth = True
     ```
     and do not forget to combine those configuration with your specific session
     ```python
-        self.graph = tf.Graph()
-        self.sess = tf.Session(graph=self.graph, config=self.config)
+    self.graph = tf.Graph()
+    self.sess = tf.Session(graph=self.graph, config=self.config)
     ```
-    I suspect that this configuration might increase time consumption since it has to allocate the GPU memory and deallocate it back and forth. If the static memory allocation running fine in your process, I strongly suggest to go with the static way.
+    By the way, we suspect that this configuration might increase time consumption since it has to allocate the GPU memory and deallocate it back and forth. If the static memory allocation running fine in your process, we strongly suggest to go with a static memory choice.
 
 * **Object deletion** 
     
-    Python backend is smart enough to know when each object are no longer used and it will release the memory by delete the object. In order to make sure that not only the memory on local are already released but a memory on the GPU be free and session are also perfectly close. We want to ensure that the session which belonging to this object has been closed by overriding a delete function as
+    Python backend is smart enough to know when each object are no longer used and it will release the memory by delete the object. In order to make sure that not only the memory on local are already released but a memory on the GPU be free as well as session are also perfectly closed. We want to ensure that the session which belonging to this object has been closed by overriding a delete function as
     ```python
     def __del__(self):
         self.sess.close()

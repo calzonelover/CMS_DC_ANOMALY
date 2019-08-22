@@ -9,9 +9,9 @@
 \end{itemize}
 
 \section{Expectation}
-The most important aim of this work is to reduce the offline shifter work where we should provide the tools to reduce their work if some data are totally bad or perfectly good and let them inspect only for a few grey zone.
-To seperate the kind of data quality, we have to define some decision value from some mathematical model to determine the data quality by finding some threshold to separate them.
-For the ideal case, we might see the good lumisection that looks perfectly good, bad lumisection that looks terribly skew and the grey zone where some of those two kind of lumisection are overlapping.
+The most important aim of this work is to reduce the offline shifter work where we should provide the tools to reduce their work if some data are totally bad or perfectly good and let them inspect only for a few grey zones.
+In order to separate a kind of data quality, we have to define some decision values from some mathematical models to determine the data quality by finding some threshold to separate them.
+For the ideal case, we might see the good lumisection that looks perfectly good, bad lumisection that looks terribly skew and the grey zone where some of those two kinds of lumisection are overlapping.
 
 \begin{figure}[h!]
     \centering
@@ -22,16 +22,16 @@ For the ideal case, we might see the good lumisection that looks perfectly good,
 
 \section{Proposal For an Alternative Approach}
 Again, the purpose of this work is not to redefine the certification process but mimic a shifter and reduce their work if there is an obvious case.
-Then the automatic DCS bit flagging will stay but we apply the algorithm on top of it rather than remove the criteria as we mentioned.
+Then the automatic DCS bit flagging will stay but we apply the algorithm on top of it rather than remove the criteria.
 The quantity value of each data point are physical quantities such as
 \begin{enumerate}
     \item \textbf{Features} transverse momentum, azimuth angle from the beamline, etc.
     \item \textbf{Objects} Mapped to the relevant promary dataset (i.e. trakcs to ZeroBias, muons to SingleMuon and so on)
 \end{enumerate}
-Since each run contain a lot of lumisection which probably too much for processing the certification, \cite{fiori_ml_dc_florence} offers a way to certify data by run and lumisection levels where there is a supervised learing apply in the whole run and feeding only the grey zone to inspect by lumisection to investigate the outlier on the step 2 as in the Figure \ref{fig:cartoon}.
+Since each run contain a lot of lumisection which probably too much for processing the certification, \cite{fiori_ml_dc_florence} offers a way to certify data by run and lumisection levels where there is a supervised learning apply in the whole run and feeding only the grey zone to inspect by lumisection to investigate the outlier on step 2 as in the Figure \ref{fig:cartoon}.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{images/cartoon.png}
-    \caption{ML certificaiton procedure, Image taken from \cite{fiori_ml_dc_florence}}
+    \caption{ML certification procedure, image taken from \cite{fiori_ml_dc_florence}}
     \label{fig:cartoon}
 \end{figure}

@@ -185,6 +185,7 @@ We also perform an extended autoencoder for testing with this case, the above fi
         <img src="new_data/logs/minmaxscalar/2e16BS1200EP/avg_sd_Vanilla_SingleMuon_f2_1.png" width="400px" >
         <img src="new_data/logs/minmaxscalar/2e16BS1200EP/sum_sd_Vanilla_SingleMuon_f2_1.png" width="400px" >
     </p>
+    The peak around feature 50 in good LS are qglobTkN. Secondly the couple clump around feature 80 is qglobTkChi2. The next pile is qglobTkNHits as well as last forky shape in around feature hundred domanated by qMuNCh. 
 
   * ZeroBias
     <p align="center">

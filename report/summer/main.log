@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.27)  22 AUG 2019 11:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.27)  22 AUG 2019 16:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -227,7 +227,9 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_below_shortintertext_sep=\dimen137
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/fontawesome/fontawesome.sty
 Package: fontawesome 2016/05/15 v4.6.3.1 font awesome icons
- (/usr/local/texlive/2017/texmf-dist/tex/latex/fontawesome/fontawesomesymbols-generic.tex) (/usr/local/texlive/2017/texmf-dist/tex/latex/fontawesome/fontawesomesymbols-pdftex.tex)) (/usr/local/texlive/2017/texmf-dist/tex/latex/xcolor/xcolor.sty
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/fontawesome/fontawesomesymbols-generic.tex) (/usr/local/texlive/2017/texmf-dist/tex/latex/fontawesome/fontawesomesymbols-pdftex.tex)) (/usr/local/texlive/2017/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+) (/usr/local/texlive/2017/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
  (/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
@@ -247,18 +249,18 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
  (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -332,26 +334,26 @@ Package caption Info: End \AtBeginDocument code.
  <images/CMS_logo_May2014-eps-converted-to.pdf, id=1, 395.4775pt x 395.4775pt>
 File: images/CMS_logo_May2014-eps-converted-to.pdf Graphic file (type pdf)
  <use images/CMS_logo_May2014-eps-converted-to.pdf>
-Package pdftex.def Info: images/CMS_logo_May2014-eps-converted-to.pdf used on input line 56.
+Package pdftex.def Info: images/CMS_logo_May2014-eps-converted-to.pdf used on input line 58.
 (pdftex.def)             Requested size: 85.35826pt x 85.3579pt.
-LaTeX Font Info:    Try loading font information for U+msa on input line 57.
+LaTeX Font Info:    Try loading font information for U+msa on input line 59.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 57.
+LaTeX Font Info:    Try loading font information for U+msb on input line 59.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 57.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 59.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 57.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 59.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <6> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 57.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 59.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 58.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 60.
  [1
 
 
@@ -397,6 +399,9 @@ Overfull \hbox (20.78578pt too wide) in paragraph at lines 14--14
 
 ] (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/sections/overview.tex
 Chapter 1.
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
 ) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/sections/background.tex [1
 
 
@@ -405,24 +410,35 @@ Chapter 2.
 <images/cms_structure.png, id=47, 3189.9175pt x 2253.41875pt>
 File: images/cms_structure.png Graphic file (type png)
  <use images/cms_structure.png>
-Package pdftex.def Info: images/cms_structure.png used on input line 14.
+Package pdftex.def Info: images/cms_structure.png used on input line 19.
 (pdftex.def)             Requested size: 352.6793pt x 249.11467pt.
- [2
 
- </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/cms_structure.png>] <images/cms_slide.png, id=54, 6022.5pt x 3982.88pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/cms_slide.png, id=48, 6022.5pt x 3982.88pt>
 File: images/cms_slide.png Graphic file (type png)
  <use images/cms_slide.png>
-Package pdftex.def Info: images/cms_slide.png used on input line 27.
+Package pdftex.def Info: images/cms_slide.png used on input line 32.
 (pdftex.def)             Requested size: 352.6793pt x 233.18898pt.
- <images/cms_online_system.png, id=55, 949.5475pt x 677.53125pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[2
+
+]
+Overfull \vbox (15.82474pt too high) has occurred while \output is active []
+
+ [3 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/cms_structure.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/cms_slide.png>] <images/cms_online_system.png, id=60, 949.5475pt x 677.53125pt>
 File: images/cms_online_system.png Graphic file (type png)
  <use images/cms_online_system.png>
-Package pdftex.def Info: images/cms_online_system.png used on input line 50.
+Package pdftex.def Info: images/cms_online_system.png used on input line 55.
 (pdftex.def)             Requested size: 440.84746pt x 314.55254pt.
- [3 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/cms_slide.png>] [4 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/cms_online_system.png>] <images/dqm_flow.png, id=65, 855.195pt x 661.47125pt>
+ [4 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/cms_online_system.png>] <images/dqm_flow.png, id=65, 855.195pt x 661.47125pt>
 File: images/dqm_flow.png Graphic file (type png)
  <use images/dqm_flow.png>
-Package pdftex.def Info: images/dqm_flow.png used on input line 88.
+Package pdftex.def Info: images/dqm_flow.png used on input line 93.
 (pdftex.def)             Requested size: 308.59187pt x 238.68459pt.
 ) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/sections/objectives.tex [5 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/dqm_flow.png>]
 Chapter 3.
@@ -762,7 +778,7 @@ Package pdftex.def Info: images/reco/2018/feature_2/se_dist_Variational1f2_JetHT
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/sections/conclusion.tex [19 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/EGamma_subsystem_label.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/EGamma_subsystem_label_short_range.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/EGamma_pc1.pdf> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/EGamma_pc2.pdf
+[19 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/EGamma_subsystem_label.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/EGamma_subsystem_label_short_range.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/EGamma_pc1.pdf> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/EGamma_pc2.pdf
 
 pdfTeX warning: pdflatex (file /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/EGamma_pc2.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >]
@@ -792,9 +808,51 @@ Overfull \vbox (5.66277pt too high) has occurred while \output is active []
  [22 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/JetHT_label_separate.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/JetHT_label_separate_short_range.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/JetHT_subsystem_label.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/JetHT_subsystem_label_short_range.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/JetHT_pc1.pdf> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/JetHT_pc2.pdf
 
 pdfTeX warning: pdflatex (file /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/JetHT_pc2.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] [23 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_EGamma_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_SingleMuon_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_ZeroBias_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_JetHT_VanillaSparseContractiveVariational.png>] [24 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_EGamma_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png>] [25 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_SingleMuon_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_ZeroBias_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_JetHT_VanillaSparseContractiveVariational.png>] [26 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png>] [27 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/se_dist_Vanilla1f2_SingleMuon_unlog.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/se_dist_Variational1f2_ZeroBias_unlog.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/se_dist_Variational1f2_JetHT_unlog.png>]
+>] <images/reco/2018/feature_2/avg_sd_Vanilla_SingleMuon_f2_1.png, id=604, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/avg_sd_Vanilla_SingleMuon_f2_1.png Graphic file (type png)
+ <use images/reco/2018/feature_2/avg_sd_Vanilla_SingleMuon_f2_1.png>
+Package pdftex.def Info: images/reco/2018/feature_2/avg_sd_Vanilla_SingleMuon_f2_1.png used on input line 344.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_2/sum_sd_Vanilla_SingleMuon_f2_1.png, id=605, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/sum_sd_Vanilla_SingleMuon_f2_1.png Graphic file (type png)
+ <use images/reco/2018/feature_2/sum_sd_Vanilla_SingleMuon_f2_1.png>
+Package pdftex.def Info: images/reco/2018/feature_2/sum_sd_Vanilla_SingleMuon_f2_1.png used on input line 348.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2018/feature_2/avg_sd_Variational_ZeroBias_f2_1.png, id=606, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/avg_sd_Variational_ZeroBias_f2_1.png Graphic file (type png)
+ <use images/reco/2018/feature_2/avg_sd_Variational_ZeroBias_f2_1.png>
+Package pdftex.def Info: images/reco/2018/feature_2/avg_sd_Variational_ZeroBias_f2_1.png used on input line 358.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_2/sum_sd_Variational_ZeroBias_f2_1.png, id=607, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/sum_sd_Variational_ZeroBias_f2_1.png Graphic file (type png)
+ <use images/reco/2018/feature_2/sum_sd_Variational_ZeroBias_f2_1.png>
+Package pdftex.def Info: images/reco/2018/feature_2/sum_sd_Variational_ZeroBias_f2_1.png used on input line 362.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/reco/2018/feature_2/avg_sd_Variational_JetHT_f2_1.png, id=608, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/avg_sd_Variational_JetHT_f2_1.png Graphic file (type png)
+ <use images/reco/2018/feature_2/avg_sd_Variational_JetHT_f2_1.png>
+Package pdftex.def Info: images/reco/2018/feature_2/avg_sd_Variational_JetHT_f2_1.png used on input line 372.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+ <images/reco/2018/feature_2/sum_sd_Variational_JetHT_f2_1.png, id=609, 462.528pt x 346.896pt>
+File: images/reco/2018/feature_2/sum_sd_Variational_JetHT_f2_1.png Graphic file (type png)
+ <use images/reco/2018/feature_2/sum_sd_Variational_JetHT_f2_1.png>
+Package pdftex.def Info: images/reco/2018/feature_2/sum_sd_Variational_JetHT_f2_1.png used on input line 376.
+(pdftex.def)             Requested size: 216.01767pt x 162.01425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/sections/conclusion.tex [23 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_EGamma_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_SingleMuon_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_ZeroBias_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_JetHT_VanillaSparseContractiveVariational.png>] [24 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_EGamma_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_1/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png>] [25 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_SingleMuon_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_ZeroBias_VanillaSparseContractiveVariational.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_JetHT_VanillaSparseContractiveVariational.png>] [26 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_SingleMuon_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_ZeroBias_SparseContractiveSparseVariationalContractiveVariationalStandard.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/performance_JetHT_SparseContractiveSparseVariationalContractiveVariationalStandard.png>] [27 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/se_dist_Vanilla1f2_SingleMuon_unlog.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/se_dist_Variational1f2_ZeroBias_unlog.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/se_dist_Variational1f2_JetHT_unlog.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/avg_sd_Vanilla_SingleMuon_f2_1.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/sum_sd_Vanilla_SingleMuon_f2_1.png>] [28 </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/avg_sd_Variational_ZeroBias_f2_1.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/sum_sd_Variational_ZeroBias_f2_1.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/avg_sd_Variational_JetHT_f2_1.png> </Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/images/reco/2018/feature_2/sum_sd_Variational_JetHT_f2_1.png>]
 Chapter 6.
-) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.bbl [28
+) (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.bbl [29
 
 ]
 Missing character: There is no Ã in font cmr10!
@@ -803,25 +861,25 @@ Missing character: There is no Ì in font cmr10!
 Missing character: There is no ˆ in font cmr10!
 )
 
-Package caption Warning: Unused \captionsetup[table] on input line 38.
+Package caption Warning: Unused \captionsetup[table] on input line 40.
 See the caption package documentation for explanation.
 
-[29
+[30
 
 ] (/Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.aux) ) 
 Here is how much of TeX's memory you used:
- 7707 strings out of 492995
- 123606 string characters out of 6132703
- 293187 words of memory out of 5000000
- 11057 multiletter control sequences out of 15000+600000
+ 7756 strings out of 492995
+ 125829 string characters out of 6132703
+ 294304 words of memory out of 5000000
+ 11096 multiletter control sequences out of 15000+600000
  20077 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,9n,42p,780b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,9n,42p,1152b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.pdf (34 pages, 8813217 bytes).
+Output written on /Users/jab/Desktop/CMSDC/CMS_DC_ANOMALY/report/summer/main.pdf (35 pages, 9070531 bytes).
 PDF statistics:
- 706 PDF objects out of 1000 (max. 8388607)
- 187 compressed objects within 2 object streams
+ 721 PDF objects out of 1000 (max. 8388607)
+ 189 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 291 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 321 words of extra memory for PDF output out of 10000 (max. 10000000)
 

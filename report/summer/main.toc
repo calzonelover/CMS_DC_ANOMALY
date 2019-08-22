@@ -4,7 +4,7 @@
 \contentsline {section}{\numberline {2.2}Data Acquisition (DAQ)}{3}
 \contentsline {subsection}{\numberline {2.2.1}CMS Online System}{4}
 \contentsline {subsection}{\numberline {2.2.2}Data Granularity}{4}
-\contentsline {section}{\numberline {2.3}Data Quality Monitoring (DQM)}{4}
+\contentsline {section}{\numberline {2.3}Data Quality Monitoring (DQM)}{5}
 \contentsline {chapter}{\numberline {3}Objectives}{6}
 \contentsline {section}{\numberline {3.1}Expectation}{6}
 \contentsline {section}{\numberline {3.2}Proposal For an Alternative Approach}{7}
@@ -31,7 +31,8 @@
 \contentsline {section}{\numberline {5.2}2018 Datasets}{16}
 \contentsline {subsection}{\numberline {5.2.1}Primary Analysis}{16}
 \contentsline {subsection}{\numberline {5.2.2}Performance}{18}
-\contentsline {subsubsection}{1) Include low statistics (Fill null with zero) and testing with only bad LS form human}{18}
+\contentsline {subsubsection}{1) Include low statistics (fill null with zero) and testing with only bad LS form human}{18}
 \contentsline {subsubsection}{2) Exclude low statistics (Filter LS that has low EventsPerLs with value in the settings)}{19}
 \contentsline {subsubsection}{Distribution of decision value (to find the threshold)}{19}
-\contentsline {chapter}{\numberline {6}Conclusions}{28}
+\contentsline {subsubsection}{Reconstruction Error}{23}
+\contentsline {chapter}{\numberline {6}Conclusions}{29}

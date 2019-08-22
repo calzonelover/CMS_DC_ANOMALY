@@ -19,27 +19,27 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.7\textwidth]{images/ex_eta_dist.png}
-    \caption{$\eta$ distribution, Image taken from DQM GUI}
+    \caption{$\eta$ distribution, image taken from DQM GUI}
     \label{fig:ex_eta_dist}
 \end{figure}
 
-In order to mimic the offline shifter that looking at the histogram and certify data by that.
-Then we decided represent a single histogram with seven quantities instead of feeding all of those to the model because it would be an overwhelming large features.
+To mimic the offline shifter that looking at the histogram and certifies data by that.
+Then I decided to represent a single histogram with seven quantities instead of feeding all of those to the model because it would be an overwhelming large feature.
 The explicit example is to consider one histogram as Figure \ref{fig:ex_eta_dist}
 
 Here are the simple step for picking up our represented vector
 \begin{itemize}
     \item Quantize [10\%, 30\%, 50\%, 70\%, 90\%] of the histogram (For 2016 data, we quantize [0\%, 25\%, 50\%, 75\%, 100\%] of the histogram)
-    \item Combine mean and rms
+    \item Combines mean and rms
     \item Use these 7 values to represent one histogram
 \end{itemize}
 
 
 \subsection{Data Preprocessing}
 
-For numerically convenient, we transform the each data point by using 
+For numerically convenient, we transform each data point by using 
 
-\textbf{MinMaxScalar Transformation} The mathematical expression are represented by consider lumisection $i$ and features $j$
+\textbf{MinMaxScalar Transformation} The mathematical expression is represented by considering lumisection $i$ and features $j$
 
 \begin{equation}
     x_{ij}' \leftarrow \frac{x_{ij} - \min_{\forall i\in S_{\text{train}}}\{x_{ij}\}}{\max_{\forall i\in S_{\text{train}}}\{x_{ij}\} - \min_{\forall i\in S_{\text{train}}}\{x_{ij}\} }
@@ -53,17 +53,17 @@ We exploiding a various unsupervised model from a beautiful simple one to more c
     \item Isolation Forest
     \item 4 Flavours of Autoencoder
 \end{itemize}
-For training the model by feeding only good LS as well as validate it with good LS to ensure the learning curve is the appropriate for hyper-parameters configurations.
+Training the model by feeding only good LS as well as validate it with good LS to ensure the learning curve is appropriate for hyper-parameters configurations.
 After the training process is done, we test it with both good and bad LS. Consequently, it's falling into \textbf{Semi-supervised Learning} category.
 
 \subsection{Sch\"{o}lkopf's One-Class SVM}
-Support vector machine (SVM) is one of the most popular machine learning model since it has no randomness and beautiful straightforward way to express.
-There is a way to tweak the original one to interpret as the radious-like hyperplane where the inlier of data are feeding and mapped to more than one radius with a soft margin controlled by factor $\nu$ as interpret in \cite{oneclasssvm}.
+Support vector machine (SVM) is one of the most popular machine learning models since it has no randomness and beautiful straightforward way to express.
+There is a way to tweak the original one to interpret as the radius-like hyperplane where the inlier of data is feeding and mapped to more than one radius with a soft margin controlled by a factor $\nu$ as interpret in \cite{oneclasssvm}.
 By minimizing
 \begin{equation}
 \frac{||w||^2}{2} + \frac{1}{\nu l}\sum_{i=1}^l \xi_i - \rho
 \end{equation}
-Subject to
+Under conditions
 \begin{equation}
     w \cdot \Phi(x_i) \geqslant \rho - \xi_i \ ,\ \xi_i \geqslant 0
 \end{equation}
@@ -73,8 +73,8 @@ With Gaussian Base Radial function (GBF) as a kernel like equation \ref{eq:gbf}
 \end{equation}
 
 \subsection{Isolation Forest}
-The idea of bagging the sample and construct a tree are incredibly beautiful are interpreted and adapt in a way that unsupervised learning are come to the place are study by \cite{isolation_forest}.
-Forest are construct by picking up subsampling ($\Psi$) and Iteratively picking up features and random value to construct the node (equivalent to step function), then Anomaly score evaluate from average depth of the instance over forest
+The idea of bagging the sample and construct a tree are incredibly beautiful are interpreted and adapt in a way that unsupervised learning comes to the place are study by \cite{isolation_forest}.
+Forest are constructed by picking up subsampling ($\Psi$) and Iteratively picking up features and random value to construct the node (equivalent to step function), then Anomaly score evaluate from average depth of the instance over a forest
 \begin{equation}
     s(x, \Psi) = \exp^{-<h(x)>/c(\Psi)}
 \end{equation} 
@@ -87,7 +87,7 @@ where
 \subsection{Autoencoder (AE)}
 Let start with the hyper-parameters and configurations of our model
 \subsubsection*{Truncated normal initializer}
-For model weight initializer, we are using truncated normal initializer which basically you take a gaussian distribution and putting the cutoff only inside $\pm2\sigma$ as in the Figure \ref{fig:normal_dist} to prevent some high absolute value that might leading to divergence of model in the training process.
+For model weight initializer, we are using truncated normal initializer which basically by putting the cutoff only inside $\pm2\sigma$ of gaussian distribution as in the Figure \ref{fig:normal_dist} to prevent some high absolute value that might leading to divergence of model in the training process.
 
 In our case, we set up $\sigma=1$ and $\mu=1$ 
 \begin{figure}[h!]
@@ -98,7 +98,7 @@ In our case, we set up $\sigma=1$ and $\mu=1$
 \end{figure}
 
 \subsubsection*{Adam Optimizer}
-Adam stands for \textbf{adaptive moment estimation} \cite{adam}. Basically, it's combine Momentum optimization and RMSProp to keep the residue of the gradients decaying from the previous update.
+Adam stands for \textbf{adaptive moment estimation} \cite{adam}. It combines Momentum optimization and RMSProp to keep the residue of the gradients decaying from the previous update.
 We set up $lr = 10^{-4}$ (learning rate), $\beta_1 = 0.7$ and $\beta_2$ = 0.9.
 \vspace{0.4in}
 \par There are 4 flavours of our autoencoder that we constructed

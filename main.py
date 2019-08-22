@@ -22,6 +22,7 @@ if __name__ == "__main__":
     #         DATA_SPLIT_TRAIN = [1.0 for i in range(5)],
     #     )
     ## Testing
+    '''
     autoencoder.compute_ms_dist(
         selected_pd = "ZeroBias",
         Autoencoder = Autoencoder.VariationalAutoencoder,
@@ -56,28 +57,28 @@ if __name__ == "__main__":
         gpu_memory_growth = True,
     )
     '''
-    autoencoder.error_features(
-        selected_pd = "ZeroBias",
-        Autoencoder = Autoencoder.VariationalAutoencoder,
-        model_name = "Variational",
-        number_model = 1,
-        include_bad_failure = True,
-        cutoff_eventlumi = True,
-        is_dropna = True,
-        data_preprocessing_mode = 'minmaxscalar',
-        gpu_memory_growth = True,
-    )
-    autoencoder.error_features(
-        selected_pd = "JetHT",
-        Autoencoder = Autoencoder.VariationalAutoencoder,
-        model_name = "Variational",
-        number_model = 1,
-        include_bad_failure = True,
-        cutoff_eventlumi = True,
-        is_dropna = True,
-        data_preprocessing_mode = 'minmaxscalar',
-        gpu_memory_growth = True,
-    )
+    # autoencoder.error_features(
+    #     selected_pd = "ZeroBias",
+    #     Autoencoder = Autoencoder.VariationalAutoencoder,
+    #     model_name = "Variational",
+    #     number_model = 1,
+    #     include_bad_failure = True,
+    #     cutoff_eventlumi = True,
+    #     is_dropna = True,
+    #     data_preprocessing_mode = 'minmaxscalar',
+    #     gpu_memory_growth = True,
+    # )
+    # autoencoder.error_features(
+    #     selected_pd = "JetHT",
+    #     Autoencoder = Autoencoder.VariationalAutoencoder,
+    #     model_name = "Variational",
+    #     number_model = 1,
+    #     include_bad_failure = True,
+    #     cutoff_eventlumi = True,
+    #     is_dropna = True,
+    #     data_preprocessing_mode = 'minmaxscalar',
+    #     gpu_memory_growth = True,
+    # )
     autoencoder.error_features(
         selected_pd = "SingleMuon",
         Autoencoder = Autoencoder.VanillaAutoencoder,
@@ -89,4 +90,3 @@ if __name__ == "__main__":
         data_preprocessing_mode = 'minmaxscalar',
         gpu_memory_growth = True,
     )
-    '''

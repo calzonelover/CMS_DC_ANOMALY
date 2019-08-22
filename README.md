@@ -17,8 +17,8 @@ Data quality in CMS detector could be monitored via GUI by using the tools that 
 Ref. [1]
 
 ## Criteria for bad LS
-1) Runs tagged as bad by human (whole run)
-2) Automatically filter by DCS bits, beam status and etc. (LS levels)
+1) Automatically filter by DCS bits, beam status and etc. (LS levels)
+2) Runs tagged as bad by human (whole run)
 3) In rare cases are marked by DC experts (LS levels)
 
 The Golden JSON contains the list of all good LS

@@ -285,4 +285,4 @@ def error_features(
     fig.suptitle("Sum reconstruction error over testing sample ({}, {})".format(selected_pd, model_name))
     plt.savefig('sum_sd_{}_{}_f{}_{}.png'.format(model_name, selected_pd, FEATURE_SET_NUMBER, number_model))
 
-    print(features[20:30], '\n', features[50:58], '\n', features[61:72], '\n', features[65:75], '\n',)
+    print(features[48:58], '\n', features[78:85], '\n', features[85:95], '\n', features[99:108], '\n',)
